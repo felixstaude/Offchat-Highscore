@@ -13,8 +13,9 @@
     <body>
         <main>
             <div>
-                <from>
-                    <lable for="name"></lable>
+                <form>
+
+                    <lable for="name">Dein Name</lable>
                     <input type="text" name="name" id="name"/>
 
                     <input type="number" name="solo" id="solo"/>
@@ -32,12 +33,13 @@
 
                     <input type="text" name="braSize" id="braSize" style="display:none;"/> <!-- kann man ja später sonst noch ganz raus machen -->
                     
-                    <input type="radio" name="status" id="sinlge"/>
+                    <input type="radio" name="status" id="single"/>
                     <input type="radio" name="status" id="together"/>
 
                     <input type="text" name="favPornCategory" id="favPornCategory"/>
                     <input type="url" name="favePornVid" id="favePornVid"/>
-                </from>
+
+                    <input type="button" value="Submit" onclick="submitForm()">                </form>
             </div>
         </main>
     </body>
