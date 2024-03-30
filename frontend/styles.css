@@ -32,7 +32,7 @@ main {
 
 .container {
     position: relative;
-    width: 505px;
+    width: 527px;
     margin: auto;
 }
 
@@ -137,7 +137,7 @@ hr {
     opacity: 1;
 }
 
-@media only screen and (max-width: 505px) {
+@media only screen and (max-width: 527px) {
     header {
         height: 160px;
     }
@@ -147,6 +147,24 @@ hr {
     .container {
         width: 100%;
     }
+}
+
+.loginFailWrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    z-index: 999; /* #lljw🕊 */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginFail {
+    background-color: #fcc6b4;
+    text-align: center;
 }
 
 .author {

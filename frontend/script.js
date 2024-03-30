@@ -1,3 +1,52 @@
+window.onload = checkSessionLogin;
+
+function checkSessionLogin() {
+    let lockedInValue = getCookieValue('lockedIn');
+
+    fetch('http://localhost:8080/api/checklogin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(lockedInValue),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        window.location('login.html?source=loginfail');
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        if (data === false) {
+            window.location.replace('login.html?source=loginfail');
+        }
+    })
+    .catch(error => {
+        console.error('Failed to fetch: ', error);
+        window.location.replace('login.html?source=loginfail');
+    })
+}
+
+function getCookieValue(cookieName) {
+    // split cookie-string into values
+    let cookies = document.cookie.split(';');
+
+    // search cookies
+    for (var i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+
+        // check if cookie exists
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            return cookie.substring(cookieName.length + 1);
+        }
+    }
+    return null;
+}
+
+// form
 window.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         submitForm();
