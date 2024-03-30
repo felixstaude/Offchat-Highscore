@@ -11,6 +11,7 @@ public class Stats {
     private String bcmale;
     private String bcfemale;
     private String bcdiverse;
+    private String sexuality;
     private String weapon_bra_size;
     private String single;
     private String favePornCategory;
@@ -76,6 +77,10 @@ public class Stats {
         return favePornVid;
     }
 
+    public String getSexuality(){
+        return sexuality;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -113,6 +118,10 @@ public class Stats {
 
     public void setBcd(String bcdiverse) {
         this.bcdiverse = bcdiverse;
+    }
+
+    public void setSexuality(String sexuality){
+        this.sexuality = sexuality;
     }
 
     public void setWeapon(String weapon_bra_size) {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/login")
 public class LoginController {
 
-
     @PostMapping
     public ResponseEntity<Boolean> handleFormSubmit(@RequestBody Login login) {
         System.out.println(login.getUsername() + " " + login.getPassword());
@@ -20,6 +19,5 @@ public class LoginController {
         }
         return ResponseEntity.accepted().body(false);
     }
-
 
 }

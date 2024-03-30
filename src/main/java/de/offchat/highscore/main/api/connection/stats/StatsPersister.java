@@ -10,12 +10,12 @@ public class StatsPersister {
 
     public static void insertStats(Stats stats){
         String sql = "INSERT INTO highscore (username, name, solo, soloSession, duo, duoSession, " +
-                "bodycount, bcmale, bcfemale, bcdiverse, weapon_bra_size, single, favPornCategory, favPornVid) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name = VALUES(name), solo = VALUES(solo), soloSession = VALUES(soloSession)," +
+                "bodycount, bcmale, bcfemale, bcdiverse, weapon_bra_size, single, favPornCategory, favPornVid, sexuality) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE name = VALUES(name), solo = VALUES(solo), soloSession = VALUES(soloSession)," +
                 "duo = VALUES(duo), duoSession = VALUES(duoSession), bodycount = VALUES(bodycount)," +
                 "bcmale = VALUES(bcmale), bcfemale = VALUES(bcfemale), bcdiverse = VALUES(bcdiverse)," +
                 "weapon_bra_size = VALUES(weapon_bra_size), single = VALUES(single)," +
-                "favPornCategory = VALUES(favPornCategory), favPornVid = VALUES(favPornVid)";
+                "favPornCategory = VALUES(favPornCategory), favPornVid = VALUES(favPornVid), sexuality = VALUES(sexuality)";
 
         try(Connection connection = DatabaseConnector.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             stats.setUsername("felix");
@@ -37,6 +37,7 @@ public class StatsPersister {
             }
             statement.setString(13, stats.getFavPornCategory());
             statement.setString(14, stats.getFavePornVid());
+            statement.setString(15, stats.getSexuality());
 
             statement.executeUpdate();
 
