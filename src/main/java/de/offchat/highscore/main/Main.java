@@ -18,6 +18,7 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         SpringApplication.run(Main.class, args);
     }
 }
