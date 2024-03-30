@@ -14,7 +14,7 @@ public class PasswordHasher {
         return bytesToHex(salt);
     }
 
-    public static String hashPassword(String password, String salt) {
+    public static String hashPassword(String password, byte[] salt) {
         return hashPassword((salt + password).getBytes());
     }
 

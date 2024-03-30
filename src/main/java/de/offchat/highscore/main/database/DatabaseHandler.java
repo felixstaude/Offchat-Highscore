@@ -1,6 +1,5 @@
 package de.offchat.highscore.main.database;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,7 +7,11 @@ import java.sql.Statement;
 public class DatabaseHandler {
 
     public static void createUserTable(){
-        String sql = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(256) NOT NULL, password VARCHAR(256) NOT NULL)";
+        String sql = "CREATE TABLE IF NOT EXISTS users (" +
+                 "id INT AUTO_INCREMENT PRIMARY KEY," +
+                " username VARCHAR(256) UNIQUE NOT NULL," +
+                " password_hash VARCHAR(256) NOT NULL," +
+                " salt VARCHAR(256) NOT NULL)";
 
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
@@ -22,6 +25,18 @@ public class DatabaseHandler {
     }
 
     public static void createHighscoreTable(){
+        String sql = "CREATE TABLE IF NOT EXISTS highscore (id INT, username VARCHAR(256) NOT NULL, solo VARCHAR(8) NOT NULL," +
+                " soloSession VARCHAR(8) NOT NULL, duo VARCHAR(8) NOT NULL, duoSession VARCHAR(8) NOT NULL, bodycount VARCHAR(8) NOT NULL," +
+                " bcmale VARCHAR(8) NOT NULL, bcfemale VARCHAR(8) NOT NULL, bcdiverse VARCHAR(8) NOT NULL, weapon_bra_size VARCHAR(8) NOT NULL," +
+                " single VARCHAR(8) NOT NULL, favPornCategory VARCHAR(256) NOT NULL, favPornVid VARCHAR(256) NOT NULL)";
 
+        try (Connection connection = DatabaseConnector.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.execute(sql);
+            System.out.println("'highscore' table successfully created!");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error whilst creating table:" + e);
+        }
     }
 }

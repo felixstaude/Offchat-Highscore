@@ -12,8 +12,7 @@ public class Stats {
     private String bcdiverse;
     private String weapon_bra_size;
     private String single;
-    private String together;
-    private String favPornCategory;
+    private String favePornCategory;
     private String favePornVid;
 
     public Stats() {
@@ -65,12 +64,8 @@ public class Stats {
         return single;
     }
 
-    public String getTogether() {
-        return together;
-    }
-
     public String getFavPornCategory() {
-        return favPornCategory;
+        return favePornCategory;
     }
 
     public String getFavePornVid() {
@@ -121,12 +116,8 @@ public class Stats {
         this.single = single;
     }
 
-    public void setTogether(String together) {
-        this.together = together;
-    }
-
     public void setFavPornCategory(String favPornCategory) {
-        this.favPornCategory = favPornCategory;
+        this.favePornCategory = favPornCategory;
     }
 
     public void setFavePornVid(String favePornVid) {
