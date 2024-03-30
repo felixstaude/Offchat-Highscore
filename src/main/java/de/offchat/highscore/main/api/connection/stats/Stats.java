@@ -1,4 +1,4 @@
-package de.offchat.highscore.main;
+package de.offchat.highscore.main.api.connection.stats;
 
 public class Stats {
     private String name;
@@ -7,11 +7,10 @@ public class Stats {
     private String duo;
     private String duoSessions;
     private String bodycount;
-    private String bcm;
-    private String bcf;
-    private String bcd;
-    private String weapon;
-    private String braSize;
+    private String bcmale;
+    private String bcfemale;
+    private String bcdiverse;
+    private String weapon_bra_size;
     private String single;
     private String together;
     private String favPornCategory;
@@ -46,24 +45,21 @@ public class Stats {
     }
 
     public String getBcm() {
-        return bcm;
+        return bcmale;
     }
 
     public String getBcf() {
-        return bcf;
+        return bcfemale;
     }
 
     public String getBcd() {
-        return bcd;
+        return bcdiverse;
     }
 
-    public String getWeapon() {
-        return weapon;
+    public String getWeapon_bra_size() {
+        return weapon_bra_size;
     }
 
-    public String getBraSize() {
-        return braSize;
-    }
 
     public String getSingle() {
         return single;
@@ -105,24 +101,20 @@ public class Stats {
         this.bodycount = bodycount;
     }
 
-    public void setBcm(String bcm) {
-        this.bcm = bcm;
+    public void setBcm(String bcmale) {
+        this.bcmale = bcmale;
     }
 
-    public void setBcf(String bcf) {
-        this.bcf = bcf;
+    public void setBcf(String bcfemale) {
+        this.bcfemale = bcfemale;
     }
 
-    public void setBcd(String bcd) {
-        this.bcd = bcd;
+    public void setBcd(String bcdiverse) {
+        this.bcdiverse = bcdiverse;
     }
 
-    public void setWeapon(String weapon) {
-        this.weapon = weapon;
-    }
-
-    public void setBraSize(String braSize) {
-        this.braSize = braSize;
+    public void setWeapon(String weapon_bra_size) {
+        this.weapon_bra_size = weapon_bra_size;
     }
 
     public void setSingle(String single) {

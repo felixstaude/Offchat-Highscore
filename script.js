@@ -6,10 +6,10 @@ function submitForm() {
         duo: document.getElementById('duo').value,
         duoSessions: document.getElementById('duoSessions').value,
         bodycount: document.getElementById('bodycount').value,
-        bcm: document.getElementById('bcm').value,
-        bcf: document.getElementById('bcf').value,
-        bcd: document.getElementById('bcd').value,
-        weapon: document.getElementById('weapon').value,
+        bcm: document.getElementById('bcmale').value,
+        bcf: document.getElementById('bcfemale').value,
+        bcd: document.getElementById('bcdiverse').value,
+        weapon: document.getElementById('weapon-bra-size').value,
         single: document.getElementById('single').value,
         together: document.getElementById('together').value,
         favPornCategory: document.getElementById('favPornCategory').value,
@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let duo = document.getElementById('duo');
     let duoSessions = document.getElementById('duoSessions');
     let bodycount = document.getElementById('bodycount');
-    let bcm = document.getElementById('bcm');
-    let bcf = document.getElementById('bcf');
-    let bcd = document.getElementById('bcd');
-    let weapon = document.getElementById('weapon');
+    let bcm = document.getElementById('bcmale');
+    let bcf = document.getElementById('bcfemale');
+    let bcd = document.getElementById('bcdiverse');
+    let weapon = document.getElementById('weapon-bra-size');
     let sexuality = document.getElementById('sexuality');
     let single = document.getElementById('single');
     let together = document.getElementById('together');
