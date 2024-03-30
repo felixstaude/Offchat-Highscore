@@ -17,14 +17,20 @@ function submitForm() {
         favePornVid: document.getElementById('favePornVid').value
     };
 
-    fetch('/api/users', {
+    fetch('http://localhost:8080/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
         body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(data => console.log('Success:', data))
-    .catch((error) => console.error('Error:', error));
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('Failed to fetch: ', error));
 }
