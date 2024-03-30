@@ -34,7 +34,6 @@ function submitForm() {
     .catch(error => console.error('Failed to fetch: ', error));
 }
 
-}
 document.addEventListener('DOMContentLoaded', function() {
 
     // color and width when filling out
