@@ -38,5 +38,15 @@ public class PasswordHasher {
         }
         return sb.toString();
     }
+
+    public static byte[] hexToBytes(String hexString) {
+        byte[] bytes = new byte[hexString.length() / 2];
+        for (int i = 0; i < bytes.length; i++) {
+            int index = i * 2;
+            int value = Integer.parseInt(hexString.substring(index, index + 2), 16);
+            bytes[i] = (byte) value;
+        }
+        return bytes;
+    }
 }
 

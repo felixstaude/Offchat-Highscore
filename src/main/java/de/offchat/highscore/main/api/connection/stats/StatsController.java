@@ -12,8 +12,7 @@ public class StatsController {
 
     @PostMapping
     public ResponseEntity<Stats> handleFormSubmit(@RequestBody Stats stats) {
-        System.out.println(stats.getSolo());
-
+        StatsPersister.insertStats(stats);
         return ResponseEntity.ok().body(stats);
     }
 }

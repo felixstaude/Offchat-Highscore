@@ -1,6 +1,7 @@
 package de.offchat.highscore.main.api.connection.stats;
 
 public class Stats {
+    private String username;
     private String name;
     private String solo;
     private String soloSessions;
@@ -21,6 +22,9 @@ public class Stats {
 
     public String getName() {
         return name;
+    }
+    public String getUsername() {
+        return username;
     }
 
     public String getSolo() {
@@ -75,6 +79,9 @@ public class Stats {
     public void setName(String name) {
         this.name = name;
     }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setSolo(String solo) {
         this.solo = solo;
@@ -116,8 +123,8 @@ public class Stats {
         this.single = single;
     }
 
-    public void setFavPornCategory(String favPornCategory) {
-        this.favePornCategory = favPornCategory;
+    public void setFavePornCategory(String favePornCategory) {
+        this.favePornCategory = favePornCategory;
     }
 
     public void setFavePornVid(String favePornVid) {

@@ -13,11 +13,12 @@ public class LoginController {
 
 
     @PostMapping
-    public ResponseEntity<Login> handleFormSubmit(@RequestBody Login login) {
+    public ResponseEntity<Boolean> handleFormSubmit(@RequestBody Login login) {
+        System.out.println(login.getUsername() + " " + login.getPassword());
         if(PasswordVerification.verifyPassword(login.getPassword(), login.getUsername())){
-            return ResponseEntity.ok().build();
+            return ResponseEntity.accepted().body(true);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.accepted().body(false);
     }
 
 
