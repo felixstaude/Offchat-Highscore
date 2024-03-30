@@ -90,7 +90,12 @@ input, button, select {
     transition: background-color 1s ease-in-out;
 }
 
+.hidden {
+    display: none;
+}
+
 .filled {
+    border-radius: 10px;
     background-color: #bafcb4;
 }
 

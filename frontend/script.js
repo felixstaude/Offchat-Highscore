@@ -121,4 +121,17 @@ document.addEventListener('DOMContentLoaded', function() {
             author.classList.remove('authorShow');
         }
     })
+
+    // color radio listener to hide input
+    function check(a, b) {
+        return function() {
+            let x = document.getElementById(a);
+            let y = document.getElementById(b);
+            x.classList.add('filled');
+            y.classList.remove('filled');
+        };
+    }
+
+    document.getElementById('lSingle').addEventListener('click', check('lSingle', 'lTogether'));
+    document.getElementById('lTogether').addEventListener('click', check('lTogether', 'lSingle'));
 });
