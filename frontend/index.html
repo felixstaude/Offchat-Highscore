@@ -88,16 +88,17 @@
                     <hr/>
 
                     <h3>Favourite Porn</h3>
-                    <label for="favePornCategory">Kategorie</label>
+                    <label for="favPornCategory">Kategorie</label>
                     <input type="text" name="favePornCategory" maxlength="256" id="favePornCategory"/>
                 
                     <label for="favePornVid">Video (URL)</label>
                     <input type="url" name="favePornVid" maxlength="256" id="favePornVid"/>
                     <hr/>
 
-                    <input type="button" value="✨ abschicken ✨" title="es gibt kein zurück mehr" onclick="submitForm()">
+                    <input type="button" value="✨ abschicken ✨" title="es gibt kein zurück mehr" id="submitButton" onclick="submitForm()">
                     <hr/>
                 </form>
+                <div class="information" id="information"></div>
             </div>
         </main>
         <div class="author" id="author">

@@ -1,4 +1,14 @@
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        submitForm();
+    }
+});
+
 function submitForm() {
+    console.log('submit');
+    let information = document.getElementById('information');
+    information.classList.add('loading');
+
     const formData = {
         name: document.getElementById('name').value,
         solo: document.getElementById('solo').value,
@@ -9,6 +19,7 @@ function submitForm() {
         bcm: document.getElementById('bcmale').value,
         bcf: document.getElementById('bcfemale').value,
         bcd: document.getElementById('bcdiverse').value,
+        sexuality: document.getElementById('sexuality').value,
         weapon: document.getElementById('weapon-bra-size').value,
         single: document.getElementById('single').value,
         together: document.getElementById('together').value,
@@ -28,10 +39,19 @@ function submitForm() {
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
+        information.classList.remove('loading');
         return response.json();
     })
-    .then(data => console.log(data))
-    .catch(error => console.error('Failed to fetch: ', error));
+    .then(data => {
+        console.log(data);
+        information.classList.remove('loading');
+    })
+    .catch(error => {
+        console.error('Failed to fetch: ', error);
+        information.classList.remove('loading');
+        information.classList.add('error');
+        information.title = "Fehler, umgehend Tech-Support aufsuchen 🤖"
+    })
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let sexuality = document.getElementById('sexuality');
     let single = document.getElementById('single');
     let together = document.getElementById('together');
-    let favPornCategory = document.getElementById('favPornCategory');
+    let favePornCategory = document.getElementById('favePornCategory');
     let favePornVid = document.getElementById('favePornVid');
 
 
@@ -69,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     single.addEventListener('input', resizeInput(single));
     together.addEventListener('input', resizeInput(together));
-    favPornCategory.addEventListener('input', resizeInput(favPornCategory));
+    favePornCategory.addEventListener('input', resizeInput(favePornCategory));
     favePornVid.addEventListener('input', resizeInput(favePornVid));
 
     function resizeInput(id) {

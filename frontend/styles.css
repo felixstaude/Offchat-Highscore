@@ -1,7 +1,7 @@
 body {
     margin:0;
     background-color: #FFD1C2;
-    font-family: "Edu NSW ACT Foundation", monospace;
+    font-family: "Edu NSW ACT Foundation";
     font-size: 20px;
     text-shadow: 0 0 2px rgba(255,255,255,0.5)
 }
@@ -14,6 +14,7 @@ header{
     text-align: center;
     background-color: #fcc6b4;
     box-shadow: -3px 5px 5px rgba(0,0,0,0.5);
+    z-index: 1;
 }
 
 .paghover{
@@ -30,8 +31,40 @@ main {
 }
 
 .container {
+    position: relative;
     width: 505px;
     margin: auto;
+}
+
+.information {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.loading {
+    border-top: solid 2px black;
+    border-right: solid 3px transparent;
+    animation: spin 2s linear infinite;
+}
+
+.error {
+    font-size: 11px;
+    text-align: center;
+    background-color: rgb(255,150,150);
+    color: red;
+}
+
+.error::before {
+    content: "\274C";
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
 }
 
 form {
@@ -121,6 +154,7 @@ hr {
     height: 25px;
     top: -30px;
     transition-duration: 1s;
+    z-index: 2;
 }
 
 .author:hover {
@@ -130,4 +164,20 @@ hr {
 
 .authorShow {
     top: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
