@@ -12,7 +12,7 @@ function submitForm() {
         weapon: document.getElementById('weapon-bra-size').value,
         single: document.getElementById('single').value,
         together: document.getElementById('together').value,
-        favPornCategory: document.getElementById('favPornCategory').value,
+        favePornCategory: document.getElementById('favePornCategory').value,
         favePornVid: document.getElementById('favePornVid').value
     };
 
@@ -90,11 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let documentHeight = document.body.scrollHeight;
         let currentScroll = window.scrollY + window.innerHeight;
         let width = window.innerWidth;
+        //console.log(currentScroll + " | " + documentHeight + " | " + (currentScroll - documentHeight)); Falls es nochmal kaputt geht
 
         let author = document.getElementById('author');
-        if((width < 501) && (currentScroll - 190 === documentHeight)) {
+        if((width < 501) && (currentScroll - 185 > documentHeight)) {
             author.classList.add('authorShow');
-        } else if ((width > 500) && (currentScroll - 95 === documentHeight)) {
+        } else if ((width > 500) && (currentScroll - 92 > documentHeight)) {
             author.classList.add('authorShow');
         } else {
             author.classList.remove('authorShow');

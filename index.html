@@ -2,61 +2,64 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="keywords" content="website, learning, about me, trying">
+        <meta name="keywords" content="offchat, bastighg, offlinechat, quiz, spieleabend, sexuality">
+        <meta name="description" content="Das Offchat-Highscore-Quiz. Trage deine Stats ein, um teilnehmen zu können">
         <meta name="author" content="bxrbeq, theepicflexo">
+        <meta property="og:title" content="das Offchat-Highscore-Quiz"/>
+        <meta property="og:type" content="website"/>
+        <!-- meta property="og:url" content="tba"/-->
+        <meta property="og:image" content="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>enter your  stats</title>
+        <title>enter your stats</title>
         <link rel="icon" href="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj">
         <link rel="stylesheet" href="styles.css">
         <script src="script.js"></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
             <h1>Das Offchat-Highscore-Quiz (<img src="https://cdn.7tv.app/emote/603cb17bc20d020014423c29/1x.webp">)</h1>
         </header>
+
         <main>
             <div class="container">
                 <form>
                     <lable for="name"><h3>Dein Name</h3></lable>
-                    <input type="text" name="name" id="name"/>
+                    <input type="text" name="name" maxlength="256" id="name" autofocus/>
                     <hr/>
                     
                     <h3>Highscore</h3>
                     <label for="solo">Solo</label>
-                    <input type="number" name="solo" id="solo"/>
+                    <input type="text" name="solo" maxlength="8" id="solo"/>
 
                     <label for="soloSessions">in ... Sessions</label>
-                    <input type="number" name="soloSessions" id="soloSessions"/>
+                    <input type="tex" name="soloSessions" maxlength="8" id="soloSessions"/>
                     
                     <label for="duo">Duo</label>
-                    <input type="number" name="duo" id="duo"/>
+                    <input type="text" name="duo" maxlength="8" id="duo"/>
                 
                     <label for="duoSessions">in ... Sessions</label>
-                    <input type="number" name="duoSessions" id="duoSessions"/>
+                    <input type="text" name="duoSessions" maxlength="8" id="duoSessions"/>
                     <hr/>
 
                     <h3>Bodycount</h3>
                     <label for="bodycount">gesamt</label>
-                    <input type="number" name="bodycount" id="bodycount"/>
+                    <input type="text" name="bodycount" maxlength="8" id="bodycount"/>
                 
                     <label for="bcmale">male</label>
-                    <input type="number" name="bcmale" id="bcmale"/>
+                    <input type="text" name="bcmale" maxlength="8" id="bcmale"/>
                 
                     <label for="bcfemale">female</label>
-                    <input type="number" name="bcfemale" id="bcfemale"/>
+                    <input type="text" name="bcfemale" id="bcfemale"/>
                 
-                    <label for="bcd">divers</label>
-                    <input type="text" name="bcd" id="bcd"/>
+                    <label for="bcdiverse">divers</label>
+                    <input type="text" name="bcdiverse" maxlength="8" id="bcdiverse"/>
                     <hr/>
 
                     <h3>Körper</h3>
-                    <label for="weapon">Länge/Tiefe</label>
-                    <input type="text" name="weapon" id="weapon"/> <!-- in cm -->
-
                     <lable for="sexuality">sexuality</lable>
                     <select name="sexuality" id="sexuality" title="leer lassen, wenn keins davon oder unsicher">
                         <option value="none"> </option>
@@ -68,11 +71,9 @@
                         <option value="aro">aro</option>
                         <option value="none">unsicher/keines davon</option>
                     </select>
-                    <label for="bcdiverse">divers</label>
-                    <input type="number" name="bcdiverse" id="bcdiverse"/>
 
-                    <label for="weapon-bra-size">Länge/ BH-Größe</label>
-                    <input type="number" name="weapon-bra-size" id="weapon-bra-size"/> <!-- in cm -->
+                    <label for="weapon-bra-size">Länge (cm) | BH-Größe</label>
+                    <input type="text" name="weapon-bra-size" maxlength="8" id="weapon-bra-size"/> <!-- in cm -->
                     <hr/>
 
                     <h3>Beziehungsstatus</h3>
@@ -88,10 +89,10 @@
 
                     <h3>Favourite Porn</h3>
                     <label for="favPornCategory">Kategorie</label>
-                    <input type="text" name="favPornCategory" id="favPornCategory"/>
+                    <input type="text" name="favePornCategory" maxlength="256" id="favPornCategory"/>
                 
                     <label for="favePornVid">Video (URL)</label>
-                    <input type="url" name="favePornVid" id="favePornVid"/>
+                    <input type="url" name="favePornVid" maxlength="256" id="favePornVid"/>
                     <hr/>
 
                     <input type="button" value="✨ abschicken ✨" title="es gibt kein zurück mehr" onclick="submitForm()">
