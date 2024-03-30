@@ -16,6 +16,10 @@ header{
     box-shadow: -3px 5px 5px rgba(0,0,0,0.5);
 }
 
+.paghover{
+    filter: grayscale(100%);
+}
+
 main {
     display: flex;
     margin-top: 95px;
@@ -50,6 +54,7 @@ input, button, select {
     outline: none;
     width: 200px;
     min-width: 200px !important;
+    transition: background-color 1s ease-in-out;
 }
 
 .filled {
@@ -80,6 +85,18 @@ hr {
     border-radius: 2px;
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.help {
+    font-size: 15px;
+    opacity: 0.2;
+    text-shadow: 0 0 3px #FFD1C2;
+    cursor: help;
+    transition: opacity 1s ease-in-out;
+}
+
+.help:hover {
+    opacity: 1;
 }
 
 @media only screen and (max-width: 505px) {
