@@ -11,8 +11,8 @@
         <script src="script.js"></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -27,33 +27,47 @@
                     
                     <h3>Highscore</h3>
                     <label for="solo">Solo</label>
-                    <input type="number" name="solo" id="solo"/>
+                    <input type="text" name="solo" id="solo"/>
 
                     <label for="soloSessions">in ... Sessions</label>
-                    <input type="number" name="soloSessions" id="soloSessions"/>
+                    <input type="text" name="soloSessions" id="soloSessions"/>
                     
                     <label for="duo">Duo</label>
-                    <input type="number" name="duo" id="duo"/>
+                    <input type="text" name="duo" id="duo"/>
                 
                     <label for="duoSessions">in ... Sessions</label>
-                    <input type="number" name="duoSessions" id="duoSessions"/>
+                    <input type="text" name="duoSessions" id="duoSessions"/>
                     <hr/>
 
                     <h3>Bodycount</h3>
                     <label for="bodycount">gesamt</label>
-                    <input type="number" name="bodycount" id="bodycount"/>
+                    <input type="text" name="bodycount" id="bodycount"/>
                 
                     <label for="bcm">male</label>
-                    <input type="number" name="bcm" id="bcm"/>
+                    <input type="text" name="bcm" id="bcm"/>
                 
                     <label for="bcf">female</label>
-                    <input type="number" name="bcf" id="bcf"/>
+                    <input type="text" name="bcf" id="bcf"/>
                 
                     <label for="bcd">divers</label>
-                    <input type="number" name="bcd" id="bcd"/>
-                
+                    <input type="text" name="bcd" id="bcd"/>
+                    <hr/>
+
+                    <h3>Körper</h3>
                     <label for="weapon">Länge/Tiefe</label>
-                    <input type="number" name="weapon" id="weapon"/> <!-- in cm -->
+                    <input type="text" name="weapon" id="weapon"/> <!-- in cm -->
+
+                    <lable for="sexuality">sexuality</lable>
+                    <select name="sexuality" id="sexuality" title="leer lassen, wenn keins davon oder unsicher">
+                        <option value="none"> </option>
+                        <option value="hetero">hetero</option>
+                        <option value="gay">gay</option>
+                        <option value="bi">bi</option>
+                        <option value="pan">pan</option>
+                        <option value="omni">omni</option>
+                        <option value="aro">aro</option>
+                        <option value="none">unsicher/keines davon</option>
+                    </select>
                     <hr/>
 
                     <h3>Beziehungsstatus</h3>

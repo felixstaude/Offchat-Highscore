@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let bcf = document.getElementById('bcf');
     let bcd = document.getElementById('bcd');
     let weapon = document.getElementById('weapon');
+    let sexuality = document.getElementById('sexuality');
     let single = document.getElementById('single');
     let together = document.getElementById('together');
     let favPornCategory = document.getElementById('favPornCategory');
@@ -58,11 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
     soloSessions.addEventListener('input', resizeInput(soloSessions));
     duo.addEventListener('input', resizeInput(duo));
     duoSessions.addEventListener('input', resizeInput(duoSessions));
-    bodycount.addEventListener('input', resizeInput(duoSessions));
+    bodycount.addEventListener('input', resizeInput(bodycount));
     bcm.addEventListener('input', resizeInput(bcm));
     bcf.addEventListener('input', resizeInput(bcf));
     bcd.addEventListener('input', resizeInput(bcd));
     weapon.addEventListener('input', resizeInput(weapon));
+    sexuality.addEventListener('click', function() {
+        sexuality.classList.add('filled');
+    });
     single.addEventListener('input', resizeInput(single));
     together.addEventListener('input', resizeInput(together));
     favPornCategory.addEventListener('input', resizeInput(favPornCategory));
@@ -70,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resizeInput(id) {
         return function() {
-            id.style.width = id.value.length + 2 + "ch";
+            id.style.width = id.value.length + "ch";
             if (id.value.length > 0) {
                 id.classList.add('filled');
                 id.classList.remove('warning');

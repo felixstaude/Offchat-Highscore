@@ -1,7 +1,7 @@
 body {
     margin:0;
     background-color: #FFD1C2;
-    font-family: Satisfy;
+    font-family: "Edu NSW ACT Foundation", monospace;
     font-size: 20px;
     text-shadow: 0 0 2px rgba(255,255,255,0.5)
 }
@@ -37,12 +37,14 @@ label:hover {
     cursor: pointer;
 }
 
-input, button {
+input, button, select {
     background-color: #fff;
     border: none;
     border-bottom: solid 1px rgb(0,0,50);
     border-radius: 10px;
     outline: none;
+    width: 200px;
+    min-width: 200px !important;
 }
 
 .filled {
@@ -53,7 +55,7 @@ input, button {
     width: auto !important;
 }
 
-input:hover, input:focus, input:focus-visible, button:hover, button:focus, button:focus-visible {
+input:hover, input:focus, input:focus-visible, button:hover, button:focus, button:focus-visible, select:hover, select:focus, select:focus-visible {
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     outline: none;
     cursor: pointer;
