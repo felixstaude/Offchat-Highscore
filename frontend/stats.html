@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="offchat, bastighg, offlinechat, quiz, spieleabend, sexuality">
+        <meta name="description" content="Das Offchat-Highscore-Quiz. Trage deine Stats ein, um teilnehmen zu können">
+        <meta name="author" content="bxrbeq, theepicflexo">
+        <meta property="og:title" content="das Offchat-Highscore-Quiz"/>
+        <meta property="og:type" content="website"/>
+        <!-- meta property="og:url" content="coming soon"/-->
+        <meta property="og:image" content="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>enter your stats</title>
+        <link rel="icon" href="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj">
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="headerContainer">
+                <div class="penis">
+                    <img class="profilePictureHeader" id="profilePictureHeader" title="profilepicture" src="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj"/> <!-- https://cdn.7tv.app/emote/6430a9e9317734d70a267a87/4x.webp-->
+                    <div class="usernameHeader" id="usernameHeader"></div>
+                    <div class="nameHeader" id="nameHeader"></div>
+                </div>
+                    <h1>Das Offchat-Highscore-Quiz (<img src="https://cdn.7tv.app/emote/603cb17bc20d020014423c29/1x.webp">)</h1>
+                <a href="../home" class="homeWrapper">
+                    <div class="home" id="home">&#8962;</div>
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <form>
+                    <lable for="name"><h3>Dein Name</h3></lable>
+                    <input type="text" name="name" maxlength="256" id="name" autofocus required/>
+                    <lable for="profilePicture">Profilbild</lable>
+                    <input type="url" name="profilePicture" maxlength="256" id="profilePicture" placeholder="link zum Bild, bspw. imgur" required/>
+                    <hr/>
+                    
+                    <h3>Highscore</h3>
+                    <label for="solo">Solo</label>
+                    <input type="text" name="solo" maxlength="8" id="solo" required/>
+
+                    <label for="soloSessions">in ... Sessions</label>
+                    <input type="tex" name="soloSessions" maxlength="8" id="soloSessions" required/>
+                    
+                    <label for="duo">Duo</label>
+                    <input type="text" name="duo" maxlength="8" id="duo" required/>
+                
+                    <label for="duoSessions">in ... Sessions</label>
+                    <input type="text" name="duoSessions" maxlength="8" id="duoSessions" required/>
+                    <hr/>
+
+                    <h3>Bodycount</h3>
+                    <label for="bodycount">gesamt</label>
+                    <input type="text" name="bodycount" maxlength="8" id="bodycount" required/>
+                
+                    <label for="bcmale">male</label>
+                    <input type="text" name="bcmale" maxlength="8" id="bcmale" required/>
+                
+                    <label for="bcfemale">female</label>
+                    <input type="text" name="bcfemale" id="bcfemale" required/>
+                
+                    <label for="bcdiverse">divers</label>
+                    <input type="text" name="bcdiverse" maxlength="8" id="bcdiverse" required/>
+                    <hr/>
+
+                    <h3>Körper</h3>
+                    <lable for="sexuality">sexuality</lable>
+                    <select name="sexuality" id="sexuality" title="leer lassen, wenn keins davon oder unsicher">
+                        <option value="none"> </option>
+                        <option value="hetero">hetero</option>
+                        <option value="gay">gay</option>
+                        <option value="bi">bi</option>
+                        <option value="pan">pan</option>
+                        <option value="omni">omni</option>
+                        <option value="aro">aro</option>
+                        <option value="none">unsicher/keines davon</option>
+                    </select>
+
+                    <label for="weapon-bra-size">Länge (cm) | BH-Größe</label>
+                    <input type="text" name="weapon-bra-size" maxlength="8" id="weapon-bra-size" required/> <!-- in cm -->
+                    <hr/>
+
+                    <h3>Beziehungsstatus</h3>
+                    <span>
+                        <input class="hidden" type="radio" name="status" class="radioIn" id="single" required/>
+                        <label for="single" id="lSingle">aktuell single</label>
+                    </span>
+                    <span>
+                        <input class="hidden" type="radio" name="status" class="radioIn" id="together" required/>
+                        <label for="together" id="lTogether">aktuell vergeben</label>
+                    </span>
+                    <hr/>
+
+                    <h3>Favourite Porn</h3>
+                    <label for="favePornCategory">Kategorie</label>
+                    <input type="text" name="favePornCategory" maxlength="256" id="favePornCategory" required/>
+                
+                    <label for="favePornVid">Video (URL)</label>
+                    <input type="url" name="favePornVid" maxlength="256" id="favePornVid" required/>
+                    <hr/>
+
+                    <input type="submit" value="✨ abschicken ✨" title="es gibt kein zurück mehr" id="submitButton" onclick="submitForm()">
+                    <hr/>
+                </form>
+                <div class="information" id="information"></div>
+            </div>
+        </main>
+        <div class="author" id="author">
+            by TheEpicFlexo & bxrbeq<br/>
+            enjoy your stay 😏
+        </div>
+    </body>
+</html>
