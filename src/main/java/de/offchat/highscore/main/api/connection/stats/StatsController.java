@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class StatsController {
 
+    /**
+     * get the stats from the frontend and insert them into the database
+     * @param stats
+     * @return response entity stats
+     */
     @PostMapping
     public ResponseEntity<Stats> handleFormSubmit(@RequestBody Stats stats) {
         StatsPersister.insertStats(stats);

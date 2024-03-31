@@ -1,39 +1,48 @@
 package de.offchat.highscore.main.database;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class DatabaseConnector {
+    private static Connection connection;
 
-    private static final String PROPERTIES_FILE = "database.properties";
-    private static Properties properties = new Properties();
+    private static final String url = "jdbc:mysql://localhost:3306/offchat_highscore?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String user = "root";
+    private static final String password = "";
 
-    static {
-        try (InputStream input = DatabaseConnector.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
-            if (input == null) {
-                throw new RuntimeException("Could not find: " + PROPERTIES_FILE);
-            }
-            properties.load(input);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error while loading properties", e);
-        }
-
+    public static void connect() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("MySQL JDBC-Driver not found!", e);
+            if (connection != null && !connection.isClosed()) {
+                System.out.println("Already connected.");
+                return;
+            }
+            connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database.");
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
     }
 
-    public static Connection getConnection() throws SQLException {
-        String url = properties.getProperty("database.url");
-        String user = properties.getProperty("database.user");
-        String password = properties.getProperty("database.password");
-        return DriverManager.getConnection(url, user, password);
+    public void disconnect() {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Disconnected from the database.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
     }
 }

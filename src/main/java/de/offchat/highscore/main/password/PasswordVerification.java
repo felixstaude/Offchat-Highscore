@@ -10,7 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PasswordVerification {
-
+    /**
+     * checks if the password hash is the same as the password hash in the database by using the private hasPassword method
+     * @param enteredPassword
+     * @param enteredUsername
+     * @return
+     */
     public static boolean verifyPassword(String enteredPassword, String enteredUsername) {
         try (Connection connection = DatabaseConnector.getConnection()) {
             String sql = "SELECT password_hash, salt FROM users WHERE username = ?";

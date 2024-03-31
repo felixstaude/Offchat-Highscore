@@ -27,7 +27,6 @@ public class CreateTestUser {
 
     private static void createUser(String username, String password) {
         byte[] salt = generateSalt();
-        // Anpassung, um die Kombination von Salt und Passwort genau wie in PasswordHasher zu machen
         String passwordHash = hashPassword(password, salt);
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
@@ -50,8 +49,8 @@ public class CreateTestUser {
     private static String hashPassword(String password, byte[] salt) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
-            md.update(salt); // Salt zum Digest hinzufügen
-            md.update(password.getBytes()); // Passwort zum Digest hinzufügen
+            md.update(salt);
+            md.update(password.getBytes());
             byte[] hashedPassword = md.digest();
             return bytesToHex(hashedPassword);
         } catch (NoSuchAlgorithmException e) {
