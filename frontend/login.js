@@ -11,21 +11,6 @@ function checkURL() {
     }
 }
 
-function getCookieValue(cookieName) {
-    // split cookie-string into values
-    let cookies = document.cookie.split(';');
-
-    // search cookies
-    for (var i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-
-        // check if cookie exists
-        if (cookie.indexOf(cookieName + '=') === 0) {
-            return cookie.substring(cookieName.length + 1);
-        }
-    }
-    return null;
-}
 
 window.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
@@ -59,15 +44,22 @@ function submitForm() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        setCookies(data);
-        information.classList.remove('loading');
+        if (data.success === true) {
+            setCookies(data);
+            information.classList.remove('loading');
+        } else {
+            information.classList.remove('loading');
+            information.classList.add('error');
+            information.title = 'Fehler, umgehend Tech-Support aufsuchen 🤖';
+            console.log(data);
+            alert('Login fehlgeschlagen, prüfe deine Angaben und versuche es erneut');
+        }
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
         information.classList.remove('loading');
         information.classList.add('error');
-        information.title = "Fehler, umgehend Tech-Support aufsuchen 🤖"
+        information.title = 'Fehler, umgehend Tech-Support aufsuchen 🤖';
     })
 }
 
@@ -88,8 +80,10 @@ function getCookieValue(cookieName) {
 }
 
 function setCookies(data) {
-    if (data === 1) {
-        document.cookie = "lockedIn=true;path=/";
+    if (data.success === true) {
+        let username = document.getElementById('username').value;
+        document.cookie = 'sessionID=' + data.sessionID + ';path=/';
+        document.cookie = 'username=' + username + ';path=/';
     }
 }
 

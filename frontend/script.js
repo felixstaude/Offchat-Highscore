@@ -1,15 +1,16 @@
 window.onload = checkSessionLogin;
 
 function checkSessionLogin() {
-    let lockedInValue = getCookieValue('lockedIn');
+    let sessionID = getCookieValue('sessionID');
+    let usernameCookie = getCookieValue('username');
 
-    fetch('http://localhost:8080/api/checklogin', {
+    fetch('http://localhost:8080/api/checksession', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(lockedInValue),
+        body: JSON.stringify(sessionID),
     })
     .then(response => {
         if (!response.ok) {
@@ -19,8 +20,9 @@ function checkSessionLogin() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        if (data === false) {
+        if (data.username === usernameCookie) {
+            loginSuccess(usernameCookie);
+        } else {
             window.location.replace('login.html?source=loginfail');
         }
     })
@@ -44,6 +46,40 @@ function getCookieValue(cookieName) {
         }
     }
     return null;
+}
+
+function loginSuccess(usernameCookie) {
+    let usernameShow = document soll kommen wenn man über avatar hovert;
+    let profilePictureLink = getProfilePicture(usernameCookie);
+
+    let username
+    let profilePicture = document.getElementById('profilePicture');
+
+    profilePicture.src = profilePictureLink;
+    
+
+}
+function getProfilePicture(usernameCookie) {
+
+    fetch('http://localhost:8080/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(usernameCookie),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        window.location('login.html?source=loginfail');
+        return response.json();
+    })
+    .then(data => {
+        let profilePicture = data.profilePicture;
+        return profilePicture;
+    })
 }
 
 // form
@@ -76,7 +112,7 @@ function submitForm() {
         favePornVid: document.getElementById('favePornVid').value
     };
 
-    fetch('http://localhost:8080/api/users', {
+    fetch('http://localhost:8080/api/stats', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
