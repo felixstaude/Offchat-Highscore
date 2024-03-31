@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DatabaseConnector {
     private static Connection connection;
 
-    private static final String url = "jdbc:mysql://localhost:3306/offchat_highscore?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String url = "jdbc:mysql://localhost:3306/offchat_highscore?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String user = "root";
     private static final String password = "";
 
@@ -40,6 +40,7 @@ public class DatabaseConnector {
             if (connection == null || connection.isClosed()) {
                 connect();
             }
+            return connection;
         } catch (SQLException e) {
             e.printStackTrace();
         }
