@@ -1,5 +1,6 @@
 package de.offchat.highscore.main.api.connection.session;
 
+import de.offchat.highscore.main.api.connection.users.Users;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,14 +19,15 @@ public class SessionIdController {
      * @return boolean
      */
     @PostMapping
-    public ResponseEntity<String> handleFormSubmit(@RequestBody SessionId sessionID) {
+    public ResponseEntity<Users> handleFormSubmit(@RequestBody SessionId sessionID) {
         providedSessionID = sessionID.getSessionID();
         System.out.println("provided SessionID: " + providedSessionID);
-        System.out.println("User SessionID" + SessionIdPersister.getUserFromSessionId(providedSessionID));
+        System.out.println("User: " + SessionIdPersister.getUserFromSessionId(providedSessionID));
         if(SessionIdPersister.doesSessionIdExist(providedSessionID)){
-            return ResponseEntity.ok(SessionIdPersister.getUserFromSessionId(providedSessionID));
+            String username = SessionIdPersister.getUserFromSessionId(providedSessionID);
+            return ResponseEntity.ok(new Users(username));
         }
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok().body(null);
     }
 
 }

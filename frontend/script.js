@@ -11,7 +11,7 @@ function checkSessionLogin() {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(sessionID),
+        body: JSON.stringify({ sessionID: sessionID }),
     })
     .then(response => {
         if (!response.ok) {

@@ -25,5 +25,8 @@ public class SessionId {
         return sessionID;
     }
 
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
+    }
 
 }

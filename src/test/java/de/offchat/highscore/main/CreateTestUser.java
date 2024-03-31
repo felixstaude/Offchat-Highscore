@@ -30,11 +30,12 @@ public class CreateTestUser {
         String passwordHash = hashPassword(password, salt);
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "INSERT INTO users (username, password_hash, salt) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO users (username, password_hash, salt, profilepicture) VALUES (?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, username);
                 statement.setString(2, passwordHash);
                 statement.setString(3, bytesToHex(salt));
+                statement.setString(4, "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj");
 
                 int rowsAffected = statement.executeUpdate();
                 if (rowsAffected > 0) {

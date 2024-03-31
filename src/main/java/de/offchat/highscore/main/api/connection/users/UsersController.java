@@ -1,6 +1,7 @@
 package de.offchat.highscore.main.api.connection.users;
 
 
+import de.offchat.highscore.main.api.connection.session.SessionIdPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ public class UsersController {
 
     /**
      * sends the following user data:
+     * String username
      * String name
      * String solo
      * String soloSession
@@ -30,7 +32,8 @@ public class UsersController {
      */
 
     @PostMapping
-    public ResponseEntity<Users>handleFormSubmit(@RequestBody Users users){
-        return ResponseEntity.ok().body(new Users(users.getUsername()));
+    public ResponseEntity<Users> handleFormSubmit(@RequestBody Users users) {
+        return ResponseEntity.ok(new Users(SessionIdPersister.getUserFromSessionId(users.getSessionID())));
+
     }
 }
