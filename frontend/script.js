@@ -11,7 +11,7 @@ function checkSessionLogin() {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({ sessionID: sessionID }),
+        body: JSON.stringify({sessionID: sessionID}),
     })
     .then(response => {
         if (!response.ok) {
@@ -19,18 +19,19 @@ function checkSessionLogin() {
         }
         return response.json();
     })
-    .then(data => {
+    .then(async data => { // Stelle sicher, dass du async hier nutzt, um await innerhalb verwenden zu können
         if (data.username === usernameCookie) {
-            let dataUser = getProfileData(data.username);
-            
+            let dataUser = await getProfileData(data.username); // Warte auf das Ergebnis von getProfileData
+
             let username = document.getElementById('usernameHeader');
             let name = document.getElementById('nameHeader');
             let profilePicture = document.getElementById('profilePictureHeader');
-        
             username.innerHTML = usernameCookie;
             name.innerHTML = dataUser.name;
             profilePicture.src = dataUser.profilePicture;
         } else {
+            console.log(usernameCookie);
+            console.log(data.username);
             // window.location.replace('login.html?source=loginfail');
             console.log('anfrage kam durch, aber falsche id zurück');
         }

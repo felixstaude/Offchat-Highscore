@@ -34,6 +34,5 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<Users> handleFormSubmit(@RequestBody Users users) {
         return ResponseEntity.ok(new Users(SessionIdPersister.getUserFromSessionId(users.getSessionID())));
-
     }
 }
