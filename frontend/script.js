@@ -17,7 +17,6 @@ function checkSessionLogin() {
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
-        window.location('login.html?source=loginfail');
         return response.json();
     })
     .then(data => {
