@@ -1,6 +1,7 @@
 body {
     margin:0;
-    background-color: #FFD1C2;
+    color: white;
+    background-color: #450009;
     font-family: "Edu NSW ACT Foundation";
     font-size: 20px;
     text-shadow: 0 0 2px rgba(255,255,255,0.5)
@@ -12,13 +13,60 @@ header{
     height: 90px;
     top: 0;
     text-align: center;
-    background-color: #fcc6b4;
-    box-shadow: -3px 5px 5px rgba(0,0,0,0.5);
+    background-color: #660119;
+    box-shadow: -3px 5px 5px rgba(255,255,255,0.2);
     z-index: 1;
 }
 
-.paghover{
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 1000px;
+    margin: auto;
+}
+
+.penis {
+    width: 40px;
+    height: 40px;
+}
+
+.profilePictureHeader {
+    width: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px white;
+}
+
+.paghover {
     filter: grayscale(100%);
+}
+
+.homeWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    border-radius: 50%;
+    transition-duration: 0.2s;
+}
+
+.homeWrapper:hover {
+    background-color: white;
+    box-shadow: 0 0 5px white;
+}
+
+.home {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    transition-duration: 0.2s;
+}
+
+.homeWrapper:hover .home {
+    color: #660119;
 }
 
 main {
@@ -71,8 +119,8 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: -3px 5px 5px rgba(0,0,0,0.5);
-    background-color: #fcc6b4;
+    box-shadow: -3px 5px 5px rgba(255,255,255,0.2);
+    background-color: #660119;
 }
 
 label:hover {
@@ -95,8 +143,15 @@ input, button, select {
 }
 
 .filled {
-    border-radius: 10px;
     background-color: #bafcb4;
+}
+
+.selected {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color:#450009;
+    text-shadow: 0 0 2px white;
 }
 
 .warning {
@@ -128,7 +183,7 @@ hr {
 .help {
     font-size: 15px;
     opacity: 0.2;
-    text-shadow: 0 0 3px #FFD1C2;
+    text-shadow: 0 0 3px #450009;
     cursor: help;
     transition: opacity 1s ease-in-out;
 }
@@ -163,7 +218,7 @@ hr {
 }
 
 .loginFail {
-    background-color: #fcc6b4;
+    background-color: #450009;
     text-align: center;
 }
 

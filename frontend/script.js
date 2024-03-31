@@ -1,5 +1,6 @@
-window.onload = checkSessionLogin;
+// window.onload = checkSessionLogin;
 
+// check sessionID via cookie
 function checkSessionLogin() {
     let sessionID = getCookieValue('sessionID');
     let usernameCookie = getCookieValue('username');
@@ -21,7 +22,15 @@ function checkSessionLogin() {
     })
     .then(data => {
         if (data.username === usernameCookie) {
-            loginSuccess(usernameCookie);
+            let dataUser = getProfileData(data.username);
+            
+            let username = document.getElementById('usernameHeader');
+            let name = document.getElementById('nameHeader');
+            let profilePicture = document.getElementById('profilePictureHeader');
+        
+            username.innerHTML = usernameCookie;
+            name.innerHTML = dataUser.name;
+            profilePicture.src = dataUser.profilePicture;
         } else {
             window.location.replace('login.html?source=loginfail');
         }
@@ -29,6 +38,30 @@ function checkSessionLogin() {
     .catch(error => {
         console.error('Failed to fetch: ', error);
         window.location.replace('login.html?source=loginfail');
+    })
+}
+
+function getProfileData(x) {
+                
+    fetch('http://localhost:8080/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(x),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.error('Failed to fetch: ', error);
     })
 }
 
@@ -48,41 +81,7 @@ function getCookieValue(cookieName) {
     return null;
 }
 
-function loginSuccess(usernameCookie) {
-    let usernameShow = document soll kommen wenn man über avatar hovert;
-    let profilePictureLink = getProfilePicture(usernameCookie);
-
-    let username
-    let profilePicture = document.getElementById('profilePicture');
-
-    profilePicture.src = profilePictureLink;
-    
-
-}
-function getProfilePicture(usernameCookie) {
-
-    fetch('http://localhost:8080/api/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(usernameCookie),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        window.location('login.html?source=loginfail');
-        return response.json();
-    })
-    .then(data => {
-        let profilePicture = data.profilePicture;
-        return profilePicture;
-    })
-}
-
-// form
+// form submission
 window.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         submitForm();
@@ -96,6 +95,7 @@ function submitForm() {
 
     const formData = {
         name: document.getElementById('name').value,
+        profilePicture: document.getElementById('profilePicture').value,
         solo: document.getElementById('solo').value,
         soloSessions: document.getElementById('soloSessions').value,
         duo: document.getElementById('duo').value,
@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return function() {
             let x = document.getElementById(a);
             let y = document.getElementById(b);
-            x.classList.add('filled');
-            y.classList.remove('filled');
+            x.classList.add('selected');
+            y.classList.remove('selected');
         };
     }
 
