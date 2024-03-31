@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/checklogin")
+@RequestMapping("/api/checksession")
 public class SessionIdController {
+
+    private String providedSessionID;
 
     /**
      * checks if the user has a sessionID
@@ -16,15 +18,13 @@ public class SessionIdController {
      * @return boolean
      */
     @PostMapping
-    public ResponseEntity<Boolean> handleFormSubmit(@RequestBody SessionId sessionId) {
-        checkSessionID(sessionId.getUsername(), sessionId.getSessionID());
+    public ResponseEntity<String> handleFormSubmit(@RequestBody SessionId sessionId) {
+        providedSessionID = sessionId.getSessionID();
 
-        return ResponseEntity.accepted().body(false);
+        if(SessionIdPersister.doesSessionIdExist(providedSessionID)){
+            return ResponseEntity.ok(SessionIdPersister.getUserFromSessionId(providedSessionID));
+        }
+        return ResponseEntity.ok(null);
     }
-
-    public void checkSessionID(String username, String sessionID){
-
-    }
-
 
 }

@@ -24,7 +24,6 @@ public class StatsPersister {
 
         try(Connection connection = DatabaseConnector.getConnection(); PreparedStatement statement =
                 connection.prepareStatement(sql)){
-            stats.setUsername("felix");
             statement.setString(1, stats.getUsername());
             statement.setString(2, stats.getName());
             statement.setString(3, stats.getSolo());
