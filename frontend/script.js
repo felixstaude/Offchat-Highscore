@@ -82,18 +82,23 @@ function getCookieValue(cookieName) {
 }
 
 // form submission
-window.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        submitForm();
-    }
+const form = document.querySelector('form');
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // no default behavior
+    form.submit(); // submit
+  }
 });
 
 function submitForm() {
     console.log('submit');
     let information = document.getElementById('information');
+    let usernameC = getCookieValue('username');
     information.classList.add('loading');
 
     const formData = {
+        username: usernameC,
         name: document.getElementById('name').value,
         profilePicture: document.getElementById('profilePicture').value,
         solo: document.getElementById('solo').value,

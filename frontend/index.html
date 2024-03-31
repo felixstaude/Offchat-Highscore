@@ -38,37 +38,37 @@
             <div class="container">
                 <form>
                     <lable for="name"><h3>Dein Name</h3></lable>
-                    <input type="text" name="name" maxlength="256" id="name" autofocus/>
+                    <input type="text" name="name" maxlength="256" id="name" autofocus required/>
                     <lable for="profilePicture">Profilbild</lable>
-                    <input type="url" name="profilePicture" maxlength="256" id="profilePicture" placeholder="link zum Bild, bspw. imgur"/>
+                    <input type="url" name="profilePicture" maxlength="256" id="profilePicture" placeholder="link zum Bild, bspw. imgur" required/>
                     <hr/>
                     
                     <h3>Highscore</h3>
                     <label for="solo">Solo</label>
-                    <input type="text" name="solo" maxlength="8" id="solo"/>
+                    <input type="text" name="solo" maxlength="8" id="solo" required/>
 
                     <label for="soloSessions">in ... Sessions</label>
-                    <input type="tex" name="soloSessions" maxlength="8" id="soloSessions"/>
+                    <input type="tex" name="soloSessions" maxlength="8" id="soloSessions" required/>
                     
                     <label for="duo">Duo</label>
-                    <input type="text" name="duo" maxlength="8" id="duo"/>
+                    <input type="text" name="duo" maxlength="8" id="duo" required/>
                 
                     <label for="duoSessions">in ... Sessions</label>
-                    <input type="text" name="duoSessions" maxlength="8" id="duoSessions"/>
+                    <input type="text" name="duoSessions" maxlength="8" id="duoSessions" required/>
                     <hr/>
 
                     <h3>Bodycount</h3>
                     <label for="bodycount">gesamt</label>
-                    <input type="text" name="bodycount" maxlength="8" id="bodycount"/>
+                    <input type="text" name="bodycount" maxlength="8" id="bodycount" required/>
                 
                     <label for="bcmale">male</label>
-                    <input type="text" name="bcmale" maxlength="8" id="bcmale"/>
+                    <input type="text" name="bcmale" maxlength="8" id="bcmale" required/>
                 
                     <label for="bcfemale">female</label>
-                    <input type="text" name="bcfemale" id="bcfemale"/>
+                    <input type="text" name="bcfemale" id="bcfemale" required/>
                 
                     <label for="bcdiverse">divers</label>
-                    <input type="text" name="bcdiverse" maxlength="8" id="bcdiverse"/>
+                    <input type="text" name="bcdiverse" maxlength="8" id="bcdiverse" required/>
                     <hr/>
 
                     <h3>Körper</h3>
@@ -85,29 +85,29 @@
                     </select>
 
                     <label for="weapon-bra-size">Länge (cm) | BH-Größe</label>
-                    <input type="text" name="weapon-bra-size" maxlength="8" id="weapon-bra-size"/> <!-- in cm -->
+                    <input type="text" name="weapon-bra-size" maxlength="8" id="weapon-bra-size" required/> <!-- in cm -->
                     <hr/>
 
                     <h3>Beziehungsstatus</h3>
                     <span>
-                        <input class="hidden" type="radio" name="status" class="radioIn" id="single"/>
+                        <input class="hidden" type="radio" name="status" class="radioIn" id="single" required/>
                         <label for="single" id="lSingle">aktuell single</label>
                     </span>
                     <span>
-                        <input class="hidden" type="radio" name="status" class="radioIn" id="together"/>
+                        <input class="hidden" type="radio" name="status" class="radioIn" id="together" required/>
                         <label for="together" id="lTogether">aktuell vergeben</label>
                     </span>
                     <hr/>
 
                     <h3>Favourite Porn</h3>
                     <label for="favePornCategory">Kategorie</label>
-                    <input type="text" name="favePornCategory" maxlength="256" id="favePornCategory"/>
+                    <input type="text" name="favePornCategory" maxlength="256" id="favePornCategory" required/>
                 
                     <label for="favePornVid">Video (URL)</label>
-                    <input type="url" name="favePornVid" maxlength="256" id="favePornVid"/>
+                    <input type="url" name="favePornVid" maxlength="256" id="favePornVid" required/>
                     <hr/>
 
-                    <input type="button" value="✨ abschicken ✨" title="es gibt kein zurück mehr" id="submitButton" onclick="submitForm()">
+                    <input type="submit" value="✨ abschicken ✨" title="es gibt kein zurück mehr" id="submitButton" onclick="submitForm()">
                     <hr/>
                 </form>
                 <div class="information" id="information"></div>

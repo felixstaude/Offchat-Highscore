@@ -80,7 +80,7 @@ main {
 
 .container {
     position: relative;
-    width: 527px;
+    width: 607px;
     margin: auto;
 }
 
@@ -192,7 +192,12 @@ hr {
     opacity: 1;
 }
 
-@media only screen and (max-width: 527px) {
+@media only screen and (max-width: 1000px) {
+ .headerContainer {
+    width: 100%;
+ }
+}
+@media only screen and (max-width: 607px) {
     header {
         height: 160px;
     }
