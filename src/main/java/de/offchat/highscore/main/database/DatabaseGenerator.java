@@ -13,7 +13,7 @@ public class DatabaseGenerator {
         String sql = "CREATE TABLE IF NOT EXISTS users (" +
                 " username VARCHAR(256) UNIQUE NOT NULL," +
                 " password_hash VARCHAR(256) NOT NULL," +
-                " salt VARCHAR(256) NOT NULL)";
+                " salt VARCHAR(256) NOT NULL, profilepicture VARCHAR(256))";
 
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {

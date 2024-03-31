@@ -14,13 +14,14 @@ public class SessionIdController {
 
     /**
      * checks if the user has a sessionID
-     * @param sessionId SessionId.get
+     * @param sessionID SessionId.get
      * @return boolean
      */
     @PostMapping
-    public ResponseEntity<String> handleFormSubmit(@RequestBody SessionId sessionId) {
-        providedSessionID = sessionId.getSessionID();
-
+    public ResponseEntity<String> handleFormSubmit(@RequestBody SessionId sessionID) {
+        providedSessionID = sessionID.getSessionID();
+        System.out.println("provided SessionID: " + providedSessionID);
+        System.out.println("User SessionID" + SessionIdPersister.getUserFromSessionId(providedSessionID));
         if(SessionIdPersister.doesSessionIdExist(providedSessionID)){
             return ResponseEntity.ok(SessionIdPersister.getUserFromSessionId(providedSessionID));
         }

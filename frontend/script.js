@@ -1,4 +1,4 @@
-// window.onload = checkSessionLogin;
+window.onload = checkSessionLogin;
 
 // check sessionID via cookie
 function checkSessionLogin() {
