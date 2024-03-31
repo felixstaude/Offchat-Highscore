@@ -32,12 +32,13 @@ function checkSessionLogin() {
             name.innerHTML = dataUser.name;
             profilePicture.src = dataUser.profilePicture;
         } else {
-            window.location.replace('login.html?source=loginfail');
+            // window.location.replace('login.html?source=loginfail');
+            console.log('anfrage kam durch, aber falsche id zurück');
         }
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
-        window.location.replace('login.html?source=loginfail');
+        // window.location.replace('login.html?source=loginfail');
     })
 }
 
