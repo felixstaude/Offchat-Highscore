@@ -40,6 +40,15 @@ function getCookieValue(cookieName) {
     return null;
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form'); 
+    
+    form.addEventListener('submit', function(event) { 
+    event.preventDefault(); 
+    submitForm();
+    });
+});
+
 function submitForm() {
     let information = document.getElementById('information');
     let usernameC = getCookieValue('username');
@@ -57,12 +66,12 @@ function submitForm() {
     let bcdV = document.getElementById('bcdiverse').value;
     let sexualityV = document.getElementById('sexuality').value;
     let weaponV = document.getElementById('weapon-bra-size').value;
-    let singleV = document.getElementById('single').value;
-    let togetherV = document.getElementById('together').value;
+    let singleC = document.getElementById('single').checked;
+    let togetherC = document.getElementById('together').checked;
     let favePornCategoryV = document.getElementById('favePornCategory').value;
     let favePornVidV = document.getElementById('favePornVid').value;
     
-    if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && singleV != '' && togetherV != '' && favePornCategoryV != '' && favePornVidV != '') {
+    if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
         console.log('submission sent');
         const formData = {
             username: usernameC,
