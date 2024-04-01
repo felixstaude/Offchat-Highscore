@@ -38,6 +38,7 @@ function checkSessionLogin() {
 function getProfileData() {
     let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+    let usernameCookie = getCookieValue('username');
 
     console.log(userURL);
 
@@ -59,7 +60,7 @@ function getProfileData() {
         let profilePicture = document.getElementById('profilePictureHeader');
         username.innerHTML = usernameCookie;
         name.innerHTML = data.name;
-        profilePicture.src = data.profilePicture;
+        profilePicture.src = data.profilepicture;
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);

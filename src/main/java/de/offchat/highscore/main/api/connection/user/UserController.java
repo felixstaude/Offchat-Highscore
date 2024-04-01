@@ -1,4 +1,4 @@
-package de.offchat.highscore.main.api.connection.users;
+package de.offchat.highscore.main.api.connection.user;
 
 
 import de.offchat.highscore.main.api.connection.session.SessionIdPersister;
@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/user")
-public class UsersController {
+public class UserController {
 
-    public UsersController(){
+    public UserController(){
     }
 
     @GetMapping("/data")
-    public ResponseEntity<Users> getUserData(@RequestParam String sessionId){
+    public ResponseEntity<User> getUserData(@RequestParam String sessionId){
         String username = new SessionIdPersister().getUserFromSessionId(sessionId);
         if(username == null){
             return ResponseEntity.notFound().build();
         }
-        Users user = new UsersService().getUserByUsername(username);
+        User user = new UserService().getUserByUsername(username);
+        System.out.println("Anfrage an /api/user/data gestellt: " + user);
         return ResponseEntity.ok(user);
     }
 }

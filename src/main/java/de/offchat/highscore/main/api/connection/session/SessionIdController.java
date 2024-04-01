@@ -1,6 +1,6 @@
 package de.offchat.highscore.main.api.connection.session;
 
-import de.offchat.highscore.main.api.connection.users.Users;
+import de.offchat.highscore.main.api.connection.user.User;
 import de.offchat.highscore.main.database.DatabaseConnector;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,23 +25,19 @@ public class SessionIdController {
      * @return boolean
      */
     @PostMapping
-    public ResponseEntity<Users> handleFormSubmit(@RequestBody SessionId sessionID) {
+    public ResponseEntity<User> handleFormSubmit(@RequestBody SessionId sessionID) {
         providedSessionID = sessionID.getSessionID();
         if(SessionIdPersister.doesSessionIdExist(providedSessionID)){
-            Users users = new Users();
+            User users = new User();
             String username = SessionIdPersister.getUserFromSessionId(providedSessionID);
             users.setUsername(username);
-            users.setProfilepicture(getProfilePicture(username));
+            users.setProfilePicture(getProfilePicture(username));
 
-            if(users.getProfilepicture() == null || users.getProfilepicture() == "null"){
-                users.setProfilepicture("https://static-cdn.jtvnw.net/jtv_user_pictures/04abc1b4-7bad-4b55-8da8-c0f1cf031bda-profile_image-70x70.png");
+            if(users.getProfilePicture() == null || users.getProfilePicture() == "null"){
+                return ResponseEntity.notFound().build();
             }
-
-            System.out.println("Username: " + users.getUsername());
-            System.out.println("pfp: " + users.getProfilepicture());
             return ResponseEntity.ok(users);
         }
-        System.out.println("mhm");
         return ResponseEntity.notFound().build();
     }
 
