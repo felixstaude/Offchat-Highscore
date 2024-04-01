@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsConfig implements WebMvcConfigurer {
     /**
      * allow frontend to standard http port
-     * @param registry
+     * @param registry ??
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
