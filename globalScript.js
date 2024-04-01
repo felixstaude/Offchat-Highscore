@@ -21,7 +21,7 @@ function checkSessionLogin() {
     })
     .then(data => {
         if (data.username === usernameCookie) {
-            let dataUser = getProfileData(data.username);
+            let dataUser = getProfileData(sessionID);
 
             let username = document.getElementById('usernameHeader');
             let name = document.getElementById('nameHeader');
@@ -42,7 +42,7 @@ function checkSessionLogin() {
     })
 }
 
-function getProfileData(x) {
+function getProfileData(sessionID) {
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
 
     fetch(userURL, {
