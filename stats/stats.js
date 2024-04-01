@@ -1,23 +1,6 @@
-window.onload = fillForm();
+window.onload = getFormData();
 
-function fillForm() {
-    let nameV = document.getElementById('name').value;
-    let profilePictureV = document.getElementById('profilePicture').value;
-    let soloV = document.getElementById('solo').value;
-    let soloSessionsV = document.getElementById('soloSessions').value;
-    let duoV = document.getElementById('duo').value;
-    let duoSessionsV = document.getElementById('duoSessions').value;
-    let bodycountV = document.getElementById('bodycount').value;
-    let bcmV = document.getElementById('bcmale').value;
-    let bcfV = document.getElementById('bcfemale').value;
-    let bcdV = document.getElementById('bcdiverse').value;
-    let sexualityV = document.getElementById('sexuality').value;
-    let weaponV = document.getElementById('weapon-bra-size').value;
-    let singleV = document.getElementById('single').value;
-    let togetherV = document.getElementById('together').value;
-    let favePornCategoryV = document.getElementById('favePornCategory').value;
-    let favePornVidV = document.getElementById('favePornVid').value;
-
+function getFormData() {
     let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
 
@@ -26,7 +9,6 @@ function fillForm() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(sessionID),
     })
     .then(response => {
         if (!response.ok) {
@@ -35,7 +17,7 @@ function fillForm() {
         return response.json();
     })
     .then(data => {
-        nameV = data.name;
+        fillForm(data);
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
@@ -190,11 +172,54 @@ document.addEventListener('DOMContentLoaded', function() {
         return function() {
             let x = document.getElementById(a);
             let y = document.getElementById(b);
-            x.classList.add('selected');
-            y.classList.remove('selected');
+            x.classList.add('checked');
+            y.classList.remove('checked');
         };
     }
 
     document.getElementById('lSingle').addEventListener('click', checkRadio('lSingle', 'lTogether'));
     document.getElementById('lTogether').addEventListener('click', checkRadio('lTogether', 'lSingle'));
 });
+
+function fillForm(data) {
+    let nameV = document.getElementById('name');
+    let profilePictureV = document.getElementById('profilePicture');
+    let soloV = document.getElementById('solo');
+    let soloSessionsV = document.getElementById('soloSessions');
+    let duoV = document.getElementById('duo');
+    let duoSessionsV = document.getElementById('duoSessions');
+    let bodycountV = document.getElementById('bodycount');
+    let bcmV = document.getElementById('bcmale');
+    let bcfV = document.getElementById('bcfemale');
+    let bcdV = document.getElementById('bcdiverse');
+    let sexualityV = document.getElementById('sexuality');
+    let weaponV = document.getElementById('weapon-bra-size');
+    let singleC = document.getElementById('single');
+    let togetherC = document.getElementById('together');
+    let favePornCategoryV = document.getElementById('favePornCategory');
+    let favePornVidV = document.getElementById('favePornVid');
+
+    nameV.value = data.name;
+    profilePictureV.value = data.profilepicture;
+    soloV.value = data.solo;
+    soloSessionsV.value = data.solosessions;
+    duoV.value = data.duo;
+    duoSessionsV.value = data.duosessions;
+    bodycountV.value = data.bodycount;
+    bcmV.value = data.bodycountmale;
+    bcfV.value = data.bodycountfemale;
+    bcdV.value = data.bodycountdivers;
+    sexualityV.value = data.sexuality;
+    weaponV.value = data.weapon;
+    if (data.single === true) {
+        singleC.checked = true;
+        document.getElementById('lSingle').classList.add('checked');
+    } else if (data.together === true) {
+        togetherC.checked = true;
+        document.getElementById('lSingle').classList.add('checked');
+    } else {
+        console.log('fehler, konnte nicht checken')
+    }
+    favePornCategoryV.value = data.faveporncategory;
+    favePornVidV.value = data.favepornvid;
+}

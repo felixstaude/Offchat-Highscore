@@ -47,7 +47,7 @@ header{
     border-radius: 50%;
     box-shadow: 0 0 5px #fff;
     z-index:3;
-    transition: border-radius 0.5s ease 0.5s;
+    transition: border-radius 0.5s ease 0.3s;
 }
 
 .profilePictureHeaderHover {
@@ -83,13 +83,11 @@ header{
 .usernameHeaderShow {
     margin-top: 5px;
     box-shadow: 0 0 1px 1px rgb(0,0,0);
-    transition: margin-top 0.5s ease-in-out 0.5s;
 }
 
 .nameHeaderShow {
     margin-top: 30px;
     box-shadow: 0 1px 1px 1px rgb(0,0,0);
-    transition: margin-top 0.5s ease-in-out 0.5s;
 }
 
 .paghover {
@@ -266,7 +264,7 @@ input, button, select {
     background-color: #bafcb4;
 }
 
-.selected {
+.checked {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10px;

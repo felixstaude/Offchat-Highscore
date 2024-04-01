@@ -44,7 +44,7 @@ function submitForm() {
         return response.json();
     })
     .then(data => {
-        if (data.success === true) {
+        if (data.success != false && data.sessionID != null) {
             setCookies(data);
             information.classList.remove('loading');
         } else {
@@ -80,10 +80,11 @@ function getCookieValue(cookieName) {
 }
 
 function setCookies(data) {
-    if (data.success === true) {
+    if (data.success != false && data.sessionID != null) {
         let username = document.getElementById('username').value;
         document.cookie = 'sessionID=' + data.sessionID + ';path=/';
         document.cookie = 'username=' + username + ';path=/';
+        location.href = '/';
     }
 }
 

@@ -38,6 +38,7 @@ function checkSessionLogin() {
 function getProfileData() {
     let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+    let usernameCookie = getCookieValue('username');
 
     console.log(userURL);
 
@@ -59,7 +60,9 @@ function getProfileData() {
         let profilePicture = document.getElementById('profilePictureHeader');
         username.innerHTML = usernameCookie;
         name.innerHTML = data.name;
-        profilePicture.src = data.profilePicture;
+        if (data.profilepicture) {
+            profilePicture.src = data.profilePicture;
+        }
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
@@ -104,16 +107,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let nameHeader = document.getElementById('nameHeader');
 
     document.getElementById('penis').addEventListener('mouseover', function() {
-        toggleClasses(profilePictureHeader, 'profilePictureHeaderHover')
-        toggleClasses(namesWrapper, 'namesWrapperShow');
-        toggleClasses(usernameHeader, 'usernameHeaderShow');
-        toggleClasses(nameHeader, 'nameHeaderShow');
+        addClasses(profilePictureHeader, 'profilePictureHeaderHover')
+        addClasses(namesWrapper, 'namesWrapperShow');
+        addClasses(usernameHeader, 'usernameHeaderShow');
+        addClasses(nameHeader, 'nameHeaderShow');
     });
     document.getElementById('penis').addEventListener('mouseout', function() {
-        toggleClasses(profilePictureHeader, 'profilePictureHeaderHover')
-        toggleClasses(namesWrapper, 'namesWrapperShow');
-        toggleClasses(usernameHeader, 'usernameHeaderShow');
-        toggleClasses(nameHeader, 'nameHeaderShow');
+        removeClasses(profilePictureHeader, 'profilePictureHeaderHover')
+        removeClasses(namesWrapper, 'namesWrapperShow');
+        removeClasses(usernameHeader, 'usernameHeaderShow');
+        removeClasses(nameHeader, 'nameHeaderShow');
     });
 
     // sidebar movement
@@ -124,6 +127,14 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleClasses(sidebar, 'sidebarShow');
         toggleClasses(sidebarArrow, 'sidebarArrowShow');
     });
+
+    function addClasses(x,y) {
+        x.classList.add(y);
+    }
+
+    function removeClasses(x,y) {
+        x.classList.remove(y);
+    }
 
     function toggleClasses(x,y) {
         x.classList.toggle(y);
