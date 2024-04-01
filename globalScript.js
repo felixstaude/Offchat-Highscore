@@ -21,14 +21,7 @@ function checkSessionLogin() {
     })
     .then(data => {
         if (data.username === usernameCookie) {
-            let dataUser = getProfileData(sessionID);
-
-            let username = document.getElementById('usernameHeader');
-            let name = document.getElementById('nameHeader');
-            let profilePicture = document.getElementById('profilePictureHeader');
-            username.innerHTML = usernameCookie;
-            name.innerHTML = dataUser.name;
-            profilePicture.src = dataUser.profilePicture;
+            getProfileData();
         } else {
             console.log(usernameCookie);
             console.log(data.username);
@@ -42,15 +35,17 @@ function checkSessionLogin() {
     })
 }
 
-function getProfileData(sessionID) {
+function getProfileData() {
+    let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+
+    console.log(userURL);
 
     fetch(userURL, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(sessionID),
     })
     .then(response => {
         if (!response.ok) {
@@ -59,7 +54,12 @@ function getProfileData(sessionID) {
         return response.json();
     })
     .then(data => {
-        return data;
+        let username = document.getElementById('usernameHeader');
+        let name = document.getElementById('nameHeader');
+        let profilePicture = document.getElementById('profilePictureHeader');
+        username.innerHTML = usernameCookie;
+        name.innerHTML = data.name;
+        profilePicture.src = data.profilePicture;
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
