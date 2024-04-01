@@ -21,7 +21,7 @@ function checkSessionLogin() {
     })
     .then(data => {
         if (data.username === usernameCookie) {
-            let dataUser = getProfileData(data.username);
+            let dataUser = getProfileData(sessionID);
 
             let username = document.getElementById('usernameHeader');
             let name = document.getElementById('nameHeader');
@@ -42,15 +42,15 @@ function checkSessionLogin() {
     })
 }
 
-function getProfileData(x) {
-                
-    fetch('http://localhost:8080/api/users', {
-        method: 'POST',
+function getProfileData(sessionID) {
+    let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+
+    fetch(userURL, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
         },
-        body: JSON.stringify(x),
+        body: JSON.stringify(sessionID),
     })
     .then(response => {
         if (!response.ok) {
