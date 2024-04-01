@@ -200,17 +200,17 @@ function fillForm(data) {
     let favePornVidV = document.getElementById('favePornVid');
 
     nameV.value = data.name;
-    profilePictureV.value = data.profilepicture;
+    profilePictureV.value = data.profilePicture;
     soloV.value = data.solo;
-    soloSessionsV.value = data.solosessions;
+    soloSessionsV.value = data.soloSession;
     duoV.value = data.duo;
-    duoSessionsV.value = data.duosessions;
+    duoSessionsV.value = data.duoSession;
     bodycountV.value = data.bodycount;
-    bcmV.value = data.bodycountmale;
-    bcfV.value = data.bodycountfemale;
-    bcdV.value = data.bodycountdivers;
+    bcmV.value = data.bcmale;
+    bcfV.value = data.bcfemale;
+    bcdV.value = data.bcdivserse;
     sexualityV.value = data.sexuality;
-    weaponV.value = data.weapon;
+    weaponV.value = data.weapon_bra_size;
     if (data.single === true) {
         singleC.checked = true;
         document.getElementById('lSingle').classList.add('checked');
@@ -220,6 +220,6 @@ function fillForm(data) {
     } else {
         console.log('fehler, konnte nicht checken')
     }
-    favePornCategoryV.value = data.faveporncategory;
-    favePornVidV.value = data.favepornvid;
+    favePornCategoryV.value = data.favePornCategory;
+    favePornVidV.value = data.favePornVid;
 }
