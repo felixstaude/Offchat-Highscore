@@ -1,3 +1,63 @@
+window.onload = fillForm();
+
+function fillForm() {
+    let nameV = document.getElementById('name').value;
+    let profilePictureV = document.getElementById('profilePicture').value;
+    let soloV = document.getElementById('solo').value;
+    let soloSessionsV = document.getElementById('soloSessions').value;
+    let duoV = document.getElementById('duo').value;
+    let duoSessionsV = document.getElementById('duoSessions').value;
+    let bodycountV = document.getElementById('bodycount').value;
+    let bcmV = document.getElementById('bcmale').value;
+    let bcfV = document.getElementById('bcfemale').value;
+    let bcdV = document.getElementById('bcdiverse').value;
+    let sexualityV = document.getElementById('sexuality').value;
+    let weaponV = document.getElementById('weapon-bra-size').value;
+    let singleV = document.getElementById('single').value;
+    let togetherV = document.getElementById('together').value;
+    let favePornCategoryV = document.getElementById('favePornCategory').value;
+    let favePornVidV = document.getElementById('favePornVid').value;
+
+    let sessionID = getCookieValue('sessionID');
+    let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+
+    fetch(userURL, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sessionID),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        nameV = data.name;
+    })
+    .catch(error => {
+        console.error('Failed to fetch: ', error);
+    })
+}
+
+function getCookieValue(cookieName) {
+    // split cookie-string into values
+    let cookies = document.cookie.split(';');
+
+    // search cookies
+    for (var i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+
+        // check if cookie exists
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            return cookie.substring(cookieName.length + 1);
+        }
+    }
+    return null;
+}
+
 function submitForm() {
     let information = document.getElementById('information');
     let usernameC = getCookieValue('username');
