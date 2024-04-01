@@ -81,12 +81,53 @@ function getCookieValue(cookieName) {
     }
     return null;
 }
-document.addEventListener('DOMContentLoaded', function() {
+
+
+window.addEventListener('load', function() {
+
+    // margin top for main and aside
     let hoehevonheader = document.getElementById('header').offsetHeight;
     let main = document.getElementById('main');
+    let sidebar = document.getElementById('sidebar');
 
-    main.style.marginTop = hoehevonheader + 5 + 'px';
-    console.log(hoehevonheader + 5);
+    sidebar.style.top = hoehevonheader + 20 + 'px';
+    main.style.marginTop = hoehevonheader + 20 + 'px';
+    console.log(hoehevonheader + 20);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    
+    // profile information on hover
+    let profilePictureHeader = document.getElementById('profilePictureHeader');
+    let namesWrapper = document.getElementById('namesWrapper');
+    let usernameHeader = document.getElementById('usernameHeader');
+    let nameHeader = document.getElementById('nameHeader');
+
+    document.getElementById('penis').addEventListener('mouseover', function() {
+        toggleClasses(profilePictureHeader, 'profilePictureHeaderHover')
+        toggleClasses(namesWrapper, 'namesWrapperShow');
+        toggleClasses(usernameHeader, 'usernameHeaderShow');
+        toggleClasses(nameHeader, 'nameHeaderShow');
+    });
+    document.getElementById('penis').addEventListener('mouseout', function() {
+        toggleClasses(profilePictureHeader, 'profilePictureHeaderHover')
+        toggleClasses(namesWrapper, 'namesWrapperShow');
+        toggleClasses(usernameHeader, 'usernameHeaderShow');
+        toggleClasses(nameHeader, 'nameHeaderShow');
+    });
+
+    // sidebar movement
+    document.getElementById('sidebarArrow').addEventListener('click', function() {
+        let sidebar = document.getElementById('sidebar');
+        let sidebarArrow = document.getElementById('sidebarArrow');
+
+        toggleClasses(sidebar, 'sidebarShow');
+        toggleClasses(sidebarArrow, 'sidebarArrowShow');
+    });
+
+    function toggleClasses(x,y) {
+        x.classList.toggle(y);
+    }
 
     // check scroll
     document.addEventListener('scroll', function() {

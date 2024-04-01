@@ -1,6 +1,6 @@
 body {
     margin:0;
-    color: white;
+    color: #fff;
     background-color: #450009;
     font-family: "Edu NSW ACT Foundation";
     font-size: 20px;
@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-    text-shadow: 0 0 5px white;
+    text-shadow: 0 0 5px #fff;
 }
 
 header{
@@ -35,14 +35,61 @@ header{
 }
 
 .penis {
+    position: relative;
     width: 40px;
     height: 40px;
 }
 
 .profilePictureHeader {
+    position: absolute;
+    left:0;
     width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #fff;
+    z-index:3;
+    transition: border-radius 0.5s ease 0.5s;
+}
+
+.profilePictureHeaderHover {
     border-radius: 5px;
-    box-shadow: 0 0 5px white;
+    transition: border-radius 0.5s ease;
+    cursor: none;
+}
+
+.namesWrapper {
+    position: absolute;
+    bottom: -60px;
+    width: 0;
+    height: 65px;
+    overflow-y: clip;
+    overflow-x: visible;
+    z-index: 2;
+}
+
+.namesWrapperShow {
+    width: fit-content;
+}
+
+.usernameHeader, .nameHeader {
+    position: absolute;
+    margin-top: -35px;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: #000;
+    border-radius: 5px;
+    transition: margin-top 0.5s ease-in-out;
+}
+
+.usernameHeaderShow {
+    margin-top: 5px;
+    box-shadow: 0 0 1px 1px rgb(0,0,0);
+    transition: margin-top 0.5s ease-in-out 0.5s;
+}
+
+.nameHeaderShow {
+    margin-top: 30px;
+    box-shadow: 0 1px 1px 1px rgb(0,0,0);
+    transition: margin-top 0.5s ease-in-out 0.5s;
 }
 
 .paghover {
@@ -60,13 +107,13 @@ header{
 }
 
 .homeWrapper:hover {
-    background-color: white;
-    box-shadow: 0 0 5px white;
+    background-color: #fff;
+    box-shadow: 0 0 5px #fff;
 }
 
 .home {
     text-decoration: none;
-    color: white;
+    color: #fff;
     font-size: 40px;
     transition-duration: 0.2s;
 }
@@ -89,11 +136,6 @@ main {
     overflow: hidden;
 }
 
-.sidebar {
-    position: sticky;
-    width: 250px;
-}
-
 .content {
     width: 607px;
 }
@@ -104,6 +146,64 @@ main {
     padding: 10px;
     box-shadow: -3px 5px 5px rgba(255,255,255,0.2);
     background-color: #660119;
+}
+
+.sidebar {
+    position: fixed;
+    margin-left: -260px;
+    width: 250px;
+    transition: margin-left 1s ease-in-out;
+    box-shadow: 3px 5px 5px rgba(255,255,255,0.2);
+}
+
+.sidebarShow {
+    margin-left: 0;
+}
+
+.sidebarArrow {
+    position: absolute;
+    top: 0;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0 50% 50% 0;
+    background-color: initial;
+    box-shadow: none;
+    transition: transform 0.2s ease-in-out, border-radius 0.2s ease-in-out, 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.sidebarArrowShow {
+    transform: rotate(180deg);
+    border-radius: 50% 0 0 50%;
+}
+
+.sidebarArrow:hover {
+    background-color: white;
+    box-shadow: 0 0 5px white;
+}
+
+.arrowPart1, .arrowPart2 {
+    width: 25.5px;
+    height: 5px;
+    background-color: #fff;
+    transition-duration: 0.2s;
+    border-radius: 5px;
+}
+
+.sidebarArrow:hover .arrowPart1, .sidebarArrow:hover .arrowPart2 {
+    background-color: #450009;
+}
+
+.arrowPart1	{
+    transform: rotate(45deg);
+}
+
+.arrowPart2 {
+    transform: rotate(-45deg);
 }
 
 .information {
