@@ -43,14 +43,14 @@ function checkSessionLogin() {
 }
 
 function getProfileData(x) {
-                
-    fetch('http://localhost:8080/api/users', {
-        method: 'POST',
+    let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+
+    fetch(userURL, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
         },
-        body: JSON.stringify(x),
+        body: JSON.stringify(sessionID),
     })
     .then(response => {
         if (!response.ok) {
