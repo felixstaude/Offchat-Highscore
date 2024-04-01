@@ -13,14 +13,14 @@
         <title>Hauptmenü</title>
         <link rel="icon" href="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj">
         <link rel="stylesheet" href="styles.css">
-        <script src="script.js"></script>
+        <script src="index.js"></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header class="background">
+        <header class="background" id="header">
             <div class="headerContainer">
                 <div class="penis">
                     <img class="profilePictureHeader" id="profilePictureHeader" title="profilepicture" src="https://yt3.googleusercontent.com/QQqMSdkkADv314PliTmxVLGSDPxtiKQ3QX-z0OQslTETwPjTZJsLBjMsa0p0izwhHHMmQZbY8g=s900-c-k-c0x00ffffff-no-rj"/> <!-- https://cdn.7tv.app/emote/6430a9e9317734d70a267a87/4x.webp-->
@@ -34,22 +34,23 @@
             </div>
         </header>
 
-        <main class="mainFullHeight">
-            <nav class="sidebar background">
-                <a href="/frontend/stats.html">
-                    <h3>Deine Stats</h3>
-                    <p>Adde deine Stats, damit jeder sie sehen kann. Oder passe sie an, falls sich was geändert hat.</p>
-                </a>
-                <hr/>
-                <a href="/frontend/list.html">
-                    <h3>Alle Stats</h3>
-                    <p>Hier kannst du alle Stats sehen. In einer Tabellenform sind hier alle Daten aufgereiht.</p>
-                </a>
-                <hr/>
-                <div class="information" id="information"></div>
-            </nav>
+        <main id="main">
+            <aside>
+                <div class="sidebar background">
+                    <a href="/frontend/stats.html">
+                        <h3>Deine Stats</h3>
+                        <p>Adde deine Stats, damit jeder sie sehen kann. Oder passe sie an, falls sich was geändert hat.</p>
+                    </a>
+                    <hr/>
+                    <a href="/frontend/list.html">
+                        <h3>Alle Stats</h3>
+                        <p>Hier kannst du alle Stats sehen. In einer Tabellenform sind hier alle Daten aufgereiht.</p>
+                    </a>
+                    <hr/>
+                </div>
+            </aside>
             <div class="content background">
-                Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
         </main>
         <div class="author" id="author">

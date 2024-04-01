@@ -19,9 +19,9 @@ function checkSessionLogin() {
         }
         return response.json();
     })
-    .then(async data => { // Stelle sicher, dass du async hier nutzt, um await innerhalb verwenden zu können
+    .then(data => {
         if (data.username === usernameCookie) {
-            let dataUser = await getProfileData(data.username); // Warte auf das Ergebnis von getProfileData
+            let dataUser = getProfileData(data.username);
 
             let username = document.getElementById('usernameHeader');
             let name = document.getElementById('nameHeader');
@@ -82,67 +82,80 @@ function getCookieValue(cookieName) {
     return null;
 }
 
-// form submission
-const form = document.querySelector('form');
-
-window.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault(); // no default behavior
-    form.submit(); // submit
-  }
-});
-
 function submitForm() {
     console.log('submit');
     let information = document.getElementById('information');
     let usernameC = getCookieValue('username');
     information.classList.add('loading');
 
-    const formData = {
-        username: usernameC,
-        name: document.getElementById('name').value,
-        profilePicture: document.getElementById('profilePicture').value,
-        solo: document.getElementById('solo').value,
-        soloSessions: document.getElementById('soloSessions').value,
-        duo: document.getElementById('duo').value,
-        duoSessions: document.getElementById('duoSessions').value,
-        bodycount: document.getElementById('bodycount').value,
-        bcm: document.getElementById('bcmale').value,
-        bcf: document.getElementById('bcfemale').value,
-        bcd: document.getElementById('bcdiverse').value,
-        sexuality: document.getElementById('sexuality').value,
-        weapon: document.getElementById('weapon-bra-size').value,
-        single: document.getElementById('single').value,
-        together: document.getElementById('together').value,
-        favePornCategory: document.getElementById('favePornCategory').value,
-        favePornVid: document.getElementById('favePornVid').value
-    };
+    let nameV = document.getElementById('name').value;
+    let profilePictureV = document.getElementById('profilePicture').value;
+    let soloV = document.getElementById('solo').value;
+    let soloSessionsV = document.getElementById('soloSessions').value;
+    let duoV = document.getElementById('duo').value;
+    let duoSessionsV = document.getElementById('duoSessions').value;
+    let bodycountV = document.getElementById('bodycount').value;
+    let bcmV = document.getElementById('bcmale').value;
+    let bcfV = document.getElementById('bcfemale').value;
+    let bcdV = document.getElementById('bcdiverse').value;
+    let sexualityV = document.getElementById('sexuality').value;
+    let weaponV = document.getElementById('weapon-bra-size').value;
+    let singleV = document.getElementById('single').value;
+    let togetherV = document.getElementById('together').value;
+    let favePornCategoryV = document.getElementById('favePornCategory').value;
+    let favePornVidV = document.getElementById('favePornVid').value;
+    
+    if (nameV != null && profilePictureV != null && soloV != null && soloSessionsV != null && duoV != null && duoSessionsV != null && bodycountV != null && bcmV != null && bcfV != null && bcdV != null && sexualityV != null && weaponV !=null && singleV != null && togetherV != null && favePornCategoryV != null && favePornVidV != null) {
+        const formData = {
+            username: usernameC,
+            name: nameV,
+            profilePicture: profilePictureV,
+            solo: soloV,
+            soloSessions: soloSessionsV,
+            duo: duoV,
+            duoSessions: duoSessionsV,
+            bodycount: bodycountV,
+            bcm: bcmV,
+            bcf: bcfV,
+            bcd: bcdV,
+            sexuality: sexualityV,
+            weapon: weaponV,
+            single: singleV,
+            together: togetherV,
+            favePornCategory: favePornCategoryV,
+            favePornVid: favePornVidV
+        };
 
-    fetch('http://localhost:8080/api/stats', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        information.classList.remove('loading');
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        information.classList.remove('loading');
-    })
-    .catch(error => {
-        console.error('Failed to fetch: ', error);
+        fetch('http://localhost:8080/api/stats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            information.classList.remove('loading');
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            information.classList.remove('loading');
+        })
+        .catch(error => {
+            console.error('Failed to fetch: ', error);
+            information.classList.remove('loading');
+            information.classList.add('error');
+            information.title = "Fehler, umgehend Tech-Support aufsuchen 🤖"
+        })
+    } else {
         information.classList.remove('loading');
         information.classList.add('error');
-        information.title = "Fehler, umgehend Tech-Support aufsuchen 🤖"
-    })
+        information.title = "Bitte fülle alle Felder aus 🤖"
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -196,6 +209,20 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
+    // color radio listener to hide input
+    function checkRadio(a, b) {
+        return function() {
+            let x = document.getElementById(a);
+            let y = document.getElementById(b);
+            x.classList.add('selected');
+            y.classList.remove('selected');
+        };
+    }
+
+    document.getElementById('lSingle').addEventListener('click', checkRadio('lSingle', 'lTogether'));
+    document.getElementById('lTogether').addEventListener('click', checkRadio('lTogether', 'lSingle'));
+
+
     // check scroll
     document.addEventListener('scroll', function() {
         let documentHeight = document.body.scrollHeight;
@@ -213,16 +240,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 
-    // color radio listener to hide input
-    function check(a, b) {
-        return function() {
-            let x = document.getElementById(a);
-            let y = document.getElementById(b);
-            x.classList.add('selected');
-            y.classList.remove('selected');
-        };
-    }
-
-    document.getElementById('lSingle').addEventListener('click', check('lSingle', 'lTogether'));
-    document.getElementById('lTogether').addEventListener('click', check('lTogether', 'lSingle'));
 });

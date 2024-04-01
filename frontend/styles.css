@@ -80,7 +80,7 @@ main {
     justify-content: space-evenly;
     align-items: center;
     margin: auto;
-    margin-top: 95px;
+    margin-top: 109px;
     width: 1250px;
 }
 
@@ -90,6 +90,7 @@ main {
 }
 
 .sidebar {
+    position: sticky;
     width: 250px;
 }
 
@@ -100,8 +101,7 @@ main {
 .background {
     position: relative;
     height: fit-content;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
     box-shadow: -3px 5px 5px rgba(255,255,255,0.2);
     background-color: #660119;
 }
