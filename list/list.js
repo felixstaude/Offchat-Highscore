@@ -1,0 +1,285 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // get user data from api
+    function getUsersData() {
+        let usersURL = 'http://localhost:8080/api/userlist/data';
+
+        fetch(usersURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Failed to fetch: ', error);
+        });
+        return data;
+    }
+
+    // create firt column
+    function createUserameTable(users) {
+        let tbody = document.getElementById('tableUsername');
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.classList.add('rowUsername');
+            const profileCell = document.createElement('td');
+            const img = document.createElement('img');
+            img.src = user['profilePicture'];
+            img.alt = 'Profilbild';
+            img.style.maxWidth = '50px'; // Setze die maximale Breite des Bildes
+            profileCell.appendChild(img);
+            row.appendChild(profileCell);
+            for (const key in user) {
+                if (user.hasOwnProperty(key) && key === 'username') {
+                    const cell = document.createElement('td');
+                    cell.textContent = user[key];
+                    // ID und Klasse für die Zelle hinzufügen
+                    const className = `${user.username}-username`;
+                    cell.id = className;
+                    cell.classList.add(className);
+                    row.appendChild(cell);
+                }
+            }
+            tbody.appendChild(row);
+        });
+    }
+
+    // create table
+    function createUserTable(users) {
+        let tbody = document.getElementById('tableUserdata');
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.classList.add('rowUserdata');
+            
+            for (const key in user) {
+                if (user.hasOwnProperty(key) && key != 'username' && key != 'profilePicture' && key != 'favePornVid' && key != 'single' && key != 'together') {
+                    const cell = document.createElement('td');
+                    cell.textContent = user[key];
+                    // ID und Klasse für die Zelle hinzufügen
+                    let className = `${key}`;
+                    // cell.id = className;
+                    cell.classList.add(className);
+                    row.appendChild(cell);
+                } else if (user.hasOwnProperty(key) && key === 'favePornVid') {
+                    const cell = document.createElement('td');
+                    let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${user[key]}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`
+                    cell.innerHTML = linkToVideo;
+                    // ID und Klasse für die Zelle hinzufügen
+                    let className = `${key}`;
+                    // cell.id = className;
+                    cell.classList.add(className);
+                    row.appendChild(cell);
+                } else if (user.hasOwnProperty(key) && key === 'single') {
+                    const cell = document.createElement('td');
+                    cell.textContent = 'single';
+                    let className = `single|together`;
+                    // cell.id = className;
+                    cell.classList.add(className);
+                    row.appendChild(cell);
+                } else if (user.hasOwnProperty(key) && key === 'together') {
+                    const cell = document.createElement('td');
+                    cell.textContent = 'together';
+                    let className = `single|together`;
+                    // cell.id = className;
+                    cell.classList.add(className);
+                    row.appendChild(cell);
+                }
+            }
+            const ratingStars = document.createElement('td');
+            ratingStars.innerHTML = `
+            <span class="ratingStar starRating5" id="star_5_${user.username}" onclick="chooseStar(star_5_${user.username})"></span>
+            <span class="ratingStar starRating4" id="star_4_${user.username}" onclick="chooseStar(star_4_${user.username})"></span>
+            <span class="ratingStar starRating3" id="star_3_${user.username}" onclick="chooseStar(star_3_${user.username})"></span>
+            <span class="ratingStar starRating2" id="star_2_${user.username}" onclick="chooseStar(star_2_${user.username})"></span>
+            <span class="ratingStar starRating1" id="star_1_${user.username}" onclick="chooseStar(star_1_${user.username})"></span>`;
+            ratingStars.classList.add('ratingStars');
+
+            const ratingSend = document.createElement('td');      // change color when hovering, when send and when sumbission successfull -- airplane starting, flying and landing
+            ratingSend.id = `ratingSend${user.username}`
+            ratingSend.classList.add('ratingSend');
+            ratingSend.setAttribute('onclick', `sendStarRating('${user.username}')`);
+
+            row.appendChild(ratingStars);
+            row.appendChild(ratingSend);
+
+            tbody.appendChild(row);
+        });
+    }
+    
+    
+    // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
+    const usersData = getUsersData();
+    createUserTable(usersData.users);
+    createUserameTable(usersData.users);
+    setSameHeight(usersData.users);
+
+
+    // set same height for td from username und userdata
+    function setSameHeight(users) {
+        users.forEach(user => {
+            let heightUsername = document.getElementById(`${user.username}-username`);
+            let heightUserdata = document.getElementById(`${user.username}-Link`).offsetHeight;
+            let widthStarSend = document.getElementById(`ratingSend${user.username}`);
+
+            widthStarSend.style.width = `${heightUserdata}px`;
+            heightUsername.style.height = `${heightUserdata}px`;
+        });
+    }
+});
+
+
+// logic for rating --> change style and submission
+function chooseStar(element) {
+
+    let elementID = element.id;
+    let regex1 = /star_1_.*/;
+    let regex2 = /star_2_.*/;
+    let regex3 = /star_3_.*/;
+    let regex4 = /star_4_.*/;
+    let regex5 = /star_5_.*/;
+
+    let regexSplitter = /_\d_/;
+    const idArray = elementID.split(regexSplitter);
+    let username = idArray[1];
+
+    let submitCell = document.getElementById(`ratingSend${username}`);
+    submitCell.classList.remove('ratingSuccess');
+    submitCell.classList.remove('ratingError');
+
+    let star1 = document.getElementById(`star_1_${username}`);
+    let star2 = document.getElementById(`star_2_${username}`);
+    let star3 = document.getElementById(`star_3_${username}`);
+    let star4 = document.getElementById(`star_4_${username}`);
+    let star5 = document.getElementById(`star_5_${username}`);
+
+    if (!element.classList.contains('starSelected')) {
+        if (regex1.test(elementID)) {
+            element.classList.add('starSelected');
+        } else if (regex2.test(elementID)) {
+            star1.classList.add('starSelected');
+            element.classList.add('starSelected');
+        } else if (regex3.test(elementID)) {
+            star1.classList.add('starSelected');
+            star2.classList.add('starSelected');
+            element.classList.add('starSelected');
+        } else if (regex4.test(elementID)) {
+            star1.classList.add('starSelected');
+            star2.classList.add('starSelected');
+            star3.classList.add('starSelected');
+            element.classList.add('starSelected');
+        } else if (regex5.test(elementID)) {
+            star1.classList.add('starSelected');
+            star2.classList.add('starSelected');
+            star3.classList.add('starSelected');
+            star4.classList.add('starSelected');
+            element.classList.add('starSelected');
+        }
+    } else {
+        if (regex4.test(elementID)) {
+            star5.classList.remove('starSelected');
+        } else if (regex3.test(elementID)) {
+            star4.classList.remove('starSelected');
+            star5.classList.remove('starSelected');
+        } else if (regex2.test(elementID)) {
+            star3.classList.remove('starSelected');
+            star4.classList.remove('starSelected');
+            star5.classList.remove('starselected');
+        } else if (regex1.test(elementID)) {
+            star2.classList.remove('starSelected');
+            star3.classList.remove('starSelected');
+            star4.classList.remove('starSelected');
+            star5.classList.remove('starSelected');
+        }
+    }
+}
+
+function sendStarRating(username) {
+    let rating1 = document.getElementById(`star_1_${username}`).classList;
+    let rating2 = document.getElementById(`star_2_${username}`).classList;
+    let rating3 = document.getElementById(`star_3_${username}`).classList;
+    let rating4 = document.getElementById(`star_4_${username}`).classList;
+    let rating5 = document.getElementById(`star_5_${username}`).classList;
+
+    
+    let submittedRating;
+    if (rating5.contains('starSelected')) {
+        submittedRating = 5;
+    } else if (rating4.contains('starSelected')) {
+        submittedRating = 4;
+    } else if (rating3.contains('starSelected')) {
+        submittedRating = 3;
+    } else if (rating2.contains('starSelected')) {
+        submittedRating = 2;
+    } else if (rating1.contains('starSelected')) {
+        submittedRating = 1;
+    } else {
+        console.log('error, please choose rating');
+    }
+
+    let submitCell = document.getElementById(`ratingSend${username}`);
+
+    let sessionID = getCookieValue('sessionID');
+    const finalRating = {sessionid: sessionID, username: username, rating: submittedRating};
+
+    console.log(sessionID, finalRating);
+    if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
+        information.classList.remove('error');
+        information.classList.add('loading');
+
+        submitCell.classList.add('ratingSending');
+
+        fetch('http://localhost:8080/api/rating', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(finalRating),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                information.classList.remove('loading');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success === true) {
+                    console.log(finalRating);
+                    submitCell.classList.remove('ratingSending');
+                    submitCell.classList.add('ratingSuccess');
+                    information.classList.remove('loading');
+                }
+            })
+            .catch(error => {
+                console.error('Failed to fetch: ', error);
+                submitCell.classList.remove('ratingSending');
+                submitCell.classList.add('ratingError');
+
+                information.classList.remove('loading');
+                information.classList.add('error');
+                information.title = "Fehler beim senden"
+            })
+    }
+}
+
+function getCookieValue(cookieName) {
+    // split cookie-string into values
+    let cookies = document.cookie.split(';');
+
+    // search cookies
+    for (var i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+
+        // check if cookie exists
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            return cookie.substring(cookieName.length + 1);
+        }
+    }
+    return null;
+}

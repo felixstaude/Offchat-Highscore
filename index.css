@@ -1,0 +1,11 @@
+.profileListItem {
+    display: flex;
+    align-items: center;
+}
+
+.userProfilePicture {
+    max-width: 50px;
+    margin-right: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #fff;
+}

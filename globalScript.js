@@ -92,8 +92,10 @@ window.addEventListener('load', function() {
     let hoehevonheader = document.getElementById('header').offsetHeight;
     let main = document.getElementById('main');
     let sidebar = document.getElementById('sidebar');
+    let sidebarcontent = document.getElementById('sidebarContent');
 
     sidebar.style.top = hoehevonheader + 20 + 'px';
+    sidebarcontent.style.maxHeight = `calc(100vh - ${hoehevonheader - 10}px)`;
     main.style.marginTop = hoehevonheader + 20 + 'px';
     console.log(hoehevonheader + 20);
 });
@@ -101,19 +103,16 @@ window.addEventListener('load', function() {
 document.addEventListener('DOMContentLoaded', function () {
     
     // profile information on hover
-    let profilePictureHeader = document.getElementById('profilePictureHeader');
     let namesWrapper = document.getElementById('namesWrapper');
     let usernameHeader = document.getElementById('usernameHeader');
     let nameHeader = document.getElementById('nameHeader');
 
     document.getElementById('penis').addEventListener('mouseover', function() {
-        addClasses(profilePictureHeader, 'profilePictureHeaderHover')
         addClasses(namesWrapper, 'namesWrapperShow');
         addClasses(usernameHeader, 'usernameHeaderShow');
         addClasses(nameHeader, 'nameHeaderShow');
     });
     document.getElementById('penis').addEventListener('mouseout', function() {
-        removeClasses(profilePictureHeader, 'profilePictureHeaderHover')
         removeClasses(namesWrapper, 'namesWrapperShow');
         removeClasses(usernameHeader, 'usernameHeaderShow');
         removeClasses(nameHeader, 'nameHeaderShow');

@@ -72,7 +72,7 @@ function submitForm() {
     let favePornVidV = document.getElementById('favePornVid').value;
     
     if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
-        console.log('submission sent');
+        console.log('submission correct');
         const formData = {
             username: usernameC,
             name: nameV,

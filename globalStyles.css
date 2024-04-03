@@ -50,10 +50,9 @@ header{
     transition: border-radius 0.5s ease 0.3s;
 }
 
-.profilePictureHeaderHover {
+.profilePictureHeader:hover {
     border-radius: 5px;
     transition: border-radius 0.5s ease;
-    cursor: none;
 }
 
 .namesWrapper {
@@ -130,12 +129,14 @@ main {
 }
 
 .mainFullHeight {
-    height: calc(100vh - 96px);
+    height: 100vh;
+    margin-top:0;
     overflow: hidden;
 }
 
 .content {
     width: 607px;
+    text-align: center;
 }
 
 .background {
@@ -180,8 +181,8 @@ main {
 }
 
 .sidebarArrow:hover {
-    background-color: white;
-    box-shadow: 0 0 5px white;
+    background-color: #fff;
+    box-shadow: 0 0 5px #fff;
 }
 
 .arrowPart1, .arrowPart2 {
@@ -205,7 +206,8 @@ main {
 }
 
 .information {
-    position: absolute;
+    position: fixed;
+    display: flex;
     right: 5px;
     bottom: 5px;
     width: 15px;
@@ -214,7 +216,7 @@ main {
 }
 
 .loading {
-    border-top: solid 2px black;
+    border-top: solid 2px #fff;
     border-right: solid 3px transparent;
     animation: spin 2s linear infinite;
 }
@@ -222,8 +224,9 @@ main {
 .error {
     font-size: 11px;
     text-align: center;
-    background-color: rgb(255,150,150);
+    background-color: #fff;
     color: red;
+    border: solid 1px #000;
 }
 
 .error::before {
@@ -269,7 +272,7 @@ input, button, select {
     padding-right: 10px;
     border-radius: 10px;
     background-color:#450009;
-    text-shadow: 0 0 2px white;
+    text-shadow: 0 0 2px #fff;
 }
 
 .warning {
@@ -291,8 +294,8 @@ hr {
     width: 90%;
     margin: auto;
     height: 1px;
-    background-color: white;
-    border: 1px solid white;
+    background-color: #fff;
+    border: 1px solid #fff;
     border-radius: 2px;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -315,17 +318,6 @@ hr {
         width: 100%;
     }
     main {
-        width: 100%;
-    }
-}
-@media only screen and (max-width: 607px) {
-    header {
-        height: 160px;
-    }
-    main {
-        margin-top: 190px;
-    }
-    .container {
         width: 100%;
     }
 }
@@ -362,8 +354,8 @@ hr {
 }
 
 .author:hover {
-    background-color: black;
-    color: white;
+    background-color: #000;
+    color: #fff;
 }
 
 .authorShow {

@@ -1,0 +1,94 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    font-family: monospace;
+    width: calc(100% - 20px);
+}
+
+.tableWrapper {
+    overflow-x: scroll;
+    border-right: solid 1px #fff;
+}
+
+.tableWrapper::-webkit-scrollbar { 
+    width: initial;
+    display: none;
+}
+
+table {
+    border: solid 1px #fff;
+    border-collapse: collapse;
+}
+
+tr {
+    max-height: 50px !important;
+}
+
+.rowUserdata:nth-child(even), .rowUsername:nth-child(even) {
+    background-color: rgba(0,0,0,0.3);
+}
+
+td, th {
+    padding-left: 5px;
+    padding-right: 5px;
+    border: solid 1px #fff;
+}
+
+td {
+    height: 58px;
+}
+
+.favePornVid {
+    white-space: nowrap;
+    max-width: 750px;
+    overflow: hidden;
+}
+
+.ratingStars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.starRating5:hover, .starRating5:hover ~ .starRating4, .starRating5:hover ~ .starRating3, .starRating5:hover ~ .starRating2, .starRating5:hover ~ .starRating1,
+.starRating4:hover, .starRating4:hover ~ .starRating3, .starRating4:hover ~ .starRating2, .starRating4:hover ~ .starRating1,
+.starRating3:hover, .starRating3:hover ~ .starRating2, .starRating3:hover ~ .starRating1,
+.starRating2:hover, .starRating2:hover ~ .starRating1,
+.starRating1:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #ffd900;
+}
+
+.ratingStar::before {
+    content: "\2606";
+}
+
+.starSelected::before {
+    content: "\2605";
+}
+
+.ratingStar:hover, .ratingSend:hover {
+    cursor: pointer;
+}
+
+.ratingSend::before {
+    content: "🛫";
+}
+
+.ratingSending::before {
+    content: "✈";
+}
+
+.ratingSuccess:hover, .ratingError:hover {
+    cursor: not-allowed;
+}
+
+.ratingSuccess::before {
+    content: "🛬";
+}
+
+.ratingError::before {
+    content: "⛈";
+}
