@@ -19,9 +19,12 @@ window.addEventListener('keydown', function(e) {
 });
 
 function submitForm() {
-    console.log('submit');
-    let information = document.getElementById('information');
+    console.log('submit logindata');
     information.classList.add('loading');
+    showError.style.display = '';
+    errorCross1.classList.remove('errorCross1');
+    errorCross2.classList.remove('errorCross2');
+
 
     const formData = {
         username: document.getElementById('username').value,
@@ -40,17 +43,14 @@ function submitForm() {
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
-        information.classList.remove('loading');
         return response.json();
     })
     .then(data => {
+        information.classList.remove('loading');
         if (data.success != false && data.sessionID != null) {
             setCookies(data);
-            information.classList.remove('loading');
         } else {
-            information.classList.remove('loading');
             information.classList.add('error');
-            information.title = 'Fehler, umgehend Tech-Support aufsuchen 🤖';
             console.log(data);
             alert('Login fehlgeschlagen, prüfe deine Angaben und versuche es erneut');
         }
@@ -59,8 +59,11 @@ function submitForm() {
         console.error('Failed to fetch: ', error);
         information.classList.remove('loading');
         information.classList.add('error');
-        information.title = 'Fehler, umgehend Tech-Support aufsuchen 🤖';
-    })
+        showError.innerHTML = 'Fehler beim Überprüfen der Logindaten. Probiere es bitte erneut oder teile es uns mit.'
+        showError.style.display = 'block';
+        errorCross1.classList.add('errorCross1');
+        errorCross2.classList.add('errorCross2');
+})
 }
 
 function getCookieValue(cookieName) {

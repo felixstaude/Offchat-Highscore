@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // get user data from api
     function getUsersData() {
         let usersURL = 'http://localhost:8080/api/userlist/data';
+        information.classList.add('loading');
 
         fetch(usersURL, {
             method: 'GET',
@@ -15,12 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return response.json();
         })
+        .then(data => {
+            return data;
+        })
         .catch(error => {
             console.error('Failed to fetch: ', error);
+            information.classList.remove('loading');
+            information.classList.add('error');
+            showError.innerHTML = 'Fehler beim Laden der Daten. Probiere es bitte erneut oder teile es uns mit.';
+            showError.style.display = 'block';
+            errorCross1.classList.add('errorCross1');
+            errorCross2.classList.add('errorCross2');
         });
-        return data;
     }
-    // create firt column
+    // create first column
     function createUserList(users) {
         users.forEach(user => {
             const listWrapper = document.getElementById('allUsers');

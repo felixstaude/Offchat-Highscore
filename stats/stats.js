@@ -1,6 +1,8 @@
-window.onload = getFormData();
+window.onload = getFormData;
 
 function getFormData() {
+    information.classList.add('loading');
+
     let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
 
@@ -17,10 +19,17 @@ function getFormData() {
         return response.json();
     })
     .then(data => {
+        information.classList.remove('loading');
         fillForm(data);
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
+        information.classList.remove('loading');
+        information.classList.add('error');
+        showError.innerHTML = 'Fehler beim Laden deiner Daten. Probiere es bitte erneut oder teile es uns mit.';
+        showError.style.display = 'block';
+        errorCross1.classList.add('errorCross1');
+        errorCross2.classList.add('errorCross2');
     })
 }
 
@@ -40,12 +49,57 @@ function getCookieValue(cookieName) {
     return null;
 }
 
+function fillForm(data) {
+    let nameV = document.getElementById('name');
+    let profilePictureV = document.getElementById('profilePicture');
+    let soloV = document.getElementById('solo');
+    let soloSessionsV = document.getElementById('soloSessions');
+    let duoV = document.getElementById('duo');
+    let duoSessionsV = document.getElementById('duoSessions');
+    let bodycountV = document.getElementById('bodycount');
+    let bcmV = document.getElementById('bcmale');
+    let bcfV = document.getElementById('bcfemale');
+    let bcdV = document.getElementById('bcdiverse');
+    let sexualityV = document.getElementById('sexuality');
+    let weaponV = document.getElementById('weapon-bra-size');
+    let singleC = document.getElementById('single');
+    let togetherC = document.getElementById('together');
+    let favePornCategoryV = document.getElementById('favePornCategory');
+    let favePornVidV = document.getElementById('favePornVid');
+
+    nameV.value = data.name;
+    profilePictureV.value = data.profilePicture;
+    soloV.value = data.solo;
+    soloSessionsV.value = data.soloSession;
+    duoV.value = data.duo;
+    duoSessionsV.value = data.duoSession;
+    bodycountV.value = data.bodycount;
+    bcmV.value = data.bcmale;
+    bcfV.value = data.bcfemale;
+    bcdV.value = data.bcdivserse;
+    sexualityV.value = data.sexuality;
+    weaponV.value = data.weapon_bra_size;
+    
+    if (data.single === true) {
+        singleC.checked = true;
+        document.getElementById('lSingle').classList.add('checked');
+    } else if (data.together === true) {
+        togetherC.checked = true;
+        document.getElementById('lSingle').classList.add('checked');
+    } else {
+        console.log('fehler, konnte nicht checken')
+    }
+    favePornCategoryV.value = data.favePornCategory;
+    favePornVidV.value = data.favePornVid;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form'); 
-    
-    form.addEventListener('submit', function(event) { 
-    event.preventDefault(); 
-    submitForm();
+
+    form.addEventListener('submit', function(event) {
+        console.log('Form submitted');
+        event.preventDefault();
+        submitForm();
     });
 });
 
@@ -87,11 +141,18 @@ function submitForm() {
             bcd: bcdV,
             sexuality: sexualityV,
             weapon: weaponV,
-            single: singleV,
-            together: togetherV,
+            single: singleC,
+            together: togetherC,
             favePornCategory: favePornCategoryV,
             favePornVid: favePornVidV
         };
+
+        information.classList.remove('error');
+        information.classList.add('loading');
+        showError.style.display = '';
+        errorCross1.classList.remove('errorCross1');
+        errorCross2.classList.remove('errorCross2');
+
 
         fetch('http://localhost:8080/api/stats', {
             method: 'POST',
@@ -105,23 +166,29 @@ function submitForm() {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
-            information.classList.remove('loading');
             return response.json();
         })
         .then(data => {
-            console.log(data);
             information.classList.remove('loading');
+            console.log(data);
         })
         .catch(error => {
             console.error('Failed to fetch: ', error);
             information.classList.remove('loading');
             information.classList.add('error');
-            information.title = "Fehler, umgehend Tech-Support aufsuchen 🤖"
+            showError.innerHTML = "Fehler, umgehend Tech-Support aufsuchen 🤖"
+            showError.style.display = 'block';
+            errorCross1.classList.add('errorCross1');
+            errorCross2.classList.add('errorCross2');    
         })
     } else {
+        console.log(profilePictureV);
         information.classList.remove('loading');
         information.classList.add('error');
-        information.title = "Bitte fülle alle Felder aus 🤖"
+        showError.innerHTML = 'Bitte fülle alle Felder aus 🤖"';
+        showError.style.display = 'block';
+        errorCross1.classList.add('errorCross1');
+        errorCross2.classList.add('errorCross2');
     }
 }
 
@@ -129,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // color and width when filling out
     let name = document.getElementById('name');
+    let profilePicture = docuemnt.getElementById('profilePicture');
     let solo = document.getElementById('solo');
     let soloSessions = document.getElementById('soloSessions');
     let duo = document.getElementById('duo');
@@ -146,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     name.addEventListener('input', resizeInput(name));
+    profilePicture.addEventListener('input', resizeInput(profilePicture));
     solo.addEventListener('input', resizeInput(solo));
     soloSessions.addEventListener('input', resizeInput(soloSessions));
     duo.addEventListener('input', resizeInput(duo));
@@ -158,8 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sexuality.addEventListener('click', function() {
         sexuality.classList.add('filled');
     });
-    single.addEventListener('input', resizeInput(single));
-    together.addEventListener('input', resizeInput(together));
     favePornCategory.addEventListener('input', resizeInput(favePornCategory));
     favePornVid.addEventListener('input', resizeInput(favePornVid));
 
@@ -220,6 +287,7 @@ function fillForm(data) {
     bcdV.value = data.bcdivserse;
     sexualityV.value = data.sexuality;
     weaponV.value = data.weapon_bra_size;
+
     if (data.single === true) {
         singleC.checked = true;
         document.getElementById('lSingle').classList.add('checked');

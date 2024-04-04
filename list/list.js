@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // get user data from api
     function getUsersData() {
+        information.classList.add('loading');
+        
         let usersURL = 'http://localhost:8080/api/userlist/data';
 
         fetch(usersURL, {
@@ -13,15 +15,22 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
+            information.classList.remove('loading');
             return response.json();
         })
         .catch(error => {
             console.error('Failed to fetch: ', error);
+            information.classList.remove('loading');
+            information.classList.add('error');
+            showError.innerHTML = 'Fehler beim Laden der Daten. Probiere es bitte erneut oder teile es uns mit.';
+            showError.style.display = 'block';
+            errorCross1.classList.add('errorCross1');
+            errorCross2.classList.add('errorCross2');    
         });
         return data;
     }
 
-    // create firt column
+    // create first column
     function createUserameTable(users) {
         let tbody = document.getElementById('tableUsername');
         users.forEach(user => {
@@ -230,6 +239,10 @@ function sendStarRating(username) {
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
         information.classList.remove('error');
         information.classList.add('loading');
+        showError.style.display = '';
+        errorCross1.classList.remove('errorCross1');
+        errorCross2.classList.remove('errorCross2');
+
 
         submitCell.classList.add('ratingSending');
 
@@ -253,7 +266,6 @@ function sendStarRating(username) {
                     console.log(finalRating);
                     submitCell.classList.remove('ratingSending');
                     submitCell.classList.add('ratingSuccess');
-                    information.classList.remove('loading');
                 }
             })
             .catch(error => {
@@ -261,9 +273,11 @@ function sendStarRating(username) {
                 submitCell.classList.remove('ratingSending');
                 submitCell.classList.add('ratingError');
 
-                information.classList.remove('loading');
                 information.classList.add('error');
-                information.title = "Fehler beim senden"
+                showError.innerHTML = 'Fehler beim Senden. Probiere es bitte erneut oder teile es uns mit.'
+                showError.style.display = 'block';
+                errorCross1.classList.add('errorCross1');
+                errorCross2.classList.add('errorCross2');        
             })
     }
 }

@@ -36,11 +36,11 @@ function checkSessionLogin() {
 }
 
 function getProfileData() {
+    information.classList.add('loading');
+
     let sessionID = getCookieValue('sessionID');
     let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
     let usernameCookie = getCookieValue('username');
-
-    console.log(userURL);
 
     fetch(userURL, {
         method: 'GET',
@@ -55,6 +55,8 @@ function getProfileData() {
         return response.json();
     })
     .then(data => {
+        information.classList.remove('loading');
+        
         let username = document.getElementById('usernameHeader');
         let name = document.getElementById('nameHeader');
         let profilePicture = document.getElementById('profilePictureHeader');
@@ -66,6 +68,12 @@ function getProfileData() {
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
+        information.classList.remove('loading');
+        information.classList.add('error');
+        showError.innerHTML = 'Profildaten konnten nicht geladen werden. Probiere es bitte erneut oder teile es uns mit.';
+        showError.style.display = 'block';
+        errorCross1.classList.add('errorCross1');
+        errorCross2.classList.add('errorCross2');
     })
 }
 
@@ -144,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let documentHeight = document.body.scrollHeight;
         let currentScroll = window.scrollY + window.innerHeight;
         let width = window.innerWidth;
-        //console.log(currentScroll + " | " + documentHeight + " | " + (currentScroll - documentHeight)); Falls es nochmal kaputt geht
+        // console.log(currentScroll + " | " + documentHeight + " | " + (currentScroll - documentHeight)); //Falls es nochmal kaputt geht
 
         let author = document.getElementById('author');
         if((width < 501) && (currentScroll - 185 > documentHeight)) {

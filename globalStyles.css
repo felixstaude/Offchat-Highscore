@@ -205,34 +205,6 @@ main {
     transform: rotate(-45deg);
 }
 
-.information {
-    position: fixed;
-    display: flex;
-    right: 5px;
-    bottom: 5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-}
-
-.loading {
-    border-top: solid 2px #fff;
-    border-right: solid 3px transparent;
-    animation: spin 2s linear infinite;
-}
-
-.error {
-    font-size: 11px;
-    text-align: center;
-    background-color: #fff;
-    color: red;
-    border: solid 1px #000;
-}
-
-.error::before {
-    content: "\274C";
-}
-
 @keyframes spin {
     0% {transform: rotate(0deg);}
     100% {transform: rotate(360deg);}
@@ -322,6 +294,65 @@ hr {
     }
 }
 
+.information {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 5px;
+    bottom: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.loading {
+    border-top: solid 2px #fff;
+    border-right: solid 3px transparent;
+    animation: spin 2s linear infinite;
+}
+
+.error {
+    font-size: 11px;
+    background-color: #fff;
+    border: solid 1px #000;
+}
+
+.errorCross1, .errorCross2 {
+    position: absolute;
+    width: 110%;
+    height: 3px;
+    background-color: red;
+}
+
+.errorCross1 {
+    transform: rotate(45deg);
+}
+
+.errorCross2 {
+    transform: rotate(-45deg);
+}
+
+.showError {
+    font-size: 15px;
+    background-color: #660119;
+    opacity: 0.2;
+    display: none;
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    max-width: 150px;
+    padding: 5px;
+    border: solid 1px #fff;
+    border-radius: 5px 5px 0 5px;
+    transition-duration: 1s;
+}
+
+.showError:hover, .error:hover ~ .showError {
+    opacity: 1;
+}
+
 .loginFailWrapper {
     position: fixed;
     width: 100vw;
@@ -360,6 +391,12 @@ hr {
 
 .authorShow {
     top: 0px;
+}
+
+::selection {
+    background: #fff;
+    color: #660119;
+    text-shadow: 0 0 2px #660119;
 }
 
 ::-webkit-scrollbar {
