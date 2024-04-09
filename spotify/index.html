@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head id="headID">
+    <head id="head">
         <meta charset="UTF-8">
         <meta name="keywords" content="offchat, bastighg, offlinechat, quiz, spieleabend, sexuality">
-        <meta name="description" content="Das Offchat-Highscore-Quiz. Navigation, von der du überall aus hin kommst.">
+        <meta name="description" content="Das Offchat-Highscore-Quiz. Alle Daten findest du hier in einer Liste gesammelt.">
         <meta name="author" content="bxrbeq, theepicflexo">
         <meta property="og:title" content="das Offchat-Highscore-Quiz"/>
         <meta property="og:type" content="website"/>
         <!-- meta property="og:url" content="coming soon"/-->
         <meta property="og:image" content="https://cdn.discordapp.com/emojis/1128427768842047688.webp"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hauptmenü</title>
+        <title>Spotify Playlist</title>
         <link rel="icon" href="https://cdn.discordapp.com/emojis/1128427768842047688.webp">
-        <link rel="stylesheet" href="globalStyles.css">
-        <link rel="stylesheet" href="index.css">
-        <script src="globalScript.js"></script>
-        <script src="index.js"></script>
+        <link rel="stylesheet" href="../globalStyles.css">
+        <link rel="stylesheet" href="spotify.css">
+        <script src="../globalScript.js"></script>
+        <script src="spotify.js"></script>
+
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
     <body id="bodyID">
         <header class="background" id="header">
             <div class="headerContainer">
-                <a href="/stats"><div class="penis" id="penis">
+                <a href="/stats" target="_blank"><div class="penis" id="penis">
                     <div class="namesWrapper" id="namesWrapper">
                         <div class="usernameHeader" id="usernameHeader">placeholderUsername</div>
                         <div class="nameHeader" id="nameHeader">placeholderName</div>
@@ -32,7 +33,7 @@
                     <img class="profilePictureHeader" id="profilePictureHeader" src="https://cdn.discordapp.com/emojis/1128427768842047688.webp"/> <!-- https://cdn.7tv.app/emote/6430a9e9317734d70a267a87/4x.webp-->
                 </div></a>
                 <h1>Das Offchat-Highscore-Quiz (<img src="https://cdn.7tv.app/emote/603cb17bc20d020014423c29/1x.webp">)</h1>
-                <a href="/" class="homeWrapper">
+                <a href="../" class="homeWrapper" target="_blank">
                     <div class="home" id="home">&#8962;</div>
                 </a>
             </div>
@@ -40,38 +41,55 @@
 
         <main id="main">
             <div class="content background">
-                <h2>Teilnehmende User</h2>
-                <ul class="allUsers" id="allUsers"><!-- content from api in here--></ul>  
+                <h3>Spotify Playlist</h3>
+                <!-- <a id="invLink" target="_blank">Klicke hier, um der Playlist beizutreten, damit du Songs hinzufügen kannst.</a> vielleich nicht nötig, muss testen-->
+                <label for="addSong">URL vom Song hier einfügen:</label><br/>
+                <input type="url" id="addSong" name="addSong"/>
+                <p id="songURLInfo">&nbsp;</p>
                 <hr/>
-                <h2>Bewertung der Lieblingsvideos</h2>
-                <span style="color:black; text-shadow: 0 0 2px #000;">coming soon</span>
-                <hr/>  
+                <h3>Player Info</h3>
+                <p>pause/weiter mit der Leertaste</p>
+                <p>nächster Song mit 'Shift' + 'n' bei Wiedergabe der Playlist</p>
+                <p>der Player <span id="showStatus">spielt gerade nichts</span></p>
+                <br/>
+                <p>höre dir hier die einzelnen Songs an</p>
+                <p><a href="javascript:startPlaylist()">oder starte die Playlist und lasse den Tab offen, für das umfassende Feeling</a></p>
+                <span>volume: </span><input type="range" min="0" max="100" value="50" class="volumeControl" id="volumeControl"/> <span id="showVolume">50 %</span>
+                <hr/>
+                <h3>Eure Songs</h3>
+                <table>
+                    <tbody id="listWrapper"><!-- Data from API here --></tbody>
+                </table>
+                <hr/>
+                <h4 class="unlinkSpotifyHeadline" id="unlinkSpotifyHeadline">Trenne die Verbindung zu Spotify</h4>
+                <p class="unlinkSpotify" id="unlinkSpotify">Dies setzt alle Cookies, die manuel gesetzt werden zurück, damit du in Spotify angemeldet bist. Cookies, die von Spotify gesetzt werden, sind davon nicht explizit betroffen. Wenn diese Cookies zurückgesetzt sind, musst du dich neu anmelden. Deise hast keine Auswirkungen auf deine Login von dieser Community Seite.<br/>
+                <a href="javascript:spDeleteCookies()">Spotify abmelden</a></p>
             </div>
         </main>
 
         <aside class="sidebar background" id="sidebar">
             <div id="sidebarContent" style="overflow-y: scroll;">
-                <a href="../">
+                <a href="../" target="_blank">
                     <h3>Startseite</h3>
                     <p>Auf der Startseite findest du eine Übersicht über alle Teilnehmen User und die Auswertung der Porn-Ratings.</p>
                 </a>
                 <hr/>
-                <a href="/stats/">
+                <a href="/stats/" target="_blank">
                     <h3>Deine Stats</h3>
                     <p>Adde deine Stats, damit jeder sie sehen kann. Oder passe sie an, falls sich was geändert hat.</p>
                 </a>
                 <hr/>
-                <a href="/list/">
+                <a href="/list/" target="_blank">
                     <h3>Alle Stats</h3>
                     <p>Hier kannst du alle Stats sehen. In einer Tabellenform sind hier alle Daten aufgereiht.</p>
                 </a>
                 <hr/>
-                <a href="/spotify/">
+                <a href="/spotify/" target="_blank">
                     <h3>zur offiziellen Playlist</h3>
                     <p>Füge deine Songs hinzu und starte die Playlist auf dem Gerät, auf dem du gerade hörst. Für das umschließende Erlebnis.</p>
                 </a>
                 <hr/>
-                <a href="javascript:resetCookiePref()">
+                <a href="javascript:resetCookies()">
                     <p style="font-size: 15px;">Setzte hier deine Cookie-Präferenzen zurück.</p>
                 </a>
                 <hr/>

@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             errorCross1.classList.add('errorCross1');
             errorCross2.classList.add('errorCross2');    
         });
-        return data;
+        return usersURL;
     }
 
     // create first column

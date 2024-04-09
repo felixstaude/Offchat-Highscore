@@ -1,0 +1,172 @@
+.content {
+    width: 1230px;
+}
+
+table {
+    margin: auto;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.rowSong {
+    cursor: pointer;
+}
+
+.playingSong {
+    background-color: rgb(0,0,0,0.3);
+}
+
+td {
+    padding-left: 5px;
+    padding-right: 2px;
+}
+
+.addedBy {
+    border-left: solid 2px #fff;
+}
+
+.coverContainer {
+    position: relative;
+    height: 64px !important;
+    width: 64px !important;
+    cursor: pointer;
+}
+
+.playArrow1, .playArrow2 {
+    position: absolute;
+    width: 70.7068%;
+    height: 6px;
+    left: 15%;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.rowSong:hover .playArrow1, .rowSong:hover .playArrow2 {
+    background-color: #fff;
+    box-shadow: 0 0 4px #fff;
+}
+
+.playArrow1 {
+    transform: rotate(40deg);
+    top: calc(25%);
+}
+
+.playArrow2 {
+    transform: rotate(-40deg);
+    top: calc(65%);
+}
+
+.trackCover {
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+#showStatus {
+    text-decoration: underline;
+}
+
+.volumeControl {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 200px;
+    background-color: transparent;
+    transition-duration: 2s;
+}
+.volumeControl:focus {
+    outline-color: white;
+}
+.volumeControl::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: black;
+    background: -webkit-linear-gradient(left, #cd5c6b 0%, #b1cd5c 100%);
+    background: linear-gradient(to right, #cd5c6b 0%, #b1cd5c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="black", endColorstr="white", GradientType=1 );
+}
+.volumeControl::-moz-range-track {
+    -moz-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: black;
+    background: -moz-linear-gradient(left, #cd5c6b 0%, #b1cd5c 100%);
+    background: linear-gradient(to right, #cd5c6b 0%, #b1cd5c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="black", endColorstr="white", GradientType=1 );
+}
+.volumeControl::-ms-track {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: black;
+    background: -moz-linear-gradient(left, #cd5c6b 0%, #b1cd5c 100%);
+    background: -webkit-linear-gradient(left, #cd5c6b 0%, #b1cd5c 100%);
+    background: linear-gradient(to right, #cd5c6b 0%, #b1cd5c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="black", endColorstr="white", GradientType=1 );
+}
+.volumeControl::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    bottom: 8px;
+    background: #222;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+}
+.volumeControl::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    bottom: 8px;
+    background: #222;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+}
+.volumeControl::-ms-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    bottom: 8px;
+    background: #222;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+}
+.volumeControl::-ms-thumb:active, .volumeControl::-webkit-slider-thumb:active, .volumeControl::-moz-range-thumb:active {
+    cursor: grabbing;
+}
+
+#showVolume {
+    display: inline-block;
+    width: 50px;
+}
+
+.unlinkSpotifyHeadline {
+    cursor: pointer;
+}
+
+.unlinkSpotify {
+    font-size: 15px;
+    height: 0px;
+    overflow: hidden;
+    transition-duration: 1s;
+}
+
+.unlinkSpotifyShow {
+    height: fit-content;
+}

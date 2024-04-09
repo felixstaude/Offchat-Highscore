@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // color and width when filling out
     let name = document.getElementById('name');
-    let profilePicture = docuemnt.getElementById('profilePicture');
+    let profilePicture = document.getElementById('profilePicture');
     let solo = document.getElementById('solo');
     let soloSessions = document.getElementById('soloSessions');
     let duo = document.getElementById('duo');
@@ -207,8 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let bcd = document.getElementById('bcdiverse');
     let weapon = document.getElementById('weapon-bra-size');
     let sexuality = document.getElementById('sexuality');
-    let single = document.getElementById('single');
-    let together = document.getElementById('together');
     let favePornCategory = document.getElementById('favePornCategory');
     let favePornVid = document.getElementById('favePornVid');
 

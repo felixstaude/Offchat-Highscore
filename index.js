@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             errorCross2.classList.add('errorCross2');
         });
     }
-    // create first column
+    // create list
     function createUserList(users) {
         users.forEach(user => {
             const listWrapper = document.getElementById('allUsers');

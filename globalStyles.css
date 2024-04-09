@@ -149,14 +149,21 @@ main {
 
 .sidebar {
     position: fixed;
-    margin-left: -260px;
-    width: 250px;
-    transition: margin-left 1s ease-in-out;
+    top: 124px;
+    margin-left: -510px;
+    width: 500px;
     box-shadow: 3px 5px 5px rgba(255,255,255,0.2);
+    transition: margin-left 1s ease-in-out;
+    z-index: 2;
 }
 
 .sidebarShow {
-    margin-left: 0;
+    margin-left: 0px !important;
+}
+
+#sidebarContent {
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .sidebarArrow {
@@ -172,7 +179,7 @@ main {
     border-radius: 0 50% 50% 0;
     background-color: initial;
     box-shadow: none;
-    transition: transform 0.2s ease-in-out, border-radius 0.2s ease-in-out, 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: 0.5s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .sidebarArrowShow {
@@ -183,6 +190,7 @@ main {
 .sidebarArrow:hover {
     background-color: #fff;
     box-shadow: 0 0 5px #fff;
+    cursor: pointer;
 }
 
 .arrowPart1, .arrowPart2 {
@@ -337,7 +345,7 @@ hr {
 .showError {
     font-size: 15px;
     background-color: #660119;
-    opacity: 0.2;
+    opacity: 0.1;
     display: none;
     position: fixed;
     bottom: 22px;
@@ -349,7 +357,7 @@ hr {
     transition-duration: 1s;
 }
 
-.showError:hover, .error:hover ~ .showError {
+.error:hover ~ .showError {
     opacity: 1;
 }
 
@@ -364,11 +372,6 @@ hr {
     display: flex !important;
     justify-content: center;
     align-items: center;
-}
-
-.loginFail {
-    background-color: #450009;
-    text-align: center;
 }
 
 .author {
@@ -393,6 +396,19 @@ hr {
     top: 0px;
 }
 
+.cookieWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
 ::selection {
     background: #fff;
     color: #660119;
@@ -409,6 +425,7 @@ hr {
 
 ::-webkit-scrollbar-thumb {
     background: #fff;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
