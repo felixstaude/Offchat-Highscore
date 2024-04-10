@@ -498,6 +498,45 @@ async function getPlaylistInfo() {
         return data.items;
     })
 }
+console.log('check with "checkSongsPerUser" in case you forgot')
+async function checkSongsPerUser() {
+    const playlistInfo = await getPlaylistInfo();
+
+    const allUsers = [];
+    const countUsers = [];
+    let userAmount = 0;
+    let itemsProcessed = 0;
+
+    playlistInfo.forEach(element => {
+        if (!allUsers.includes(element.added_by.id)) {
+            allUsers.push(element.added_by.id);
+        }
+        countUsers.push(element.added_by.id);
+    });
+
+    allUsers.forEach(async element => {
+        let songcount = getOccurrence(countUsers, element);
+        if (songcount > 5) {
+            let userName = await getUserInfo(element);
+            console.log(`User '${userName}' has added ${songcount} Songs`);
+            userAmount = userAmount + 1;
+        }
+
+        itemsProcessed++;
+        
+        if (itemsProcessed === allUsers.length) {
+            finished();
+        }
+    })
+
+    function getOccurrence(array, value) {
+        return array.filter((v) => (v === value)).length;
+    }
+
+    function finished() {
+        console.log(`checked ${allUsers.length} Users and found ${userAmount} User(s), that exceeded the limit`);
+    }
+}
 
 function spDeleteCookies() {
     document.cookie = `spAccessToken=;path=/`;
