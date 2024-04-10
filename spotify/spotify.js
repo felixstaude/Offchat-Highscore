@@ -46,6 +46,13 @@ window.addEventListener('DOMContentLoaded', function() {
     // resize and color url input
     let addSong = document.getElementById('addSong');
     addSong.addEventListener('input', resizeInput(addSong));
+    addSong.addEventListener('input', addSongListener);
+
+    function addSongListener() {
+        if (addSong.value.length > 0) {
+            getSongID();
+        }
+    }
 
     function resizeInput(id) {
         return function() {
@@ -379,32 +386,39 @@ async function currentState() {
             } 
         })
         .then(response => {
-            return response.json();
+            if (response.status === 200) {
+                return response.json();
+            }
+            else {
+                return;
+            }
         })
         .then(async currentStatus => {
-            if (currentStatus.is_playing === true) {
-                const allRows = Array.from(document.getElementsByClassName('rowSong'));
-                const playlistInfo = await getPlaylistInfo();
+            if (currentStatus) { 
+                if (currentStatus.is_playing === true) {
+                    const allRows = Array.from(document.getElementsByClassName('rowSong'));
+                    const playlistInfo = await getPlaylistInfo();
 
-                let songIncluded = false;
-                for (const element of playlistInfo) {
-                    if (element.track.id === currentStatus.item.id) {
-                        songIncluded = true;
-                        break;
+                    let songIncluded = false;
+                    for (const element of playlistInfo) {
+                        if (element.track.id === currentStatus.item.id) {
+                            songIncluded = true;
+                            break;
+                        }
+                    }
+
+                    if (songIncluded === true) {
+                        allRows.forEach(element => {
+                            element.classList.remove('playingSong');
+                        });
+                        let trackID = document.getElementById(currentStatus.item.id);
+                        trackID.classList.add('playingSong');
+                        showStatus.innerHTML = `spielt ${currentStatus.item.name}`;
+                    } else {
+                        showStatus.innerHTML = `spielt ${currentStatus.item.name}<br/>- nicht in Playlist enthalten -`;
                     }
                 }
-
-                if (songIncluded === true) {
-                    allRows.forEach(element => {
-                        element.classList.remove('playingSong');
-                    });
-                    let trackID = document.getElementById(currentStatus.item.id);
-                    trackID.classList.add('playingSong');
-                    showStatus.innerHTML = `spielt ${currentStatus.item.name}`;
-                } else {
-                    showStatus.innerHTML = `spielt ${currentStatus.item.name}<br/>- nicht in Playlist enthalten -`;
-                }
-            } else if (currentStatus.is_playing === false) {
+            } else {
                 showStatus.innerHTML = 'ist gerade pausiert';
             }
         })
@@ -417,10 +431,8 @@ setInterval(loop, 1000);
 //add songs to the playlist
 async function getSongID() {
     let songURL = document.getElementById('addSong').value;
-    let mustFit = /\/track\/([a-z]|[A-Z]|[0-9])*/;
+    let mustFit = /\/track\/([a-zA-Z0-9]){22}/gm;
     if (mustFit.test(songURL)) {
-        console.log('songurl correct');
-        songURLInfo.innerHTML = '&nbsp;';
         const songArray1 = songURL.split('/track/');
         const songArray2 = songArray1[1].split('?');
         let songID = songArray2[0];
@@ -456,9 +468,11 @@ async function getSongID() {
         } else if (songIncluded === false && userAtLimit === true) {
             songURLInfo.innerHTML = 'Du hast deine Limit von fünf Songs erreicht.';   
         } else if (songIncluded === false && userAtLimit === false) {
+            songURLInfo.innerHTML = '&nbsp;';
 
             // add song to playlist
             let url = `https://api.spotify.com/v1/playlists/1SeTD8IwM7nFwMiWx0Hkjh/tracks`;
+            let spAccessToken = localStorage.getItem('spAccessToken');
             const body = JSON.stringify({ "uris": [`spotify:track:${songID}`] });
             console.log(body);
         
@@ -472,10 +486,9 @@ async function getSongID() {
             .then(response => {
                 return response.json();
             })
-            .then(data => {
-                console.log(data);
-                window.location.reload();
-            })        
+            .then(
+                addSongSuccess()
+            )        
         }
     } else {
         songURLInfo.innerHTML = 'die angegebene URL ist kein Song von Spotify';
@@ -498,7 +511,29 @@ async function getPlaylistInfo() {
         return data.items;
     })
 }
-console.log('check with "checkSongsPerUser" in case you forgot')
+
+function addSongSuccess() {
+    const body = document.getElementById('bodyID');
+    const popupWrapper = document.createElement('div');
+    popupWrapper.id = 'successWrapper';
+    popupWrapper.classList.add('popupWrapper');
+    popupWrapper.innerHTML = 
+        `<div class="background">
+            <p>Der Song wurde erfolgreich hinzugefügt. Die Seite wird jetzt automatisch neugeladen.</p>
+            <div class="reloadTimer" id="addSongSuccessReloadTimer"></div>
+        </div>`;
+    body.appendChild(popupWrapper);
+    let timer = document.getElementById('addSongSuccessReloadTimer');
+    setTimeout(() => {
+        timer.classList.add('reloadTimerAnimation')
+    }, 100);
+
+    setTimeout(() => {
+        window.location.reload()
+    }, 5100);
+}
+
+console.log('check with "checkSongsPerUser" in case you forgot');
 async function checkSongsPerUser() {
     const playlistInfo = await getPlaylistInfo();
 

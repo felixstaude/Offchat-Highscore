@@ -7,19 +7,19 @@ function cookieWindow() {
     console.log(`cookies accpeted: ${cookiePref}`);
     if (cookiePref != 'all' && cookiePref != 'necessary') {
         const body = document.getElementById('bodyID');
-        const cookieWrapper = document.createElement('div');
-        cookieWrapper.id = 'cookieWrapper';
-        cookieWrapper.classList.add('cookieWrapper');
-        cookieWrapper.innerHTML = 
+        const popupWrapper = document.createElement('div');
+        popupWrapper.id = 'cookieWrapper';
+        popupWrapper.classList.add('popupWrapper');
+        popupWrapper.innerHTML = 
             `<div class="background content">
                 <p>Diese Website benutzt notwendige und zusätzliche Cookies. Die zusätzlichen Cookies werden von spotify.com gesetzt, falls du dich mit deinem Konto anmeldest. So kannst du während deines Aufenthalts die zusätzlichen Funktionen nutzen, die den Login bei Spotify voraussetzen. Um diese Seite nutzen zu können (bspw. für den Login, oder damit deine Cookie-Auswahl gespeichert werden kann) musst du notwendige Cookies akzeptieren. Keine Sorge, diese sind auch nur von uns.</p>
-                <div class="cookieButtonWrapper">
+                <div>
                     <button onclick="acceptCookies('all')">Alle akzeptieren</button>
                     <button onclick="acceptCookies('necessary')">nur Notwendige akzepieren</button> 
                 </div>
                 <p>Hinweis: Da diese Seite "<a href="https://www.bmuv.de/themen/verbraucherschutz/digitaler-verbraucherschutz/impressumspflicht">an [...] Feunde</a>" gerichtet ist, verfügt sie nicht über ein Impressum.</p>
             </div>`;
-        body.appendChild(cookieWrapper);
+        body.appendChild(popupWrapper);
     }
 }
 
