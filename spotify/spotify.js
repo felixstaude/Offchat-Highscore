@@ -394,7 +394,7 @@ async function currentState() {
             }
         })
         .then(async currentStatus => {
-            if (currentStatus) { 
+            if (currentStatus) {
                 if (currentStatus.is_playing === true) {
                     const allRows = Array.from(document.getElementsByClassName('rowSong'));
                     const playlistInfo = await getPlaylistInfo();
@@ -417,9 +417,11 @@ async function currentState() {
                     } else {
                         showStatus.innerHTML = `spielt ${currentStatus.item.name}<br/>- nicht in Playlist enthalten -`;
                     }
+                } else {
+                    showStatus.innerHTML = 'spielt gerade nichts';
                 }
             } else {
-                showStatus.innerHTML = 'ist gerade pausiert';
+                showStatus.innerHTML = 'spielt gerade nichts';
             }
         })
     }
@@ -569,9 +571,11 @@ async function checkSongsPerUser() {
     }
 
     function finished() {
-        console.log(`checked ${allUsers.length} Users and found ${userAmount} User(s), that exceeded the limit`);
+        console.log( `checked ${allUsers.length} Users and found ${userAmount} User(s), that exceeded the limit`);
     }
 }
+
+
 
 function spDeleteCookies() {
     document.cookie = `spAccessToken=;path=/`;

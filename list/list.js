@@ -27,7 +27,121 @@ document.addEventListener('DOMContentLoaded', function() {
             errorCross1.classList.add('errorCross1');
             errorCross2.classList.add('errorCross2');    
         });
-        return usersURL;
+
+        let beispiel = {
+            "users": [
+                {
+                    "username": "felix",
+                    "name": "penis123321",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "12312123",
+                    "soloSession": "dsf312",
+                    "duo": "12312332",
+                    "duoSession": "dsafsdf1",
+                    "bodycount": "123123",
+                    "bcmale": "asdasd",
+                    "bcfemale": "123123",
+                    "bcdivserse": "123123",
+                    "sexuality": "pan",
+                    "weapon_bra_size": "12312312",
+                    "together": true,
+                    "favePornCategory": "123123",
+                    "favePornVid": "123123"
+                },
+                {
+                    "username": "felix2",
+                    "name": "Felix",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "123",
+                    "soloSession": "321",
+                    "duo": "12331431",
+                    "duoSession": "31431",
+                    "bodycount": "4314",
+                    "bcmale": "13413413",
+                    "bcfemale": "134134",
+                    "bcdivserse": "13413431",
+                    "sexuality": "gay",
+                    "weapon_bra_size": "13413",
+                    "single": true,
+                    "favePornCategory": "43141",
+                    "favePornVid": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rjhttps://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x"
+                },
+                {
+                    "username": "felix3",
+                    "name": "Felix",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "123",
+                    "soloSession": "321",
+                    "duo": "12331431",
+                    "duoSession": "31431",
+                    "bodycount": "4314",
+                    "bcmale": "13413413",
+                    "bcfemale": "134134",
+                    "bcdivserse": "13413431",
+                    "sexuality": "gay",
+                    "weapon_bra_size": "13413",
+                    "single": true,
+                    "favePornCategory": "43141",
+                    "favePornVid": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rjhttps://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x"
+                },
+                {
+                    "username": "felix4",
+                    "name": "Felix",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "123",
+                    "soloSession": "321",
+                    "duo": "12331431",
+                    "duoSession": "31431",
+                    "bodycount": "4314",
+                    "bcmale": "13413413",
+                    "bcfemale": "134134",
+                    "bcdivserse": "13413431",
+                    "sexuality": "gay",
+                    "weapon_bra_size": "13413",
+                    "single": true,
+                    "favePornCategory": "43141",
+                    "favePornVid": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rjhttps://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x"
+                },
+                {
+                    "username": "felix5",
+                    "name": "Felix",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "123",
+                    "soloSession": "321",
+                    "duo": "12331431",
+                    "duoSession": "31431",
+                    "bodycount": "4314",
+                    "bcmale": "13413413",
+                    "bcfemale": "134134",
+                    "bcdivserse": "13413431",
+                    "sexuality": "gay",
+                    "weapon_bra_size": "13413",
+                    "single": true,
+                    "favePornCategory": "43141",
+                    "favePornVid": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rjhttps://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x"
+                },
+                {
+                    "username": "felix6",
+                    "name": "Felix",
+                    "profilePicture": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj",
+                    "solo": "123",
+                    "soloSession": "321",
+                    "duo": "12331431",
+                    "duoSession": "31431",
+                    "bodycount": "4314",
+                    "bcmale": "13413413",
+                    "bcfemale": "134134",
+                    "bcdivserse": "13413431",
+                    "sexuality": "gay",
+                    "weapon_bra_size": "13413",
+                    "single": true,
+                    "favePornCategory": "43141",
+                    "favePornVid": "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rjhttps://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x"
+                }
+            ]
+        };
+
+        return beispiel;
     }
 
     // create first column
@@ -73,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let className = `${key}`;
                     // cell.id = className;
                     cell.classList.add(className);
+                    cell.title = key;
                     row.appendChild(cell);
                 } else if (user.hasOwnProperty(key) && key === 'favePornVid') {
                     const cell = document.createElement('td');
@@ -82,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let className = `${key}`;
                     // cell.id = className;
                     cell.classList.add(className);
+                    cell.title = key;
                     row.appendChild(cell);
                 } else if (user.hasOwnProperty(key) && key === 'single') {
                     const cell = document.createElement('td');
@@ -89,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let className = `single|together`;
                     // cell.id = className;
                     cell.classList.add(className);
+                    cell.title = key;
                     row.appendChild(cell);
                 } else if (user.hasOwnProperty(key) && key === 'together') {
                     const cell = document.createElement('td');
@@ -96,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let className = `single|together`;
                     // cell.id = className;
                     cell.classList.add(className);
+                    cell.title = key;
                     row.appendChild(cell);
                 }
             }
