@@ -134,31 +134,7 @@ function getCookieValue(cookieName) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
     adjustContent();
-    function adjustContent() {
-        // top for main | margin, height aside
-        let windowHeight = window.innerHeight;
-        let hoehevonheader = document.getElementById('header').offsetHeight;
-        let sideHeight = windowHeight - hoehevonheader - 50;
-        let main = document.getElementById('main');
-        let sidebar = document.getElementById('sidebar');
-        let sidebarcontent = document.getElementById('sidebarContent');
-        // console.log(sideHeight);
-    
-        // height und spacing
-        sidebar.style.top = `${hoehevonheader + 20}px`;
-        sidebar.style.maxHeight = `${sideHeight}px`;
-        sidebarcontent.style.maxHeight = `${sideHeight}px`;
-        main.style.marginTop = `${hoehevonheader + 20}px`;
-    
-        // width 
-        let windowWidth = window.innerWidth;
-        if (windowWidth < 540) {
-            sidebar.style.width = `${windowWidth - 50}px`;
-            sidebar.style.marginLeft = `-${windowWidth - 40}px`;
-        }
-}
     
     // profile information on hover
     let namesWrapper = document.getElementById('namesWrapper');
@@ -214,6 +190,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 });
+
+window.addEventListener('resize', adjustContent);
+function adjustContent() {
+    // top for main | margin, height aside
+    let windowHeight = window.innerHeight;
+    let hoehevonheader = document.getElementById('header').offsetHeight;
+    let sideHeight = windowHeight - hoehevonheader - 50;
+    let main = document.getElementById('main');
+    let sidebar = document.getElementById('sidebar');
+    let sidebarcontent = document.getElementById('sidebarContent');
+    // console.log(sideHeight);
+
+    // height und spacing
+    sidebar.style.top = `${hoehevonheader + 20}px`;
+    sidebar.style.maxHeight = `${sideHeight}px`;
+    sidebarcontent.style.maxHeight = `${sideHeight}px`;
+    main.style.marginTop = `${hoehevonheader + 20}px`;
+
+    // width 
+    let windowWidth = window.innerWidth;
+    if (windowWidth < 540) {
+        sidebar.style.width = `${windowWidth - 50}px`;
+        sidebar.style.marginLeft = `-${windowWidth - 40}px`;
+    }
+}
 
 
 //refresh spotify token 
