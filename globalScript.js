@@ -153,13 +153,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // sidebar movement
-    document.getElementById('sidebarArrow').addEventListener('click', function() {
-        let sidebar = document.getElementById('sidebar');
-        let sidebarArrow = document.getElementById('sidebarArrow');
+    document.getElementById('sidebarArrow').addEventListener('click', sidebarMovement);
 
+    let hoverOverSidebarHover;
+    document.getElementById('sidebarHoverArea').addEventListener('mouseout', function () {
+        hoverOverSidebarHover = false;
+    });
+    document.getElementById('sidebarHoverArea').addEventListener('mouseover', function () {
+        hoverOverSidebarHover = true;
+        setTimeout(() => {
+            if (hoverOverSidebarHover === true) {
+                addClasses(sidebar, 'sidebarShow');
+                addClasses(sidebarArrow, 'sidebarArrowShow');
+                addClasses(sidebarHoverArea, 'sidebarHoverAreaHide')
+            }
+        }, 200);
+    });
+
+    function sidebarMovement() {
         toggleClasses(sidebar, 'sidebarShow');
         toggleClasses(sidebarArrow, 'sidebarArrowShow');
-    });
+        toggleClasses(sidebarHoverArea, 'sidebarHoverAreaHide')
+    }
 
     function addClasses(x,y) {
         x.classList.add(y);
@@ -206,6 +221,7 @@ function adjustContent() {
     sidebar.style.top = `${hoehevonheader + 20}px`;
     sidebar.style.maxHeight = `${sideHeight}px`;
     sidebarcontent.style.maxHeight = `${sideHeight}px`;
+    sidebarHoverArea.style.maxHeight = `${sideHeight - 20}px`;
     main.style.marginTop = `${hoehevonheader + 20}px`;
 
     // width 

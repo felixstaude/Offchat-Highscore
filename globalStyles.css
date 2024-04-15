@@ -152,7 +152,6 @@ main {
     top: 124px;
     margin-left: -510px;
     width: 500px;
-    box-shadow: 3px 5px 5px rgba(255,255,255,0.2);
     transition: margin-left 1s ease-in-out;
     z-index: 2;
 }
@@ -164,6 +163,26 @@ main {
 #sidebarContent {
     padding-left: 2px;
     padding-right: 2px;
+}
+
+.sidebarHoverArea {
+    position: absolute;
+    width: 10px;
+    height: calc(100% - 20px);
+    top: 40px;
+    right: -10px;
+    background: radial-gradient(at left, white, transparent 75%);
+    opacity: 0.2;
+    transition-duration: 0.2s;
+}
+
+.sidebarHoverArea:hover {
+    opacity: 1;
+}
+
+.sidebarHoverAreaHide {
+    transition-duration: 1s;
+    opacity: 0;
 }
 
 .sidebarArrow {
