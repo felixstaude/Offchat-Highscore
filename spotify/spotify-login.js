@@ -38,7 +38,7 @@ async function spLogin() {
 
 
         // anfrage
-        const scope = 'user-read-private user-read-email user-read-playback-state user-read-currently-playing user-modify-playback-state streaming playlist-modify-public playlist-modify playlist-modify-private';
+        const scope = 'user-read-private user-read-playback-state user-read-currently-playing user-modify-playback-state streaming playlist-modify-public playlist-modify playlist-modify-private';
         const authUrl = new URL('https://accounts.spotify.com/authorize')
 
         window.localStorage.setItem('code_verifier', codeVerifier);
