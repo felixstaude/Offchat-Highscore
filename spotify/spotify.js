@@ -29,12 +29,6 @@ window.addEventListener('DOMContentLoaded', function() {
             alert('spotify login success');
             window.location.replace('/spotify/');
         }
-
-        //check for userlogin to offchathighscore
-        let sessionID = getCookieValue('sessionID');
-        if (sessionID) {
-            invLink.href = 'https://open.spotify.com/playlist/1SeTD8IwM7nFwMiWx0Hkjh?si=12d96bf99c77485c&pt=55334ab84a23fc3a830394b237063f6e';
-        }
         getPlaylistTracks();
         getCurrentUser();
     }
@@ -414,8 +408,10 @@ async function currentState() {
                         let trackID = document.getElementById(currentStatus.item.id);
                         trackID.classList.add('playingSong');
                         showStatus.innerHTML = `spielt ${currentStatus.item.name}`;
+                        showStatus.href = currentStatus.item.external_urls.spotify;
                     } else {
                         showStatus.innerHTML = `spielt ${currentStatus.item.name}<br/>- nicht in Playlist enthalten -`;
+                        showStatus.href = currentStatus.item.external_urls.spotify;
                     }
                 } else {
                     showStatus.innerHTML = 'spielt gerade nichts';
@@ -428,7 +424,7 @@ async function currentState() {
 }
 
 function loop() {currentState();}
-setInterval(loop, 1000);
+setInterval(loop, 2000);
 
 //add songs to the playlist
 async function getSongID() {
