@@ -7,6 +7,8 @@ async function spLogin() {
     let loggedIn = getCookieValue('spLogin');
     let onloadTime = new Date().getTime();
     console.log(usercode);
+    let clientId = '04ea98b78463480aaa84230ec3e319aa';
+    let redirectUri = 'http://localhost:5500/spotify/login.html';
 
     if (!usercode && loggedIn != 'true') {      //get usercode to url (user has to log in and allow usage)
         const generateRandomString = (length) => {
@@ -36,9 +38,6 @@ async function spLogin() {
 
 
         // anfrage
-        const clientId = '04ea98b78463480aaa84230ec3e319aa';
-        const redirectUri = 'http://localhost:5500/spotify/login.html';
-
         const scope = 'user-read-private user-read-email user-read-playback-state user-read-currently-playing user-modify-playback-state streaming playlist-modify-public playlist-modify playlist-modify-private';
         const authUrl = new URL('https://accounts.spotify.com/authorize')
 
@@ -57,8 +56,6 @@ async function spLogin() {
         window.location.href = authUrl.toString();
     } else if (usercode && loggedIn != 'true') {        // get token for further fun
         console.log('fetch for access token');
-        let clientId = '04ea98b78463480aaa84230ec3e319aa';
-        let redirectUri = 'http://localhost:5500/spotify/login.html';
         let codeVerifier = localStorage.getItem('code_verifier');
         let url = 'https://accounts.spotify.com/api/token';
         
