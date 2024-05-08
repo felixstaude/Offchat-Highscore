@@ -96,7 +96,7 @@ header{
 .homeWrapper {
     display: flex;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
