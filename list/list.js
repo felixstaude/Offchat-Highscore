@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     // get user data from api
     function getUsersData() {
         information.classList.add('loading');
@@ -41,14 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = document.createElement('img');
             img.src = user['profilePicture'];
             img.alt = 'Profilbild';
-            img.style.maxWidth = '50px'; // Setze die maximale Breite des Bildes
+            img.style.maxWidth = '50px'; // max width for the picture
             profileCell.appendChild(img);
             row.appendChild(profileCell);
             for (const key in user) {
                 if (user.hasOwnProperty(key) && key === 'username') {
                     const cell = document.createElement('td');
                     cell.textContent = user[key];
-                    // ID und Klasse für die Zelle hinzufügen
+                    // add id and class to every cell
                     const className = `${user.username}-username`;
                     cell.id = className;
                     cell.classList.add(className);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (user.hasOwnProperty(key) && key != 'username' && key != 'profilePicture' && key != 'favePornVid' && key != 'single' && key != 'together') {
                     const cell = document.createElement('td');
                     cell.textContent = user[key];
-                    // ID und Klasse für die Zelle hinzufügen
+                    // add id and class to cell
                     let className = `${key}`;
                     // cell.id = className;
                     cell.classList.add(className);
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
-    const usersData = getUsersData();
+    const usersData = await getUsersData();
     createUserTable(usersData.users);
     createUserameTable(usersData.users);
     setSameHeight(usersData.users);
