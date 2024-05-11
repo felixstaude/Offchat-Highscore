@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
     // get user data from api
-    function getUsersData() {
+    async function getUsersData() {
         information.classList.add('loading');
         
         let usersURL = 'http://localhost:8080/api/userlist/data';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
 
         console.log(`Response in json format?: ${usersData}`);
-        return usersData;
+        return await usersData;
     }
 
     // create first column
