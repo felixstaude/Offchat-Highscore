@@ -67,18 +67,18 @@ function fillForm(data) {
     let favePornCategoryV = document.getElementById('favePornCategory');
     let favePornVidV = document.getElementById('favePornVid');
 
-    nameV.value = data.name;
+    nameV.value = data.customName;
     profilePictureV.value = data.profilePicture;
     soloV.value = data.solo;
     soloSessionsV.value = data.soloSession;
     duoV.value = data.duo;
     duoSessionsV.value = data.duoSession;
-    bodycountV.value = data.bodycount;
-    bcmV.value = data.bcmale;
-    bcfV.value = data.bcfemale;
-    bcdV.value = data.bcdivserse;
+    //bodycountV.value = data.bodycount;
+    bcmV.value = data.bodycountMale;
+    bcfV.value = data.bodycountFemale;
+    bcdV.value = data.bodycountDiverse;
     sexualityV.value = data.sexuality;
-    weaponV.value = data.weapon_bra_size;
+    weaponV.value = data.weaponBraSize;
     
     if (data.single === true) {
         singleC.checked = true;
@@ -89,8 +89,8 @@ function fillForm(data) {
     } else {
         console.log('fehler, konnte nicht checken')
     }
-    favePornCategoryV.value = data.favePornCategory;
-    favePornVidV.value = data.favePornVid;
+    favePornCategoryV.value = data.favoritePornCategory;
+    favePornVidV.value = data.favoritePornVideo;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -128,7 +128,7 @@ function submitForm() {
     if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
         console.log('submission correct');
         const formData = {
-            username: usernameC,
+            customName: usernameC,
             name: nameV,
             profilePicture: profilePictureV,
             solo: soloV,
@@ -136,15 +136,15 @@ function submitForm() {
             duo: duoV,
             duoSessions: duoSessionsV,
             bodycount: bodycountV,
-            bcm: bcmV,
-            bcf: bcfV,
-            bcd: bcdV,
+            bodycountMale: bcmV,
+            bodycountFemale: bcfV,
+            bodycountDiverse: bcdV,
             sexuality: sexualityV,
-            weapon: weaponV,
+            weaponBraSize: weaponV,
             single: singleC,
             together: togetherC,
-            favePornCategory: favePornCategoryV,
-            favePornVid: favePornVidV
+            favoritePornCategory: favePornCategoryV,
+            favoritePornVid: favePornVidV
         };
 
         information.classList.remove('error');
@@ -254,47 +254,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('lSingle').addEventListener('click', checkRadio('lSingle', 'lTogether'));
     document.getElementById('lTogether').addEventListener('click', checkRadio('lTogether', 'lSingle'));
 });
-
-function fillForm(data) {
-    let nameV = document.getElementById('name');
-    let profilePictureV = document.getElementById('profilePicture');
-    let soloV = document.getElementById('solo');
-    let soloSessionsV = document.getElementById('soloSessions');
-    let duoV = document.getElementById('duo');
-    let duoSessionsV = document.getElementById('duoSessions');
-    let bodycountV = document.getElementById('bodycount');
-    let bcmV = document.getElementById('bcmale');
-    let bcfV = document.getElementById('bcfemale');
-    let bcdV = document.getElementById('bcdiverse');
-    let sexualityV = document.getElementById('sexuality');
-    let weaponV = document.getElementById('weapon-bra-size');
-    let singleC = document.getElementById('single');
-    let togetherC = document.getElementById('together');
-    let favePornCategoryV = document.getElementById('favePornCategory');
-    let favePornVidV = document.getElementById('favePornVid');
-
-    nameV.value = data.name;
-    profilePictureV.value = data.profilePicture;
-    soloV.value = data.solo;
-    soloSessionsV.value = data.soloSession;
-    duoV.value = data.duo;
-    duoSessionsV.value = data.duoSession;
-    bodycountV.value = data.bodycount;
-    bcmV.value = data.bcmale;
-    bcfV.value = data.bcfemale;
-    bcdV.value = data.bcdivserse;
-    sexualityV.value = data.sexuality;
-    weaponV.value = data.weapon_bra_size;
-
-    if (data.single === true) {
-        singleC.checked = true;
-        document.getElementById('lSingle').classList.add('checked');
-    } else if (data.together === true) {
-        togetherC.checked = true;
-        document.getElementById('lSingle').classList.add('checked');
-    } else {
-        console.log('fehler, konnte nicht checken')
-    }
-    favePornCategoryV.value = data.favePornCategory;
-    favePornVidV.value = data.favePornVid;
-}

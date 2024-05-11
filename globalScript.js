@@ -25,7 +25,7 @@ function cookieWindow() {
 
 function acceptCookies(x) {
     let onlaodTime = new Date().getTime();
-    let expireTime = onlaodTime + 34560000;
+    let expireTime = onlaodTime + 30000000;
     document.cookie = `cookies=${x};expires=${expireTime};path=/`;
     window.location.reload();
 }
