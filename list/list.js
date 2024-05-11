@@ -250,9 +250,11 @@ function sendStarRating(usernameRated) {
     let submitCell = document.getElementById(`ratingSend${usernameRated}`);
     let username = getCookieValue('username');
 
-    const finalRating = {username: username, usernamerated: usernameRated, ratingValue: submittedRating};
+    const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
 
     console.log(finalRating);
+    let sessionID = getCookieValue('sessionID');
+
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
         information.classList.remove('error');
         information.classList.add('loading');
@@ -269,7 +271,6 @@ function sendStarRating(usernameRated) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(finalRating),
             })
