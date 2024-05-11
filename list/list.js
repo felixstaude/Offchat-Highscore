@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', async function() {
                 errorCross2.classList.add('errorCross2');    
             });
 
-        console.log(await usersData);
+        //console.log(await usersData);
+
+        let test1 = [{"username":"test1","passwordHash":"d46342243ae1d19335ab91026a831e50410dfbe6a5ddac3f66f5b2ec37c47bde5515c1f123ca5a2fc921689fef9766e4e3ad1d6456eaac5ccc98c97e32c5e4a3","passwordSalt":"69f9419df0910033a86b36ae53d21084","sessionID":"bbce15d4fab4455b9bf3185ad75ad871356fdff0fd6e46fe9d85a11405833782","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":null,"sexuality":"bi"},{"username":"test2","passwordHash":"dd9ee55ffd1fbfd315bc4798d9ff63c53fd2ce37a437c5b5e369fa45b10c48897371e0f867525f7db5069656a1bb7ee10d67d33f471deac9971c8f66bc5a622d","passwordSalt":"363aa7c79679fc5a59b7e8663714610e","sessionID":null,"profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
+        console.log(test1)
+
         return await usersData;
     }
 
@@ -129,9 +133,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
     const usersData = await getUsersData();
-    createUserTable(usersData.users);
-    createUserameTable(usersData.users);
-    setSameHeight(usersData.users);
+    createUserTable(usersData);
+    createUserameTable(usersData);
+    setSameHeight(usersData);
 
 
     // set same height for td from username und userdata
