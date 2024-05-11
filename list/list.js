@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 errorCross2.classList.add('errorCross2');    
             });
 
-        console.log(`Response in json format?: ${await usersData}`);
+        console.log(await usersData);
         return await usersData;
     }
 
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             row.classList.add('rowUserdata');
             
             for (const key in user) {
-                if (user.hasOwnProperty(key) && key != 'username' && key != 'profilePicture' && key != 'favePornVid' && key != 'single' && key != 'together') {
+                if (user.hasOwnProperty(key) && key != 'username' && key != 'profilePicture' && key != 'favoritePornVideo' && key != 'single' && key != 'together') {
                     const cell = document.createElement('td');
                     cell.textContent = user[key];
                     // add id and class to cell
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     cell.classList.add(className);
                     cell.title = key;
                     row.appendChild(cell);
-                } else if (user.hasOwnProperty(key) && key === 'favePornVid') {
+                } else if (user.hasOwnProperty(key) && key === 'favoritePornVideo') {
                     const cell = document.createElement('td');
                     let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${user[key]}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`
                     cell.innerHTML = linkToVideo;
