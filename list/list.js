@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 errorCross2.classList.add('errorCross2');    
             });
 
-        console.log(`Response in json format?: ${usersData}`);
+        console.log(`Response in json format?: ${await usersData}`);
         return await usersData;
     }
 
