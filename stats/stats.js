@@ -115,7 +115,7 @@ function submitForm() {
     let soloSessionsV = document.getElementById('soloSessions').value;
     let duoV = document.getElementById('duo').value;
     let duoSessionsV = document.getElementById('duoSessions').value;
-    let bodycountV = document.getElementById('bodycount').value;
+    //let bodycountV = document.getElementById('bodycount').value;
     let bcmV = document.getElementById('bcmale').value;
     let bcfV = document.getElementById('bcfemale').value;
     let bcdV = document.getElementById('bcdiverse').value;
@@ -126,7 +126,7 @@ function submitForm() {
     let favePornCategoryV = document.getElementById('favePornCategory').value;
     let favePornVidV = document.getElementById('favePornVid').value;
     
-    if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
+    if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
         console.log('submission correct');
         const formData = {
             username: usernameC,
@@ -136,7 +136,7 @@ function submitForm() {
             soloSessions: soloSessionsV,
             duo: duoV,
             duoSessions: duoSessionsV,
-            bodycount: bodycountV,
+            //bodycount: bodycountV,
             bodycountMale: bcmV,
             bodycountFemale: bcfV,
             bodycountDiverse: bcdV,
