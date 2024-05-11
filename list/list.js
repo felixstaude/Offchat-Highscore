@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     // get user data from api
     async function getUsersData() {
         information.classList.add('loading');
-        
-        let usersURL = 'http://localhost:8080/api/userlist/data';
+
+        let sessionID = getCookieValue('sessionID');
+        let usersURL = `http://localhost:8080/api/userlist/data?sessionId=${sessionID}`;
 
         const usersData = fetch(usersURL, {
                 method: 'GET',

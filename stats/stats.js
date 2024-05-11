@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let soloSessions = document.getElementById('soloSessions');
     let duo = document.getElementById('duo');
     let duoSessions = document.getElementById('duoSessions');
-    let bodycount = document.getElementById('bodycount');
+    //let bodycount = document.getElementById('bodycount');
     let bcm = document.getElementById('bcmale');
     let bcf = document.getElementById('bcfemale');
     let bcd = document.getElementById('bcdiverse');
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     soloSessions.addEventListener('input', resizeInput(soloSessions));
     duo.addEventListener('input', resizeInput(duo));
     duoSessions.addEventListener('input', resizeInput(duoSessions));
-    bodycount.addEventListener('input', resizeInput(bodycount));
+    //bodycount.addEventListener('input', resizeInput(bodycount));
     bcm.addEventListener('input', resizeInput(bcm));
     bcf.addEventListener('input', resizeInput(bcf));
     bcd.addEventListener('input', resizeInput(bcd));
@@ -229,15 +229,15 @@ document.addEventListener('DOMContentLoaded', function() {
     favePornCategory.addEventListener('input', resizeInput(favePornCategory));
     favePornVid.addEventListener('input', resizeInput(favePornVid));
 
-    function resizeInput(id) {
+    function resizeInput(element) {
         return function() {
-            id.style.width = id.value.length + "ch";
-            if (id.value.length > 0) {
-                id.classList.add('filled');
-                id.classList.remove('warning');
-            } else if (id.value.length === 0) {
-                id.classList.remove('filled');
-                id.classList.add('warning');
+            element.style.width = element.value.length + "ch";
+            if (element.value.length > 0) {
+                element.classList.add('filled');
+                element.classList.remove('warning');
+            } else if (element.value.length === 0) {
+                element.classList.remove('filled');
+                element.classList.add('warning');
             }
         };
     }
@@ -252,6 +252,9 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    document.getElementById('lSingle').addEventListener('click', checkRadio('lSingle', 'lTogether'));
-    document.getElementById('lTogether').addEventListener('click', checkRadio('lTogether', 'lSingle'));
+    let lSingle = document.getElementById('lSingle');
+    let lTogether = document.getElementById('lTogether');
+    
+    lSingle.addEventListener('click', checkRadio('lSingle', 'lTogether'));
+    lTogether.addEventListener('click', checkRadio('lTogether', 'lSingle'));
 });

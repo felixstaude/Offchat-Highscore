@@ -78,7 +78,7 @@ function getProfileData() {
     information.classList.add('loading');
 
     let sessionID = getCookieValue('sessionID');
-    let userURL = 'http://localhost:8080/api/user/data?sessionId=' + sessionID;
+    let userURL = `http://localhost:8080/api/user/data?sessionId=${sessionID}`;
     let usernameCookie = getCookieValue('username');
 
     fetch(userURL, {
