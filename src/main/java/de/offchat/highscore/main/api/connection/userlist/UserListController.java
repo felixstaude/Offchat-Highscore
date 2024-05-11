@@ -42,6 +42,7 @@ public class UserListController {
             logger.info("All Users Request sent from Session ID: " + sessionId);
             logger.info("Number of Users retrieved: " + users.size());
             users.forEach(user -> logger.info("User: " + user.getUsername()));
+            users.forEach(user -> logger.info(new Data().getAllUserDataString(user.getUsername())));
         }
 
         return ResponseEntity.ok(users);

@@ -11,7 +11,7 @@ public class DatabaseGenerator {
     private JdbcTemplate jdbcTemplate = new DatabaseConfig().jdbcTemplate(new DatabaseConfig().dataSource());
 
     public void generateTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS highscore (" +
+        String sqlHighscore = "CREATE TABLE IF NOT EXISTS highscore (" +
                 "username VARCHAR(256) UNIQUE, " +
                 "passwordHash VARCHAR(256), " +
                 "passwordSalt VARCHAR(256), " +
@@ -32,6 +32,18 @@ public class DatabaseGenerator {
                 "sexuality VARCHAR(256)" +
                 ")";
 
-        jdbcTemplate.execute(sql);
+        jdbcTemplate.execute(sqlHighscore);
+
+        String sqlRating = "CREATE TABLE IF NOT EXISTS rating (" +
+                "    usernameRated VARCHAR(256)," +
+                "    username VARCHAR(256)," +
+                "    ratingValue INT CHECK (ratingValue BETWEEN 1 AND 5)," +
+                "    PRIMARY KEY (usernameRated, username)," +
+                "    FOREIGN KEY (usernameRated) REFERENCES highscore(username) ON DELETE CASCADE," +
+                "    FOREIGN KEY (username) REFERENCES highscore(username) ON DELETE CASCADE" +
+                ")";
+
+        jdbcTemplate.execute(sqlRating);
     }
+
 }

@@ -3,9 +3,6 @@ package de.offchat.highscore.main.api.connection.user;
 public class User {
 
     private String username;
-    private String passwordHash;
-    private String passwordSalt;
-    private String sessionID;
     private String profilePicture;
     private String customName;
     private String solo;
@@ -23,9 +20,6 @@ public class User {
 
     public User(){
         username = this.getUsername();
-        passwordHash = this.getPasswordHash();
-        passwordSalt = this.getPasswordSalt();
-        sessionID = this.getSessionID();
         profilePicture = this.getProfilePicture();
         customName = this.getCustomName();
         solo = this.getSolo();
@@ -35,11 +29,11 @@ public class User {
         bodycountMale = this.getBodycountMale();
         bodycountFemale = this.getBodycountFemale();
         bodycountDiverse = this.getBodycountDiverse();
+        sexuality = this.getSexuality();
         weaponBraSize = this.getWeaponBraSize();
         single = this.getSingle();
         favoritePornCategory = this.getFavoritePornCategory();
         favoritePornVideo = this.getFavoritePornVideo();
-        sexuality = this.getSexuality();
 
         // ^^^^ extra categories here ^^^^
 
@@ -51,30 +45,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
-    }
-
-    public String getSessionID() {
-        return sessionID;
-    }
-
-    public void setSessionID(String sessionID) {
-        this.sessionID = sessionID;
     }
 
     public String getProfilePicture() {

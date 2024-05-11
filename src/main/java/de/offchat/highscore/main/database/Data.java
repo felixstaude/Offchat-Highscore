@@ -274,9 +274,6 @@ public class Data {
         User user = new User();
 
         user.setUsername(username);
-        user.setPasswordHash(getPasswordHash(username));
-        user.setPasswordSalt(getPasswordSalt(username));
-        user.setSessionID(getSessionID(username));
         user.setProfilePicture(getProfilePicture(username));
         user.setCustomName(getCustomName(username));
         user.setSolo(getSolo(username));
@@ -286,11 +283,11 @@ public class Data {
         user.setBodycountMale(getBodycountMale(username));
         user.setBodycountFemale(getBodycountFemale(username));
         user.setBodycountDiverse(getBodycountDiverse(username));
+        user.setSexuality(getSexuality(username));
         user.setWeaponBraSize(getWeaponBraSize(username));
         user.setSingle(getSingle(username));
         user.setFavoritePornCategory(getFavoritePornCategory(username));
         user.setFavoritePornVideo(getFavoritePornVideo(username));
-        user.setSexuality(getSexuality(username));
 
         // ^^^^ extra categories here ^^^^
 
@@ -309,11 +306,8 @@ public class Data {
     private User mapUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setUsername(rs.getString("username"));
-        user.setPasswordHash(rs.getString("passwordHash"));
-        user.setPasswordSalt(rs.getString("passwordSalt"));
-        user.setSessionID(rs.getString("sessionID"));
-        user.setProfilePicture(rs.getString("profilePicture"));
         user.setCustomName(rs.getString("customName"));
+        user.setProfilePicture(rs.getString("profilePicture"));
         user.setSolo(rs.getString("solo"));
         user.setSoloSession(rs.getString("soloSession"));
         user.setDuo(rs.getString("duo"));
@@ -321,11 +315,11 @@ public class Data {
         user.setBodycountMale(rs.getString("bcMale"));
         user.setBodycountFemale(rs.getString("bcFemale"));
         user.setBodycountDiverse(rs.getString("bcDiverse"));
+        user.setSexuality(rs.getString("sexuality"));
         user.setWeaponBraSize(rs.getString("weaponBraSize"));
         user.setSingle(rs.getBoolean("single"));
         user.setFavoritePornCategory(rs.getString("favoritePornCategory"));
         user.setFavoritePornVideo(rs.getString("favoritePornVideo"));
-        user.setSexuality(rs.getString("sexuality"));
         return user;
     }
 
