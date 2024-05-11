@@ -20,6 +20,10 @@ table {
     border-collapse: collapse;
 }
 
+th {
+    white-space: nowrap;
+}
+
 tr {
     max-height: 50px !important;
 }
