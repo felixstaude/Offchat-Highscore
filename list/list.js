@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         //console.log(await usersData);
 
-        let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":null,"sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
+        let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
         console.log(test1)
 
         return await usersData;
@@ -68,69 +68,75 @@ document.addEventListener('DOMContentLoaded', async function() {
     // create table
     function createUserTable(users) {
         let tbody = document.getElementById('tableUserdata');
+
         users.forEach(user => {
             const row = document.createElement('tr');
             row.classList.add('rowUserdata');
             
-            for (const key in user) {
-                if (user.hasOwnProperty(key) && key != 'username' && key != 'profilePicture' && key != 'favoritePornVideo' && key != 'single' && key != 'together') {
-                    const cell = document.createElement('td');
-                    cell.textContent = user[key];
-                    // add id and class to cell
+            const desiredOrder = ['customName', 'solo', 'soloSession', 'duo', 'duoSession', 'bodycountMale', 'bodycountFemale', 'bodycountDiverse', 'sexuality', 'weaponBraSize', 'single', 'favoritePornCategory', 'favoritePornVideo'];
+
+            desiredOrder.forEach(key => {
+                if (user.hasOwnProperty(key)) {
+                    let cell = document.createElement('td');
+                    cell.title = key;
                     let className = `${key}`;
-                    // cell.id = className;
                     cell.classList.add(className);
-                    cell.title = key;
-                    row.appendChild(cell);
-                } else if (user.hasOwnProperty(key) && key === 'favoritePornVideo') {
-                    const cell = document.createElement('td');
-                    let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${user[key]}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`
-                    cell.innerHTML = linkToVideo;
-                    // ID und Klasse für die Zelle hinzufügen
-                    let className = `${key}`;
-                    // cell.id = className;
-                    cell.classList.add(className);
-                    cell.title = key;
-                    row.appendChild(cell);
-                } else if (user.hasOwnProperty(key) && key === 'single') {
-                    const cell = document.createElement('td');
-                    cell.textContent = 'single';
-                    let className = `single|together`;
-                    // cell.id = className;
-                    cell.classList.add(className);
-                    cell.title = key;
-                    row.appendChild(cell);
-                } else if (user.hasOwnProperty(key) && key === 'together') {
-                    const cell = document.createElement('td');
-                    cell.textContent = 'together';
-                    let className = `single|together`;
-                    // cell.id = className;
-                    cell.classList.add(className);
-                    cell.title = key;
+
+                    switch(key) {
+                        case 'customName':
+                            cell.textContent = user['customName'];
+                            break;
+                        case 'solo':
+                        case 'soloSession':
+                        case 'duo':
+                        case 'duoSession':
+                        case 'bodycountMale':
+                        case 'bodycountFemale':
+                        case 'bodycountDiverse':
+                        case 'sexuality':
+                        case 'weaponBraSize':
+                            cell.textContent = user[key];
+                            break;
+                        case 'single':
+                            cell.textContent = user[key] ? 'single' : 'together';
+                            className = 'single|together';
+                            break;
+                        case 'favoritePornCategory':
+                            cell.textContent = user[key];
+                            break;
+                        case 'favoritePornVideo':
+                            if (user[key]) {
+                                let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${user[key]}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`;
+                                cell.innerHTML = linkToVideo;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    
                     row.appendChild(cell);
                 }
-            }
+            });
             const ratingStars = document.createElement('td');
             ratingStars.innerHTML = `
-            <span class="ratingStar starRating5" id="star_5_${user.username}" onclick="chooseStar(star_5_${user.username})"></span>
-            <span class="ratingStar starRating4" id="star_4_${user.username}" onclick="chooseStar(star_4_${user.username})"></span>
-            <span class="ratingStar starRating3" id="star_3_${user.username}" onclick="chooseStar(star_3_${user.username})"></span>
-            <span class="ratingStar starRating2" id="star_2_${user.username}" onclick="chooseStar(star_2_${user.username})"></span>
-            <span class="ratingStar starRating1" id="star_1_${user.username}" onclick="chooseStar(star_1_${user.username})"></span>`;
+                <span class="ratingStar starRating5" id="star_5_${user.username}" onclick="chooseStar(star_5_${user.username})"></span>
+                <span class="ratingStar starRating4" id="star_4_${user.username}" onclick="chooseStar(star_4_${user.username})"></span>
+                <span class="ratingStar starRating3" id="star_3_${user.username}" onclick="chooseStar(star_3_${user.username})"></span>
+                <span class="ratingStar starRating2" id="star_2_${user.username}" onclick="chooseStar(star_2_${user.username})"></span>
+                <span class="ratingStar starRating1" id="star_1_${user.username}" onclick="chooseStar(star_1_${user.username})"></span>`;
             ratingStars.classList.add('ratingStars');
-
-            const ratingSend = document.createElement('td');      // change color when hovering, when send and when sumbission successfull -- airplane starting, flying and landing
-            ratingSend.id = `ratingSend${user.username}`
+            
+            const ratingSend = document.createElement('td');
+            ratingSend.id = `ratingSend${user.username}`;
             ratingSend.classList.add('ratingSend');
             ratingSend.setAttribute('onclick', `sendStarRating('${user.username}')`);
-
+            
             row.appendChild(ratingStars);
             row.appendChild(ratingSend);
-
+            
             tbody.appendChild(row);
         });
     }
-    
     
     // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
     const usersData = await getUsersData();
