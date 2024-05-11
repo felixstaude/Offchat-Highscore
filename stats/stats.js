@@ -128,8 +128,8 @@ function submitForm() {
     if (nameV != '' && profilePictureV != '' && soloV != '' && soloSessionsV != '' && duoV != '' && duoSessionsV != '' && bodycountV != '' && bcmV != '' && bcfV != '' && bcdV != '' && sexualityV != '' && weaponV !='' && (singleC === true || togetherC === true) && favePornCategoryV != '' && favePornVidV != '') {
         console.log('submission correct');
         const formData = {
-            customName: usernameC,
-            name: nameV,
+            username: usernameC,
+            customName: nameV,
             profilePicture: profilePictureV,
             solo: soloV,
             soloSessions: soloSessionsV,
