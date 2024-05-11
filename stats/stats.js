@@ -20,6 +20,7 @@ function getFormData() {
     })
     .then(data => {
         information.classList.remove('loading');
+        console.log(data);
         fillForm(data);
     })
     .catch(error => {
@@ -56,7 +57,7 @@ function fillForm(data) {
     let soloSessionsV = document.getElementById('soloSessions');
     let duoV = document.getElementById('duo');
     let duoSessionsV = document.getElementById('duoSessions');
-    let bodycountV = document.getElementById('bodycount');
+    //let bodycountV = document.getElementById('bodycount');
     let bcmV = document.getElementById('bcmale');
     let bcfV = document.getElementById('bcfemale');
     let bcdV = document.getElementById('bcdiverse');
@@ -144,7 +145,7 @@ function submitForm() {
             single: singleC,
             together: togetherC,
             favoritePornCategory: favePornCategoryV,
-            favoritePornVid: favePornVidV
+            favoritePornVideo: favePornVidV
         };
 
         information.classList.remove('error');
