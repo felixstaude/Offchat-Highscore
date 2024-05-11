@@ -263,8 +263,9 @@ function sendStarRating(usernameRated) {
         submitCell.classList.add('ratingSending');
 
         let sessionID = getCookieValue('sessionID');
+        let addRatingURL = `http://localhost:8080/api/rating/add?sessionID${sessionID}`;
 
-        fetch(`http://localhost:8080/api/rating?sessionID${sessionID}`, {
+        fetch(addRatingURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -275,7 +276,7 @@ function sendStarRating(usernameRated) {
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
-                }
+                }-
                 information.classList.remove('loading');
                 return response.json();
             })
