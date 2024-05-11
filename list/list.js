@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
         console.log(test1)
 
-        return await usersData;
+        return await test1;
     }
 
     // create first column
@@ -224,12 +224,12 @@ function chooseStar(element) {
     }
 }
 
-function sendStarRating(username) {
-    let rating1 = document.getElementById(`star_1_${username}`).classList;
-    let rating2 = document.getElementById(`star_2_${username}`).classList;
-    let rating3 = document.getElementById(`star_3_${username}`).classList;
-    let rating4 = document.getElementById(`star_4_${username}`).classList;
-    let rating5 = document.getElementById(`star_5_${username}`).classList;
+function sendStarRating(usernameRated) {
+    let rating1 = document.getElementById(`star_1_${usernameRated}`).classList;
+    let rating2 = document.getElementById(`star_2_${usernameRated}`).classList;
+    let rating3 = document.getElementById(`star_3_${usernameRated}`).classList;
+    let rating4 = document.getElementById(`star_4_${usernameRated}`).classList;
+    let rating5 = document.getElementById(`star_5_${usernameRated}`).classList;
 
     
     let submittedRating;
@@ -247,12 +247,12 @@ function sendStarRating(username) {
         console.log('error, please choose rating');
     }
 
-    let submitCell = document.getElementById(`ratingSend${username}`);
+    let submitCell = document.getElementById(`ratingSend${usernameRated}`);
+    let username = getCookieValue('username');
 
-    let sessionID = getCookieValue('sessionID');
-    const finalRating = {sessionid: sessionID, username: username, rating: submittedRating};
+    const finalRating = {username: username, usernamerated: usernameRated, ratingValue: submittedRating};
 
-    console.log(sessionID, finalRating);
+    console.log(finalRating);
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
         information.classList.remove('error');
         information.classList.add('loading');
@@ -260,10 +260,12 @@ function sendStarRating(username) {
         errorCross1.classList.remove('errorCross1');
         errorCross2.classList.remove('errorCross2');
 
-
         submitCell.classList.add('ratingSending');
 
-        fetch('http://localhost:8080/api/rating', {
+        let sessionID = getCookieValue('sessionID');
+        let addRatingURL = `http://localhost:8080/api/rating/add?sessionID${sessionID}`;
+
+        fetch(addRatingURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -274,7 +276,7 @@ function sendStarRating(username) {
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
-                }
+                }-
                 information.classList.remove('loading');
                 return response.json();
             })
