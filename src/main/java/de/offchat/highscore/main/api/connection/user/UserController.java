@@ -1,7 +1,7 @@
 package de.offchat.highscore.main.api.connection.user;
 
 
-import de.offchat.highscore.main.api.connection.session.SessionIdPersister;
+import de.offchat.highscore.main.database.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +17,11 @@ public class UserController {
 
     @GetMapping("/data")
     public ResponseEntity<User> getUserData(@RequestParam String sessionId){
-        String username = new SessionIdPersister().getUserFromSessionId(sessionId);
+        String username = new Data().getUsernameFromSessionID(sessionId);
         if(username == null){
             return ResponseEntity.notFound().build();
         }
-        User user = new UserService().getUserByUsername(username);
-        System.out.println("Anfrage an /api/user/data gestellt: " + user);
-        return ResponseEntity.ok(user);
+        System.out.println(new Data().getAllUserData(username).getCustomName());
+        return ResponseEntity.ok(new Data().getAllUserData(username));
     }
 }

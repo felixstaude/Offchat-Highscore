@@ -30,7 +30,7 @@ public class CreateTestUser {
         String passwordHash = hashPassword(password, salt);
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "INSERT INTO users (username, password_hash, salt, profilepicture) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO highscore (username, passwordHash, passwordSalt, profilePicture) VALUES (?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, username);
                 statement.setString(2, passwordHash);

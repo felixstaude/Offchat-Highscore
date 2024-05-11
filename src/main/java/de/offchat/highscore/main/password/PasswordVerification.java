@@ -1,42 +1,41 @@
 package de.offchat.highscore.main.password;
 
-import de.offchat.highscore.main.database.DatabaseConnector;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class PasswordVerification {
+
+    @Autowired
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public PasswordVerification(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     /**
      * checks if the password hash is the same as the password hash in the database by using the private hasPassword method
      * @param enteredPassword
      * @param enteredUsername
      * @return
      */
-    public static boolean verifyPassword(String enteredPassword, String enteredUsername) {
-        try (Connection connection = DatabaseConnector.getConnection()) {
-            String sql = "SELECT password_hash, salt FROM users WHERE username = ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, enteredUsername);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        String saltHex = resultSet.getString("salt");
-                        String storedPasswordHash = resultSet.getString("password_hash");
+    public boolean verifyPassword(String enteredPassword, String enteredUsername) {
+        String sql = "SELECT passwordHash, passwordSalt FROM highscore WHERE username = ?";
+        return jdbcTemplate.query(sql, new Object[]{enteredUsername}, rs -> {
+            if (rs.next()) {
+                String saltHex = rs.getString("passwordSalt");
+                String storedPasswordHash = rs.getString("passwordHash");
 
-                        byte[] salt = hexToBytes(saltHex);
-                        String inputPasswordHash = hashPassword(enteredPassword, salt);
+                byte[] salt = hexToBytes(saltHex);
+                String inputPasswordHash = hashPassword(enteredPassword, salt);
 
-                        return storedPasswordHash.equals(inputPasswordHash);
-                    }
-                }
+                return storedPasswordHash.equals(inputPasswordHash);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+            return false;
+        });
     }
 
     private static byte[] hexToBytes(String hexString) {

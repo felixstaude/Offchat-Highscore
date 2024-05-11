@@ -1,5 +1,6 @@
 package de.offchat.highscore.main.api.connection.stats;
 
+import de.offchat.highscore.main.database.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class StatsController {
      */
     @PostMapping
     public ResponseEntity<Stats> handleFormSubmit(@RequestBody Stats stats) {
-        StatsPersister.insertStats(stats);
+        new Data().insertStats(stats);
         return ResponseEntity.ok().body(stats);
     }
 }

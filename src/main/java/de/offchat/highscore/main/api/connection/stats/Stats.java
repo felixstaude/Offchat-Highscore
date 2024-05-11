@@ -2,142 +2,133 @@ package de.offchat.highscore.main.api.connection.stats;
 
 public class Stats {
     private String username;
-    private String name;
+    private String customName;
     private String solo;
     private String soloSessions;
     private String duo;
     private String duoSessions;
-    private String bodycount;
-    private String bcmale;
-    private String bcfemale;
-    private String bcdiverse;
+    private String bodycountMale;
+    private String bodycountFemale;
+    private String bodycountDiverse;
     private String sexuality;
-    private String weapon_bra_size;
+    private String WeaponBraSize;
     private String single;
-    private String favePornCategory;
-    private String favePornVid;
+    private String favoritePornCategory;
+    private String favoritePornVideo;
 
     public Stats() {
 
     }
 
-    public String getName() {
-        return name;
-    }
     public String getUsername() {
         return username;
-    }
-
-    public String getSolo() {
-        return solo;
-    }
-
-    public String getSoloSessions() {
-        return soloSessions;
-    }
-
-    public String getDuo() {
-        return duo;
-    }
-
-    public String getDuoSessions() {
-        return duoSessions;
-    }
-
-    public String getBodycount() {
-        return bodycount;
-    }
-
-    public String getBcm() {
-        return bcmale;
-    }
-
-    public String getBcf() {
-        return bcfemale;
-    }
-
-    public String getBcd() {
-        return bcdiverse;
-    }
-
-    public String getWeapon_bra_size() {
-        return weapon_bra_size;
-    }
-
-
-    public String getSingle() {
-        return single;
-    }
-
-    public String getFavPornCategory() {
-        return favePornCategory;
-    }
-
-    public String getFavePornVid() {
-        return favePornVid;
-    }
-
-    public String getSexuality(){
-        return sexuality;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCustomName() {
+        return customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
+    }
+
+    public String getSolo() {
+        return solo;
     }
 
     public void setSolo(String solo) {
         this.solo = solo;
     }
 
+    public String getSoloSessions() {
+        return soloSessions;
+    }
+
     public void setSoloSessions(String soloSessions) {
         this.soloSessions = soloSessions;
+    }
+
+    public String getDuo() {
+        return duo;
     }
 
     public void setDuo(String duo) {
         this.duo = duo;
     }
 
+    public String getDuoSessions() {
+        return duoSessions;
+    }
+
     public void setDuoSessions(String duoSessions) {
         this.duoSessions = duoSessions;
     }
 
-    public void setBodycount(String bodycount) {
-        this.bodycount = bodycount;
+    public String getBodycountMale() {
+        return bodycountMale;
     }
 
-    public void setBcm(String bcmale) {
-        this.bcmale = bcmale;
+    public void setBodycountMale(String bodycountMale) {
+        this.bodycountMale = bodycountMale;
     }
 
-    public void setBcf(String bcfemale) {
-        this.bcfemale = bcfemale;
+    public String getBodycountFemale() {
+        return bodycountFemale;
     }
 
-    public void setBcd(String bcdiverse) {
-        this.bcdiverse = bcdiverse;
+    public void setBodycountFemale(String bodycountFemale) {
+        this.bodycountFemale = bodycountFemale;
     }
 
-    public void setSexuality(String sexuality){
+    public String getBodycountDiverse() {
+        return bodycountDiverse;
+    }
+
+    public void setBodycountDiverse(String bodycountDiverse) {
+        this.bodycountDiverse = bodycountDiverse;
+    }
+
+    public String getSexuality() {
+        return sexuality;
+    }
+
+    public void setSexuality(String sexuality) {
         this.sexuality = sexuality;
     }
 
-    public void setWeapon(String weapon_bra_size) {
-        this.weapon_bra_size = weapon_bra_size;
+    public String getWeaponBraSize() {
+        return WeaponBraSize;
+    }
+
+    public void setWeaponBraSize(String weaponBraSize) {
+        WeaponBraSize = weaponBraSize;
+    }
+
+    public String getSingle() {
+        return single;
     }
 
     public void setSingle(String single) {
         this.single = single;
     }
 
-    public void setFavePornCategory(String favePornCategory) {
-        this.favePornCategory = favePornCategory;
+    public String getFavoritePornCategory() {
+        return favoritePornCategory;
     }
 
-    public void setFavePornVid(String favePornVid) {
-        this.favePornVid = favePornVid;
+    public void setFavoritePornCategory(String favoritePornCategory) {
+        this.favoritePornCategory = favoritePornCategory;
+    }
+
+    public String getFavoritePornVideo() {
+        return favoritePornVideo;
+    }
+
+    public void setFavoritePornVideo(String favoritePornVideo) {
+        this.favoritePornVideo = favoritePornVideo;
     }
 }
