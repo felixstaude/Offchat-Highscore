@@ -9,12 +9,15 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Component
 public class Data {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    Logger logger = Logger.getLogger(Data.class.getName());
 
     @Autowired
     public Data() {
@@ -23,8 +26,12 @@ public class Data {
 
     // getter & setter for username
     public String getUsernameFromSessionID(String sessionID) {
-        String sql = "SELECT username FROM highscore WHERE sessionID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{sessionID}, String.class);
+        if(doesSessionIdExist(sessionID)){
+            String sql = "SELECT username FROM highscore WHERE sessionID = ?";
+            return jdbcTemplate.queryForObject(sql, new Object[]{sessionID}, String.class);
+        }
+        logger.warning("given sessionid could not be found in database: " + sessionID);
+        return null;
     }
     public void setUsername(String username, String newUsername) {
         String sql = "UPDATE highscore SET username = ? WHERE username = ?";
@@ -131,34 +138,34 @@ public class Data {
     }
 
     // getter & setter for bcMale
-    public String getBcMale(String username) {
+    public String getBodycountMale(String username) {
         String sql = "SELECT bcMale FROM highscore WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{username}, String.class);
     }
 
-    public void setBcMale(String username, String bcMale) {
+    public void setBodycountMale(String username, String bcMale) {
         String sql = "UPDATE highscore SET bcMale = ? WHERE username = ?";
         jdbcTemplate.update(sql, bcMale, username);
     }
 
     // getter & setter for bcFemale
-    public String getBcFemale(String username) {
+    public String getBodycountFemale(String username) {
         String sql = "SELECT bcFemale FROM highscore WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{username}, String.class);
     }
 
-    public void setBcFemale(String username, String bcFemale) {
+    public void setBodycountFemale(String username, String bcFemale) {
         String sql = "UPDATE highscore SET bcFemale = ? WHERE username = ?";
         jdbcTemplate.update(sql, bcFemale, username);
     }
 
     // getter & setter for bcDiverse
-    public String getBcDiverse(String username) {
+    public String getBodycountDiverse(String username) {
         String sql = "SELECT bcDiverse FROM highscore WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{username}, String.class);
     }
 
-    public void setBcDiverse(String username, String bcDiverse) {
+    public void setBodycountDiverse(String username, String bcDiverse) {
         String sql = "UPDATE highscore SET bcDiverse = ? WHERE username = ?";
         jdbcTemplate.update(sql, bcDiverse, username);
     }
@@ -246,9 +253,9 @@ public class Data {
         setSoloSession(username, stats.getSoloSessions());
         setDuo(username, stats.getDuo());
         setDuoSession(username, stats.getDuoSessions());
-        setBcMale(username, stats.getBodycountMale());
-        setBcFemale(username, stats.getBodycountFemale());
-        setBcDiverse(username, stats.getBodycountDiverse());
+        setBodycountMale(username, stats.getBodycountMale());
+        setBodycountFemale(username, stats.getBodycountFemale());
+        setBodycountDiverse(username, stats.getBodycountDiverse());
         setSexuality(username, stats.getSexuality());
         setWeaponBraSize(username, stats.getWeaponBraSize());
         setFavoritePornCategory(username, stats.getFavoritePornCategory());
@@ -276,9 +283,9 @@ public class Data {
         user.setSoloSession(getSoloSession(username));
         user.setDuo(getDuo(username));
         user.setDuoSession(getDuoSession(username));
-        user.setBcMale(getBcMale(username));
-        user.setBcFemale(getBcFemale(username));
-        user.setBcDiverse(getBcDiverse(username));
+        user.setBodycountMale(getBodycountMale(username));
+        user.setBodycountFemale(getBodycountFemale(username));
+        user.setBodycountDiverse(getBodycountDiverse(username));
         user.setWeaponBraSize(getWeaponBraSize(username));
         user.setSingle(getSingle(username));
         user.setFavoritePornCategory(getFavoritePornCategory(username));
@@ -311,9 +318,9 @@ public class Data {
         user.setSoloSession(rs.getString("soloSession"));
         user.setDuo(rs.getString("duo"));
         user.setDuoSession(rs.getString("duoSession"));
-        user.setBcMale(rs.getString("bcMale"));
-        user.setBcFemale(rs.getString("bcFemale"));
-        user.setBcDiverse(rs.getString("bcDiverse"));
+        user.setBodycountMale(rs.getString("bcMale"));
+        user.setBodycountFemale(rs.getString("bcFemale"));
+        user.setBodycountDiverse(rs.getString("bcDiverse"));
         user.setWeaponBraSize(rs.getString("weaponBraSize"));
         user.setSingle(rs.getBoolean("single"));
         user.setFavoritePornCategory(rs.getString("favoritePornCategory"));
@@ -332,6 +339,30 @@ public class Data {
         String sql = "SELECT COUNT(*) FROM highscore WHERE sessionID = ?";
         Integer count = jdbcTemplate.queryForObject(sql, new Object[]{sessionID}, Integer.class);
         return count != null && count > 0;
+    }
+
+    /**
+     *
+      * @param username
+     * @return all userdata for debugging
+     */
+    public String getAllUserDataString(String username){
+        String string =
+                "Username: " + username +
+                " Custom Name: " + getCustomName(username) +
+                " Solo: " + getSolo(username) +
+                " Solo Sessions: " + getSoloSession(username) +
+                " Duo: " + getDuo(username) +
+                " Duo Sessions: " + getDuoSession(username) +
+                " Bodycount Male: " + getBodycountMale(username) +
+                " Bodycount Female: " + getBodycountFemale(username) +
+                " Bodycount Diverse: " + getBodycountDiverse(username) +
+                " Sexuality: " + getSexuality(username) +
+                " Weapon/ Bra Size: " + getWeaponBraSize(username) +
+                " Single: " + getSingle(username) +
+                " Favorite Porn Category: " + getFavoritePornCategory(username) +
+                " Favorite Porn Video: " + getFavoritePornVideo(username);
+        return string;
     }
 }
 

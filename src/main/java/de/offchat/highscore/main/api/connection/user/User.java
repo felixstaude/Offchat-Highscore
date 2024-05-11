@@ -12,9 +12,9 @@ public class User {
     private String soloSession;
     private String duo;
     private String duoSession;
-    private String bcMale;
-    private String bcFemale;
-    private String bcDiverse;
+    private String bodycountMale;
+    private String bodycountFemale;
+    private String bodycountDiverse;
     private String weaponBraSize;
     private Boolean single;
     private String favoritePornCategory;
@@ -32,9 +32,9 @@ public class User {
         soloSession = this.getSoloSession();
         duo = this.getDuo();
         duoSession = this.getDuoSession();
-        bcMale = this.getBcMale();
-        bcFemale = this.getBcFemale();
-        bcDiverse = this.getBcDiverse();
+        bodycountMale = this.getBodycountMale();
+        bodycountFemale = this.getBodycountFemale();
+        bodycountDiverse = this.getBodycountDiverse();
         weaponBraSize = this.getWeaponBraSize();
         single = this.getSingle();
         favoritePornCategory = this.getFavoritePornCategory();
@@ -125,28 +125,28 @@ public class User {
         this.duoSession = duoSession;
     }
 
-    public String getBcMale() {
-        return bcMale;
+    public String getBodycountMale() {
+        return bodycountMale;
     }
 
-    public void setBcMale(String bcMale) {
-        this.bcMale = bcMale;
+    public void setBodycountMale(String bodycountMale) {
+        this.bodycountMale = bodycountMale;
     }
 
-    public String getBcFemale() {
-        return bcFemale;
+    public String getBodycountFemale() {
+        return bodycountFemale;
     }
 
-    public void setBcFemale(String bcFemale) {
-        this.bcFemale = bcFemale;
+    public void setBodycountFemale(String bodycountFemale) {
+        this.bodycountFemale = bodycountFemale;
     }
 
-    public String getBcDiverse() {
-        return bcDiverse;
+    public String getBodycountDiverse() {
+        return bodycountDiverse;
     }
 
-    public void setBcDiverse(String bcDiverse) {
-        this.bcDiverse = bcDiverse;
+    public void setBodycountDiverse(String bodycountDiverse) {
+        this.bodycountDiverse = bodycountDiverse;
     }
 
     public String getWeaponBraSize() {
@@ -192,4 +192,3 @@ public class User {
     // ^^^^ extra categories here ^^^^
 
 }
-
