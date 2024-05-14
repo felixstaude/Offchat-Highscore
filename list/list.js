@@ -163,8 +163,32 @@ document.addEventListener('DOMContentLoaded', async function() {
         let cSP = currentScroll / maxScroll * 100;
         scrollInput.value = cSP;
     });
-});
 
+    // scroll via dragging
+    let point1;
+    let currentScroll = 0;
+    let endScroll;
+    document.getElementById('tableWrapper').addEventListener('mousedown', function(e) {
+        endScroll = false;
+        point1 = e.pageX;
+        currentScroll = document.getElementById('tableWrapper').scrollLeft;
+
+        document.getElementById('tableWrapper').style.cursor = 'grabbing';
+    });
+
+    document.getElementById('tableWrapper').addEventListener('mousemove', function(e) {
+        if(!endScroll) {
+            let point2 = e.pageX;
+            let diff = point1 - point2;
+            document.getElementById('tableWrapper').scroll(currentScroll + diff,0);
+        }
+    });
+
+    document.getElementById('tableWrapper').addEventListener('mouseup', function() {
+        document.getElementById('tableWrapper').style.cursor = '';
+        endScroll = true;
+    });
+});
 
 // logic for rating --> change style and submission
 function chooseStar(element) {

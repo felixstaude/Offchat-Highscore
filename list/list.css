@@ -79,6 +79,7 @@
 .tableWrapper {
     overflow-x: scroll;
     border-right: solid 1px #fff;
+    cursor: grab;
 }
 
 .tableWrapper::-webkit-scrollbar { 
