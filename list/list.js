@@ -32,13 +32,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         //console.log(await usersData);
 
         let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
-        console.log(test1)
 
-        return await usersData;
+        return await test1;
     }
 
     // create first column
-    function createUserameTable(users) {
+    function createUsernameTable(users) {
         let tbody = document.getElementById('tableUsername');
         users.forEach(user => {
             const row = document.createElement('tr');
@@ -140,22 +139,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
     const usersData = await getUsersData();
+    createUsernameTable(usersData);
     createUserTable(usersData);
-    createUserameTable(usersData);
-    setSameHeight(usersData);
 
+    adjustScrollbar();
 
-    // set same height for td from username und userdata
-    function setSameHeight(users) {
-        users.forEach(user => {
-            let heightUsername = document.getElementById(`${user.username}-username`);
-            let heightUserdata = document.getElementById(`${user.username}-Link`).offsetHeight;
-            let widthStarSend = document.getElementById(`ratingSend${user.username}`);
+    // scroll with inputbar
+    document.getElementById('scrollTable').addEventListener('input', function() {
+        let scrollInput = document.getElementById('scrollTable').value * 0.01;
+        let tableWidth = document.getElementById('tableUserdata').offsetWidth;
+        let viewablePart = document.getElementById('tableWrapper').offsetWidth;
+        let maxScroll = tableWidth - viewablePart;
+        document.getElementById('tableWrapper').scroll(scrollInput * maxScroll,0);
+    });
 
-            widthStarSend.style.width = `${heightUserdata}px`;
-            heightUsername.style.height = `${heightUserdata}px`;
-        });
-    }
+    // set inputbar when user scrolls manually
+    document.getElementById('tableWrapper').addEventListener('scroll', function() {
+        let scrollInput = document.getElementById('scrollTable');
+        let tableWidth = document.getElementById('tableUserdata').offsetWidth;
+        let viewablePart = document.getElementById('tableWrapper').offsetWidth;
+        let maxScroll = tableWidth - viewablePart;
+        let currentScroll = document.getElementById('tableWrapper').scrollLeft;
+        let cSP = currentScroll / maxScroll * 100;
+        scrollInput.value = cSP;
+    });
 });
 
 
@@ -251,8 +258,8 @@ function sendStarRating(usernameRated) {
     let username = getCookieValue('username');
 
     const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
-
     console.log(finalRating);
+    
     let sessionID = getCookieValue('sessionID');
 
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
@@ -300,6 +307,27 @@ function sendStarRating(usernameRated) {
                 errorCross2.classList.add('errorCross2');        
             })
     }
+}
+
+function adjustScrollbar() {
+    // fit bar to screen
+    let userTable = document.getElementById('userTable');
+    let scrollTable = document.getElementById('scrollTable');
+
+    if (touchScreen() === true) {
+        scrollTable.style.display = "none";
+    } else {
+        let marginLeft = userTable.offsetWidth;
+
+        scrollTable.style.marginLeft = `${marginLeft}px`;
+        scrollTable.style.width = `calc(100% - ${marginLeft}px)`;
+    }
+}
+
+function touchScreen() {
+    return ( 'ontouchstart' in window ) || 
+           ( navigator.maxTouchPoints > 0 ) || 
+           ( navigator.msMaxTouchPoints > 0 );
 }
 
 function getCookieValue(cookieName) {

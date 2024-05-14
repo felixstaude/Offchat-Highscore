@@ -39,31 +39,34 @@
         </header>
 
         <main id="main">
-            <div class="content background">
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2" rowspan="2" style="height: 49.2px;">User</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableUsername"><!--Daten aus der Datenbank kommen hier rein--></tbody>
-                </table>
-                <div class="tableWrapper" id="tableWrapper">
-                    <table>
-                        <colgroup>
-                            <col span="10"/>
-                            <col span="1" style="min-width: 250px;"/>
-                        </colgroup>
+            <div class="content background" style="flex-direction: column;">
+                <input type="range" min="0" max="100" value="0" class="scrollTable" id="scrollTable"/>
+                <div class="content" style="width: 100%;">
+                    <table id="userTable">
                         <thead>
                             <tr>
-                                <th rowspan="2">Name</th><th colspan="4">Highscore</th><th colspan="3">Bodycount</th><th colspan="2">Körper</th><th rowspan="2">Beziehungsstatus</th>   <th colspan="2">Favourite Porn</th><th colspan="2" rowspan="2">Video rating</th>
-                            </tr>
-                            <tr>
-                                <th>Solo</th><th>Session</th><th>Duo</th><th>Session</th><th>male</th><th>female</th><th>divers</th><th>sexuality</th><th>Länge (cm) | BH-Größe</th>    <th>Kategorie(n)</th><th>Video</th>
+                                <th colspan="2" rowspan="2" style="height: 49.2px;">User</th>
                             </tr>
                         </thead>
-                        <tbody id="tableUserdata"><!--Daten aus der Datenbank kommen hier rein--></tbody>
+                        <tbody id="tableUsername"><!--Daten aus der Datenbank für undraggable kommen hier rein--></tbody>
                     </table>
+                    <div class="tableWrapper" id="tableWrapper">
+                        <table>
+                            <colgroup>
+                                <col span="10"/>
+                                <col span="1" style="min-width: 250px;"/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">Name</th><th colspan="4">Highscore</th><th colspan="3">Bodycount</th><th colspan="2">Körper</th><th rowspan="2">Beziehungsstatus</th><th colspan="2">Favourite Porn</th><th colspan="2" rowspan="2">Video rating</th>
+                                </tr>
+                                <tr>
+                                    <th>Solo</th><th>Session</th><th>Duo</th><th>Session</th><th>male</th><th>female</th><th>divers</th><th>sexuality</th><th>Länge (cm) | BH-Größe</th><th>Kategorie(n)</th><th>Video</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableUserdata"><!--Daten aus der Datenbank kommen hier rein--></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>
