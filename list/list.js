@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
 
-        return await usersData;
+        return await test1;
     }
 
     // create first column
@@ -262,6 +262,7 @@ function sendStarRating(usernameRated) {
     let rating4 = document.getElementById(`star_4_${usernameRated}`).classList;
     let rating5 = document.getElementById(`star_5_${usernameRated}`).classList;
 
+    
     let submittedRating;
     if (rating5.contains('starSelected')) {
         submittedRating = 5;
@@ -282,7 +283,7 @@ function sendStarRating(usernameRated) {
 
     const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
     console.log(finalRating);
-
+    
     let sessionID = getCookieValue('sessionID');
 
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
@@ -313,7 +314,6 @@ function sendStarRating(usernameRated) {
             })
             .then(data => {
                 if (data.success === true) {
-                    console.log(finalRating);
                     submitCell.classList.remove('ratingSending');
                     submitCell.classList.add('ratingSuccess');
                 }
@@ -327,7 +327,7 @@ function sendStarRating(usernameRated) {
                 showError.innerHTML = 'Fehler beim Senden. Probiere es bitte erneut oder teile es uns mit.'
                 showError.style.display = 'block';
                 errorCross1.classList.add('errorCross1');
-                errorCross2.classList.add('errorCross2');
+                errorCross2.classList.add('errorCross2');        
             })
     }
 }
