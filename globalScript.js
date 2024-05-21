@@ -44,7 +44,7 @@ function checkSessionLogin() {
     let sessionID = getCookieValue('sessionID');
     let usernameCookie = getCookieValue('username');
 
-    fetch('http://localhost:8080/api/checksession', {
+    fetch('http://88.99.161.170/api/checksession', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ function checkSessionLogin() {
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
-        //window.location.replace('/login/?source=loginfail');
+        window.location.replace('/login/?source=loginfail');
     })
 }
 
@@ -78,7 +78,7 @@ function getProfileData() {
     information.classList.add('loading');
 
     let sessionID = getCookieValue('sessionID');
-    let userURL = `http://localhost:8080/api/user/data?sessionId=${sessionID}`;
+    let userURL = `http://88.99.161.170/api/user/data?sessionId=${sessionID}`;
     let usernameCookie = getCookieValue('username');
 
     fetch(userURL, {
