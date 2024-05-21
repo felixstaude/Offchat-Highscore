@@ -263,7 +263,6 @@ function sendStarRating(usernameRated) {
     let rating4 = document.getElementById(`star_4_${usernameRated}`).classList;
     let rating5 = document.getElementById(`star_5_${usernameRated}`).classList;
 
-    
     let submittedRating;
     if (rating5.contains('starSelected')) {
         submittedRating = 5;
@@ -276,61 +275,44 @@ function sendStarRating(usernameRated) {
     } else if (rating1.contains('starSelected')) {
         submittedRating = 1;
     } else {
-        console.log('error, please choose rating');
+        console.error('Error, please choose a rating');
+        return; // Stop the function if no rating is selected
     }
 
-    let submitCell = document.getElementById(`ratingSend${usernameRated}`);
     let username = getCookieValue('username');
-
-    const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
-    console.log(finalRating);
+    const finalRating = { username, usernameRated, ratingValue: submittedRating };
+    console.log('Submitting rating:', finalRating);
 
     let sessionID = getCookieValue('sessionID');
-
-    if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
-        information.classList.remove('error');
-        information.classList.add('loading');
-        showError.style.display = '';
-        errorCross1.classList.remove('errorCross1');
-        errorCross2.classList.remove('errorCross2');
-
-        submitCell.classList.add('ratingSending');
-
-        let sessionID = getCookieValue('sessionID');
+    if (sessionID && submittedRating) {
+        let submitCell = document.getElementById(`ratingSend${usernameRated}`);
         let addRatingURL = `http://localhost:8080/api/rating/add?sessionId=${sessionID}`;
 
         fetch(addRatingURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: finalRating,
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }-
-                information.classList.remove('loading');
-                return response.json();
-            })
-            .then(data => {
-                if (data.success === true) {
-                    console.log(finalRating);
-                    submitCell.classList.remove('ratingSending');
-                    submitCell.classList.add('ratingSuccess');
-                }
-            })
-            .catch(error => {
-                console.error('Failed to fetch: ', error);
-                submitCell.classList.remove('ratingSending');
-                submitCell.classList.add('ratingError');
-
-                information.classList.add('error');
-                showError.innerHTML = 'Fehler beim Senden. Probiere es bitte erneut oder teile es uns mit.'
-                showError.style.display = 'block';
-                errorCross1.classList.add('errorCross1');
-                errorCross2.classList.add('errorCross2');        
-            })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(finalRating)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success === true) { // Adjust based on actual API response structure
+                submitCell.classList.add('ratingSuccess');
+                console.log('Rating submitted successfully:', data);
+            } else {
+                throw new Error('Failed to submit rating: ' + JSON.stringify(data));
+            }
+        })
+        .catch(error => {
+            console.error('Failed to fetch:', error);
+            submitCell.classList.add('ratingError');
+        });
     }
 }
 
