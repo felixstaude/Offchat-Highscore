@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // get user data from api
+
+    let sessionID = getCookieValue('sessionID');
+    
     function getUsersData() {
-        let usersURL = 'http://localhost:8080/api/userlist/data';
+        let usersURL = `http://localhost:8080/api/userlist/data?sessionI${sessionID}`;
         information.classList.add('loading');
 
         fetch(usersURL, {
@@ -55,3 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const usersData = getUsersData();
     createUserList(usersData.users);
 });
+
+function getCookieValue(cookieName) {
+    // split cookie-string into values
+    let cookies = document.cookie.split(';');
+
+    // search cookies
+    for (var i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+
+        // check if cookie exists
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            return cookie.substring(cookieName.length + 1);
+        }
+    }
+    return null;
+}
