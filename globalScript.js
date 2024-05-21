@@ -2,7 +2,6 @@ window.addEventListener('load', cookieWindow);
 
 let cookiePref;
 function cookieWindow() {
-    checkSessionLogin();
     cookiePref = getCookieValue('cookies');
     console.log(`cookies accepted: ${cookiePref}`);
     if (cookiePref != 'all' && cookiePref != 'necessary') {
@@ -20,6 +19,8 @@ function cookieWindow() {
                 <p>Hinweis: Da diese Seite "<a href="https://www.bmuv.de/themen/verbraucherschutz/digitaler-verbraucherschutz/impressumspflicht">an [...] Feunde</a>" gerichtet ist, verfügt sie nicht über ein Impressum.</p>
             </div>`;
         body.appendChild(popupWrapper);
+    } else {
+        checkSessionLogin();
     }
 }
 

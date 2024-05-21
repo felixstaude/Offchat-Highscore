@@ -1,5 +1,6 @@
-window.onload = spLogin;
-
+window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('spReferer').addEventListener('click', spLogin);
+}); 
 
 async function spLogin() {
     const urlParams = new URLSearchParams(window.location.search);
