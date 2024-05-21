@@ -1,4 +1,4 @@
-window.addEventListener('load', getFormData());
+window.addEventListener('load', getFormData);
 
 function getFormData() {
     information.classList.add('loading');

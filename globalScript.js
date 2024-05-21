@@ -1,4 +1,4 @@
-window.onload = cookieWindow;
+window.addEventListener('load', cookieWindow);
 
 let cookiePref;
 function cookieWindow() {
