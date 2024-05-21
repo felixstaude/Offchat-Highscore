@@ -262,7 +262,6 @@ function sendStarRating(usernameRated) {
     let rating4 = document.getElementById(`star_4_${usernameRated}`).classList;
     let rating5 = document.getElementById(`star_5_${usernameRated}`).classList;
 
-    
     let submittedRating;
     if (rating5.contains('starSelected')) {
         submittedRating = 5;
@@ -283,7 +282,7 @@ function sendStarRating(usernameRated) {
 
     const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
     console.log(finalRating);
-    
+
     let sessionID = getCookieValue('sessionID');
 
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
@@ -303,12 +302,12 @@ function sendStarRating(usernameRated) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: finalRating,
+                body: JSON.stringify(finalRating)
             })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
-                }-
+                }
                 information.classList.remove('loading');
                 return response.json();
             })
@@ -328,7 +327,7 @@ function sendStarRating(usernameRated) {
                 showError.innerHTML = 'Fehler beim Senden. Probiere es bitte erneut oder teile es uns mit.'
                 showError.style.display = 'block';
                 errorCross1.classList.add('errorCross1');
-                errorCross2.classList.add('errorCross2');        
+                errorCross2.classList.add('errorCross2');
             })
     }
 }

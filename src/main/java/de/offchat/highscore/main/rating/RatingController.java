@@ -4,6 +4,9 @@ import de.offchat.highscore.main.database.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @RestController
@@ -18,15 +21,22 @@ public class RatingController {
     private Data dataService; // Assuming Data service is correctly implemented
 
     @PostMapping("/add")
-    public ResponseEntity<String> addOrUpdateRating(@RequestParam("sessionId") String sessionId, @RequestBody RatingRequest request) {
+    public ResponseEntity<Map<String, Object>> addOrUpdateRating(@RequestParam("sessionId") String sessionId, @RequestBody RatingRequest request) {
         if (!dataService.doesSessionIdExist(sessionId)) {
             logger.warning("Invalid or expired session ID for sessionID: " + sessionId);
-            return ResponseEntity.badRequest().body("Invalid session ID.");
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("message", "Invalid session ID.");
+            return ResponseEntity.badRequest().body(errorResponse);
         }
         logger.info("Received rating update request: " + request.getUsername() + " rates " + request.getUsernameRated() + " with " + request.getRatingValue());
         ratingService.addOrUpdateRating(request.getUsernameRated(), request.getUsername(), request.getRatingValue());
-        return ResponseEntity.ok("Rating updated successfully");
+        Map<String, Object> successResponse = new HashMap<>();
+        successResponse.put("success", true);
+        successResponse.put("message", "Rating updated successfully");
+        return ResponseEntity.ok(successResponse);
     }
+
 
     @DeleteMapping("/remove")
     public ResponseEntity<String> removeRating(@RequestParam("sessionID") String sessionId, @RequestBody RatingRequest request) {

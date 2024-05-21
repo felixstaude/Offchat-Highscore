@@ -24,7 +24,7 @@ public class PasswordVerification {
      */
     public boolean verifyPassword(String enteredPassword, String enteredUsername) {
         String sql = "SELECT passwordHash, passwordSalt FROM highscore WHERE username = ?";
-        return jdbcTemplate.query(sql, new Object[]{enteredUsername}, rs -> {
+        return Boolean.TRUE.equals(jdbcTemplate.query(sql, new Object[]{enteredUsername}, rs -> {
             if (rs.next()) {
                 String saltHex = rs.getString("passwordSalt");
                 String storedPasswordHash = rs.getString("passwordHash");
@@ -35,7 +35,7 @@ public class PasswordVerification {
                 return storedPasswordHash.equals(inputPasswordHash);
             }
             return false;
-        });
+        }));
     }
 
     private static byte[] hexToBytes(String hexString) {
