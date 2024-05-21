@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // create first column
-    function createUserameTable(users) {
+    function createUsernameTable(users) {
         let tbody = document.getElementById('tableUsername');
         users.forEach(user => {
             const row = document.createElement('tr');
@@ -140,24 +140,56 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Tabelle erstellen und in das Element mit der ID "tableWrapper" einfügen
     const usersData = await getUsersData();
+    createUsernameTable(usersData);
     createUserTable(usersData);
-    createUserameTable(usersData);
-    setSameHeight(usersData);
 
+    adjustScrollbar();
 
-    // set same height for td from username und userdata
-    function setSameHeight(users) {
-        users.forEach(user => {
-            let heightUsername = document.getElementById(`${user.username}-username`);
-            let heightUserdata = document.getElementById(`${user.username}-Link`).offsetHeight;
-            let widthStarSend = document.getElementById(`ratingSend${user.username}`);
+    // scroll with inputbar
+    document.getElementById('scrollTable').addEventListener('input', function() {
+        let scrollInput = document.getElementById('scrollTable').value * 0.01;
+        let tableWidth = document.getElementById('tableUserdata').offsetWidth;
+        let viewablePart = document.getElementById('tableWrapper').offsetWidth;
+        let maxScroll = tableWidth - viewablePart;
+        document.getElementById('tableWrapper').scroll(scrollInput * maxScroll,0);
+    });
 
-            widthStarSend.style.width = `${heightUserdata}px`;
-            heightUsername.style.height = `${heightUserdata}px`;
-        });
-    }
+    // set inputbar when user scrolls manually
+    document.getElementById('tableWrapper').addEventListener('scroll', function() {
+        let scrollInput = document.getElementById('scrollTable');
+        let tableWidth = document.getElementById('tableUserdata').offsetWidth;
+        let viewablePart = document.getElementById('tableWrapper').offsetWidth;
+        let maxScroll = tableWidth - viewablePart;
+        let currentScroll = document.getElementById('tableWrapper').scrollLeft;
+        let cSP = currentScroll / maxScroll * 100;
+        scrollInput.value = cSP;
+    });
+
+    // scroll via dragging
+    let point1;
+    let currentScroll = 0;
+    let endScroll;
+    document.getElementById('tableWrapper').addEventListener('mousedown', function(e) {
+        endScroll = false;
+        point1 = e.pageX;
+        currentScroll = document.getElementById('tableWrapper').scrollLeft;
+
+        document.getElementById('tableWrapper').style.cursor = 'grabbing';
+    });
+
+    document.getElementById('tableWrapper').addEventListener('mousemove', function(e) {
+        if(!endScroll) {
+            let point2 = e.pageX;
+            let diff = point1 - point2;
+            document.getElementById('tableWrapper').scroll(currentScroll + diff,0);
+        }
+    });
+
+    document.getElementById('tableWrapper').addEventListener('mouseup', function() {
+        document.getElementById('tableWrapper').style.cursor = '';
+        endScroll = true;
+    });
 });
-
 
 // logic for rating --> change style and submission
 function chooseStar(element) {
@@ -251,8 +283,8 @@ function sendStarRating(usernameRated) {
     let username = getCookieValue('username');
 
     const finalRating = {username: username, usernameRated: usernameRated, ratingValue: submittedRating};
-
     console.log(finalRating);
+
     let sessionID = getCookieValue('sessionID');
 
     if (sessionID && submittedRating && !submitCell.classList.contains('ratingError') && !submitCell.classList.contains('ratingSuccess')) {
@@ -265,14 +297,14 @@ function sendStarRating(usernameRated) {
         submitCell.classList.add('ratingSending');
 
         let sessionID = getCookieValue('sessionID');
-        let addRatingURL = `http://localhost:8080/api/rating/add?sessionID=${sessionID}`;
+        let addRatingURL = `http://localhost:8080/api/rating/add?sessionId=${sessionID}`;
 
         fetch(addRatingURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(finalRating),
+                body: finalRating,
             })
             .then(response => {
                 if (!response.ok) {
@@ -300,6 +332,27 @@ function sendStarRating(usernameRated) {
                 errorCross2.classList.add('errorCross2');        
             })
     }
+}
+
+function adjustScrollbar() {
+    // fit bar to screen
+    let userTable = document.getElementById('userTable');
+    let scrollTable = document.getElementById('scrollTable');
+
+    if (touchScreen() === true) {
+        scrollTable.style.display = "none";
+    } else {
+        let marginLeft = userTable.offsetWidth;
+
+        scrollTable.style.marginLeft = `${marginLeft}px`;
+        scrollTable.style.width = `calc(100% - ${marginLeft}px)`;
+    }
+}
+
+function touchScreen() {
+    return ( 'ontouchstart' in window ) ||
+           ( navigator.maxTouchPoints > 0 ) ||
+           ( navigator.msMaxTouchPoints > 0 );
 }
 
 function getCookieValue(cookieName) {

@@ -4,7 +4,7 @@ let cookiePref;
 function cookieWindow() {
     checkSessionLogin();
     cookiePref = getCookieValue('cookies');
-    console.log(`cookies accpeted: ${cookiePref}`);
+    console.log(`cookies accepted: ${cookiePref}`);
     if (cookiePref != 'all' && cookiePref != 'necessary') {
         const body = document.getElementById('bodyID');
         const popupWrapper = document.createElement('div');
