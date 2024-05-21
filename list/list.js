@@ -265,7 +265,7 @@ function sendStarRating(usernameRated) {
         submitCell.classList.add('ratingSending');
 
         let sessionID = getCookieValue('sessionID');
-        let addRatingURL = `http://localhost:8080/api/rating/add?sessionID${sessionID}`;
+        let addRatingURL = `http://localhost:8080/api/rating/add?sessionID=${sessionID}`;
 
         fetch(addRatingURL, {
                 method: 'POST',

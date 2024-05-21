@@ -1,33 +1,48 @@
 package de.offchat.highscore.main.rating;
 
+import de.offchat.highscore.main.database.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/rating")
 public class RatingController {
 
+    Logger logger = Logger.getLogger(RatingController.class.getName());
+
     @Autowired
     private RatingService ratingService;
+    @Autowired
+    private Data dataService; // Assuming Data service is correctly implemented
 
     @PostMapping("/add")
-    public ResponseEntity<String> addOrUpdateRating(@RequestParam String usernameRated, @RequestParam String username, @RequestParam int ratingValue) {
-        ratingService.addOrUpdateRating(usernameRated, username, ratingValue);
+    public ResponseEntity<String> addOrUpdateRating(@RequestParam("sessionId") String sessionId, @RequestBody RatingRequest request) {
+        if (!dataService.doesSessionIdExist(sessionId)) {
+            logger.warning("Invalid or expired session ID for sessionID: " + sessionId);
+            return ResponseEntity.badRequest().body("Invalid session ID.");
+        }
+        logger.info("Received rating update request: " + request.getUsername() + " rates " + request.getUsernameRated() + " with " + request.getRatingValue());
+        ratingService.addOrUpdateRating(request.getUsernameRated(), request.getUsername(), request.getRatingValue());
         return ResponseEntity.ok("Rating updated successfully");
     }
 
     @DeleteMapping("/remove")
-    public ResponseEntity<String> removeRating(@RequestParam String usernameRated, @RequestParam String username) {
-        ratingService.removeRating(usernameRated, username);
+    public ResponseEntity<String> removeRating(@RequestParam("sessionID") String sessionId, @RequestBody RatingRequest request) {
+        if (!dataService.doesSessionIdExist(sessionId)) {
+            logger.warning("Session ID does not exist for deletion: " + sessionId);
+            return ResponseEntity.badRequest().body("Invalid session ID.");
+        }
+        logger.info("Received rating delete request for: " + request.getUsernameRated() + " by " + request.getUsername());
+        ratingService.removeRating(request.getUsernameRated(), request.getUsername());
         return ResponseEntity.ok("Rating removed successfully");
     }
 
     @GetMapping("/average")
     public ResponseEntity<Double> getAverageRating(@RequestParam String usernameRated) {
         double average = ratingService.calculateAverageRating(usernameRated);
+        logger.info("Average rating calculated for: " + usernameRated + " is " + average);
         return ResponseEntity.ok(average);
     }
-
 }
-
