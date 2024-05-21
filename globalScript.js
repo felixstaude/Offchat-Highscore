@@ -101,7 +101,7 @@ function getProfileData() {
         let profilePicture = document.getElementById('profilePictureHeader');
         username.innerHTML = usernameCookie;
         name.innerHTML = data.customName;
-        if (data.profilepicture) {
+        if (data.profilePicture) {
             profilePicture.src = data.profilePicture;
         }
     })

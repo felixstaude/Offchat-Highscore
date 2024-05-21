@@ -303,7 +303,7 @@ function sendStarRating(usernameRated) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: finalRating,
+                body: JSON.stringify(finalRating),
             })
             .then(response => {
                 if (!response.ok) {
@@ -314,7 +314,6 @@ function sendStarRating(usernameRated) {
             })
             .then(data => {
                 if (data.success === true) {
-                    console.log(finalRating);
                     submitCell.classList.remove('ratingSending');
                     submitCell.classList.add('ratingSuccess');
                 }
