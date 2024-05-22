@@ -62,7 +62,7 @@ function submitForm() {
         password: document.getElementById('password').value
     };
 
-    fetch('http://http://88.99.161.170:8080/api/login', {
+    fetch('http://88.99.161.170:8080/api/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

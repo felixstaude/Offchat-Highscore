@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         information.classList.add('loading');
 
         let sessionID = getCookieValue('sessionID');
-        let userlistURL = `http://88.99.161.170/api/userlist/data?sessionId=${sessionID}`;
+        let userlistURL = `http://88.99.161.170:8080/api/userlist/data?sessionId=${sessionID}`;
 
         const usersData = fetch(userlistURL, {
                 method: 'GET',
@@ -296,7 +296,7 @@ function sendStarRating(usernameRated) {
         submitCell.classList.add('ratingSending');
 
         let sessionID = getCookieValue('sessionID');
-        let addRatingURL = `http://88.99.161.170/api/rating/add?sessionId=${sessionID}`;
+        let addRatingURL = `http://88.99.161.170:8080/api/rating/add?sessionId=${sessionID}`;
 
         fetch(addRatingURL, {
                 method: 'POST',

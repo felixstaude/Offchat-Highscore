@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', function() {
     let sessionID = getCookieValue('sessionID');
     
     function getUsersData() {
-        let usersURL = `http://88.99.161.170/api/userlist/data?sessionId=${sessionID}`;
+        let usersURL = `http://88.99.161.170:8080/api/userlist/data?sessionId=${sessionID}`;
         information.classList.add('loading');
 
         fetch(usersURL, {
