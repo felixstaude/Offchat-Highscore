@@ -78,8 +78,11 @@ function submitForm() {
     })
     .then(data => {
         information.classList.remove('loading');
-        if (data.success != false && data.sessionID != null) {
-            setCookies(data);
+        if (data.success === true && data.sessionID != null) {
+            let username = document.getElementById('username').value;
+            document.cookie = 'sessionID=' + data.sessionID + ';path=/';
+            document.cookie = 'username=' + username + ';path=/';
+            location.href = '/';
         } else {
             information.classList.add('error');
             console.log(data);
@@ -111,15 +114,6 @@ function getCookieValue(cookieName) {
         }
     }
     return null;
-}
-
-function setCookies(data) {
-    if (data.success != false && data.sessionID != null) {
-        let username = document.getElementById('username').value;
-        document.cookie = 'sessionID=' + data.sessionID + ';path=/';
-        document.cookie = 'username=' + username + ';path=/';
-        location.href = '/';
-    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

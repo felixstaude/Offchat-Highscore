@@ -84,7 +84,7 @@ function fillForm(data) {
     if (data.single === true) {
         singleC.checked = true;
         document.getElementById('lSingle').classList.add('checked');
-    } else if (data.together === true) {
+    } else if (data.single === false) {
         togetherC.checked = true;
         document.getElementById('lSingle').classList.add('checked');
     } else {

@@ -62,11 +62,6 @@ function checkSessionLogin() {
     .then(data => {
         if (data.username === usernameCookie) {
             getProfileData();
-        } else {
-            console.log(usernameCookie);
-            console.log(data.username);
-            console.log('anfrage kam durch, aber falsche id zurück');
-            // window.location.replace('/login/?source=loginfail');
         }
     })
     .catch(error => {
