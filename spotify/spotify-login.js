@@ -1,5 +1,6 @@
-window.onload = spLogin;
-
+window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('spReferer').addEventListener('click', spLogin);
+}); 
 
 async function spLogin() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -8,7 +9,7 @@ async function spLogin() {
     let onloadTime = new Date().getTime();
     console.log(usercode);
     let clientId = '04ea98b78463480aaa84230ec3e319aa';
-    let redirectUri = 'http://localhost:8080/spotify/login.html';
+    let redirectUri = 'http://88.99.161.170/spotify/login.html';
 
     if (!usercode && loggedIn != 'true') {      //get usercode to url (user has to log in and allow usage)
         const generateRandomString = (length) => {

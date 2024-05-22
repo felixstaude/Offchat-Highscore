@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
+    
     // get user data from api
-
     let sessionID = getCookieValue('sessionID');
     
     function getUsersData() {
-        let usersURL = `http://localhost:8080/api/userlist/data?sessionI${sessionID}`;
+        let usersURL = `http://88.99.161.170/api/userlist/data?sessionId=${sessionID}`;
         information.classList.add('loading');
 
         fetch(usersURL, {

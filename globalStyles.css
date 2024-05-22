@@ -105,6 +105,8 @@ header{
     height: 40px;
     border-radius: 50%;
     transition-duration: 0.2s;
+    overflow: hidden;
+    aspect-ratio: 1;
 }
 
 .homeWrapper:hover {

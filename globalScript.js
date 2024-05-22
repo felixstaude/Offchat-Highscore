@@ -2,7 +2,6 @@ window.addEventListener('load', cookieWindow);
 
 let cookiePref;
 function cookieWindow() {
-    checkSessionLogin();
     cookiePref = getCookieValue('cookies');
     console.log(`cookies accepted: ${cookiePref}`);
     if (cookiePref != 'all' && cookiePref != 'necessary') {
@@ -20,6 +19,8 @@ function cookieWindow() {
                 <p>Hinweis: Da diese Seite "<a href="https://www.bmuv.de/themen/verbraucherschutz/digitaler-verbraucherschutz/impressumspflicht">an [...] Feunde</a>" gerichtet ist, verfügt sie nicht über ein Impressum.</p>
             </div>`;
         body.appendChild(popupWrapper);
+    } else {
+        checkSessionLogin();
     }
 }
 
@@ -44,7 +45,7 @@ function checkSessionLogin() {
     let sessionID = getCookieValue('sessionID');
     let usernameCookie = getCookieValue('username');
 
-    fetch('http://localhost:8080/api/checksession', {
+    fetch('http://88.99.161.170/api/checksession', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ function checkSessionLogin() {
     })
     .catch(error => {
         console.error('Failed to fetch: ', error);
-        //window.location.replace('/login/?source=loginfail');
+        window.location.replace('/login/?source=loginfail');
     })
 }
 
@@ -78,7 +79,7 @@ function getProfileData() {
     information.classList.add('loading');
 
     let sessionID = getCookieValue('sessionID');
-    let userURL = `http://localhost:8080/api/user/data?sessionId=${sessionID}`;
+    let userURL = `http://88.99.161.170/api/user/data?sessionId=${sessionID}`;
     let usernameCookie = getCookieValue('username');
 
     fetch(userURL, {
