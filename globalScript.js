@@ -45,7 +45,7 @@ function checkSessionLogin() {
     let sessionID = getCookieValue('sessionID');
     let usernameCookie = getCookieValue('username');
 
-    fetch('http://88.99.161.170/api/checksession', {
+    fetch('http://88.99.161.170:8080/api/checksession', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -65,8 +65,8 @@ function checkSessionLogin() {
         } else {
             console.log(usernameCookie);
             console.log(data.username);
-            window.location.replace('/login/?source=loginfail');
             console.log('anfrage kam durch, aber falsche id zurück');
+            // window.location.replace('/login/?source=loginfail');
         }
     })
     .catch(error => {
@@ -79,7 +79,7 @@ function getProfileData() {
     information.classList.add('loading');
 
     let sessionID = getCookieValue('sessionID');
-    let userURL = `http://88.99.161.170/api/user/data?sessionId=${sessionID}`;
+    let userURL = `http://88.99.161.170:8080/api/user/data?sessionId=${sessionID}`;
     let usernameCookie = getCookieValue('username');
 
     fetch(userURL, {

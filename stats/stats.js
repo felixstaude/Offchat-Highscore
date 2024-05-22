@@ -4,7 +4,7 @@ function getFormData() {
     information.classList.add('loading');
 
     let sessionID = getCookieValue('sessionID');
-    let userURL = `http://88.99.161.170/api/user/data?sessionId=${sessionID}`;
+    let userURL = `http://88.99.161.170:8080/api/user/data?sessionId=${sessionID}`;
 
     fetch(userURL, {
         method: 'GET',
@@ -155,7 +155,7 @@ function submitForm() {
         errorCross2.classList.remove('errorCross2');
 
         let sessionID = getCookieValue('sessionID');
-        let statsURL = `http://88.99.161.170/api/stats?sessionId=${sessionID}`;
+        let statsURL = `http://88.99.161.170:8080/api/stats?sessionId=${sessionID}`;
         fetch(statsURL, {
             method: 'POST',
             headers: {
