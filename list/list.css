@@ -90,14 +90,8 @@
 table {
     border: solid 1px #fff;
     border-collapse: collapse;
-}
-
-th {
+    height: fit-content;
     white-space: nowrap;
-}
-
-tr {
-    max-height: 50px !important;
 }
 
 .rowUserdata:nth-child(even), .rowUsername:nth-child(even) {

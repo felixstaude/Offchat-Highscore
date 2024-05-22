@@ -42,13 +42,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         users.forEach(user => {
             const row = document.createElement('tr');
             row.classList.add('rowUsername');
+
             const profileCell = document.createElement('td');
+
             const img = document.createElement('img');
             img.src = user['profilePicture'];
             img.alt = 'Profilbild';
-            img.style.maxWidth = '50px'; // max width for the picture
+            img.style.width = '50px'; // width + height + crop for the picture
+            img.style.height = '50px';
+            img.style.objectFit = 'cover';
+
             profileCell.appendChild(img);
             row.appendChild(profileCell);
+
             for (const key in user) {
                 if (user.hasOwnProperty(key) && key === 'username') {
                     const cell = document.createElement('td');
@@ -176,7 +182,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.getElementById('tableWrapper').style.cursor = 'grabbing';
     });
 
-    document.getElementById('tableWrapper').addEventListener('mousemove', function(e) {
+    window.addEventListener('mousemove', function(e) {
         if(!endScroll) {
             let point2 = e.pageX;
             let diff = point1 - point2;
@@ -184,7 +190,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
-    document.getElementById('tableWrapper').addEventListener('mouseup', function() {
+    window.addEventListener('mouseup', function() {
         document.getElementById('tableWrapper').style.cursor = '';
         endScroll = true;
     });

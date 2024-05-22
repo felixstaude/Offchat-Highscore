@@ -1,28 +1,28 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', async function() {
     
     // get user data from api
     let sessionID = getCookieValue('sessionID');
     
-    function getUsersData() {
+    async function getUsersData() {
         let usersURL = `http://88.99.161.170:8080/api/userlist/data?sessionId=${sessionID}`;
         information.classList.add('loading');
 
-        fetch(usersURL, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => {
+        try {
+            let response = await fetch(usersURL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
-            return response.json();
-        })
-        .then(data => {
+
+            let data = await response.json();
+            information.classList.remove('loading');
             return data;
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Failed to fetch: ', error);
             information.classList.remove('loading');
             information.classList.add('error');
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function() {
             showError.style.display = 'block';
             errorCross1.classList.add('errorCross1');
             errorCross2.classList.add('errorCross2');
-        });
+        }
     }
     // create list
     function createUserList(users) {
@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
   
-    const usersData = getUsersData();
+    const usersData = await getUsersData();
     createUserList(usersData.users);
 });
 
