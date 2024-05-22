@@ -14,9 +14,9 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/offchat_highscore?serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setUrl("jdbc:mysql://88.99.161.170:3306/offchat_highscore?serverTimezone=UTC");
+        dataSource.setUsername("offchat");
+        dataSource.setPassword("Ets2ls15mc++");
         return dataSource;
     }
 

@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 public class CreateTestUser {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/offchat_highscore";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_URL = "jdbc:mysql://88.99.161.170/offchat_highscore";
+    private static final String DB_USER = "offchat";
+    private static final String DB_PASSWORD = "Ets2ls15mc++";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

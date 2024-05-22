@@ -44,6 +44,7 @@ public class DatabaseGenerator {
                 ")";
 
         jdbcTemplate.execute(sqlRating);
+        System.out.println("DATABASE CREATED");
     }
 
 }

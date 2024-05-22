@@ -27,16 +27,27 @@ public class LoginController {
      */
     @PostMapping
     public ResponseEntity<LoginResponse> handleFormSubmit(@RequestBody Login login) {
+
+        if(new PasswordVerification(new DatabaseConfig().jdbcTemplate(new DatabaseConfig().dataSource())).verifyPassword(login.getPassword(), login.getUsername())){
+            String sessionID = new SessionId().generateSessionID();
+            new Data().setSessionID(login.getUsername(), sessionID);
+            if(Main.getDebugMode()){
+                logger.info("Login Request send");
+                logger.info("Login credentials: ");
+                logger.info("     > Username: " + login.getUsername());
+                logger.info("     > Password: " + login.getPassword());
+                logger.info("     > SessionID: " + sessionID);
+                logger.info("     > login: true");
+            }
+            return ResponseEntity.ok(new LoginResponse(true, sessionID));
+        }
         if(Main.getDebugMode()){
             logger.info("Login Request send");
             logger.info("Login credentials: ");
             logger.info("     > Username: " + login.getUsername());
             logger.info("     > Password: " + login.getPassword());
-        }
-        if(new PasswordVerification(new DatabaseConfig().jdbcTemplate(new DatabaseConfig().dataSource())).verifyPassword(login.getPassword(), login.getUsername())){
-            String sessionID = new SessionId().generateSessionID();
-            new Data().setSessionID(login.getUsername(), sessionID);
-            return ResponseEntity.ok(new LoginResponse(true, sessionID));
+            logger.info("     > SessionID: null");
+            logger.info("     > login: false");
         }
         return ResponseEntity.ok(new LoginResponse(false, null));
     }
