@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', async function() {
             userImg.classList.add('userProfilePicture');
 
             const username = document.createElement('h4')
-            username.textContent = `${user.username} | ${user.name}`;
+            username.textContent = `${user.username} | ${user.customName}`;
 
             profileItem.appendChild(userImg);
             profileItem.appendChild(username);
@@ -54,9 +54,10 @@ window.addEventListener('DOMContentLoaded', async function() {
             listWrapper.appendChild(profileItem);
         });
     }
-  
+    let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
+
     const usersData = await getUsersData();
-    createUserList(usersData.users);
+    createUserList(await usersData);
 });
 
 function getCookieValue(cookieName) {
