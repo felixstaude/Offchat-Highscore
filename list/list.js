@@ -309,7 +309,7 @@ function sendStarRating(usernameRated) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(finalRating),
+                body: JSON.stringify(finalRating)
             })
             .then(response => {
                 if (!response.ok) {

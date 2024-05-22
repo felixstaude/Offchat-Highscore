@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 public class CreateTestUser {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/offchat_highscore";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "";
+    private static final String DB_URL = "jdbc:mysql://88.99.161.170/offchat_highscore";
+    private static final String DB_USER = "offchat";
+    private static final String DB_PASSWORD = "Ets2ls15mc++";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class CreateTestUser {
         String passwordHash = hashPassword(password, salt);
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-            String sql = "INSERT INTO users (username, password_hash, salt, profilepicture) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO highscore (username, passwordHash, passwordSalt, profilePicture) VALUES (?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, username);
                 statement.setString(2, passwordHash);

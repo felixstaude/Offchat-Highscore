@@ -1,23 +1,22 @@
 package de.offchat.highscore.main.api.connection.session;
 
+import de.offchat.highscore.main.Main;
 import de.offchat.highscore.main.api.connection.user.User;
-import de.offchat.highscore.main.database.DatabaseConnector;
+import de.offchat.highscore.main.database.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/checksession")
 public class SessionIdController {
 
     private String providedSessionID;
+    Logger logger = Logger.getLogger(SessionIdController.class.getName());
 
     /**
      * checks if the user has a sessionID
@@ -27,38 +26,26 @@ public class SessionIdController {
     @PostMapping
     public ResponseEntity<User> handleFormSubmit(@RequestBody SessionId sessionID) {
         providedSessionID = sessionID.getSessionID();
-        if(SessionIdPersister.doesSessionIdExist(providedSessionID)){
-            User users = new User();
-            String username = SessionIdPersister.getUserFromSessionId(providedSessionID);
-            users.setUsername(username);
-            users.setProfilePicture(getProfilePicture(username));
-
-            if(users.getProfilePicture() == null || users.getProfilePicture() == "null"){
-                return ResponseEntity.notFound().build();
+        if(new Data().doesSessionIdExist(providedSessionID)){
+            User user = new User();
+            String username = new Data().getUsernameFromSessionID(providedSessionID);
+            user.setUsername(username);
+            user.setProfilePicture(new Data().getProfilePicture(username));
+            if(Main.getDebugMode()){
+                logger.info("SessionID Request send from: " + sessionID.getSessionID());
             }
-            return ResponseEntity.ok(users);
+            if(user.getProfilePicture() == null || user.getProfilePicture().equalsIgnoreCase("null")){
+                logger.warning("User has no profilepicture!");
+                return ResponseEntity.ok(null);
+            }
+            if(Main.getDebugMode()){
+                logger.info("SessionID Response: " + new Data().getAllUserDataString(user.getUsername()));
+            }
+            return ResponseEntity.ok(user);
+
         }
-        return ResponseEntity.notFound().build();
+        logger.warning("provided sessionID does not exist");
+        return ResponseEntity.ok(null);
     }
 
-    private String getProfilePicture(String username){
-        String sql = "SELECT profilepicture FROM users WHERE username = ?";
-        String profilePicture = null;
-
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, username);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    profilePicture = resultSet.getString("profilepicture");
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error while retrieving username from sessionid: " + e.getMessage(), e);
-        }
-
-        return profilePicture;
-
-    }
 }

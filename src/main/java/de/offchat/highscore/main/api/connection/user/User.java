@@ -3,21 +3,41 @@ package de.offchat.highscore.main.api.connection.user;
 public class User {
 
     private String username;
-    private String name;
     private String profilePicture;
+    private String customName;
     private String solo;
     private String soloSession;
     private String duo;
     private String duoSession;
-    private String bodycount;
-    private String bcmale;
-    private String bcfemale;
-    private String bcdivserse;
-    private String sexuality;
-    private String weapon_bra_size;
+    private String bodycountMale;
+    private String bodycountFemale;
+    private String bodycountDiverse;
+    private String weaponBraSize;
     private Boolean single;
-    private String favePornCategory;
-    private String favePornVid;
+    private String favoritePornCategory;
+    private String favoritePornVideo;
+    private String sexuality;
+
+    public User(){
+        username = this.getUsername();
+        profilePicture = this.getProfilePicture();
+        customName = this.getCustomName();
+        solo = this.getSolo();
+        soloSession = this.getSoloSession();
+        duo = this.getDuo();
+        duoSession = this.getDuoSession();
+        bodycountMale = this.getBodycountMale();
+        bodycountFemale = this.getBodycountFemale();
+        bodycountDiverse = this.getBodycountDiverse();
+        sexuality = this.getSexuality();
+        weaponBraSize = this.getWeaponBraSize();
+        single = this.getSingle();
+        favoritePornCategory = this.getFavoritePornCategory();
+        favoritePornVideo = this.getFavoritePornVideo();
+
+        // ^^^^ extra categories here ^^^^
+
+    }
 
     public String getUsername() {
         return username;
@@ -27,20 +47,20 @@ public class User {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getProfilePicture() {
         return profilePicture;
     }
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getCustomName() {
+        return customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
     }
 
     public String getSolo() {
@@ -75,52 +95,36 @@ public class User {
         this.duoSession = duoSession;
     }
 
-    public String getBodycount() {
-        return bodycount;
+    public String getBodycountMale() {
+        return bodycountMale;
     }
 
-    public void setBodycount(String bodycount) {
-        this.bodycount = bodycount;
+    public void setBodycountMale(String bodycountMale) {
+        this.bodycountMale = bodycountMale;
     }
 
-    public String getBcmale() {
-        return bcmale;
+    public String getBodycountFemale() {
+        return bodycountFemale;
     }
 
-    public void setBcmale(String bcmale) {
-        this.bcmale = bcmale;
+    public void setBodycountFemale(String bodycountFemale) {
+        this.bodycountFemale = bodycountFemale;
     }
 
-    public String getBcfemale() {
-        return bcfemale;
+    public String getBodycountDiverse() {
+        return bodycountDiverse;
     }
 
-    public void setBcfemale(String bcfemale) {
-        this.bcfemale = bcfemale;
+    public void setBodycountDiverse(String bodycountDiverse) {
+        this.bodycountDiverse = bodycountDiverse;
     }
 
-    public String getBcdivserse() {
-        return bcdivserse;
+    public String getWeaponBraSize() {
+        return weaponBraSize;
     }
 
-    public void setBcdivserse(String bcdivserse) {
-        this.bcdivserse = bcdivserse;
-    }
-
-    public String getSexuality() {
-        return sexuality;
-    }
-
-    public void setSexuality(String sexuality) {
-        this.sexuality = sexuality;
-    }
-
-    public String getWeapon_bra_size() {
-        return weapon_bra_size;
-    }
-
-    public void setWeapon_bra_size(String weapon_bra_size) {
-        this.weapon_bra_size = weapon_bra_size;
+    public void setWeaponBraSize(String weaponBraSize) {
+        this.weaponBraSize = weaponBraSize;
     }
 
     public Boolean getSingle() {
@@ -131,20 +135,30 @@ public class User {
         this.single = single;
     }
 
-    public String getFavePornCategory() {
-        return favePornCategory;
+    public String getFavoritePornCategory() {
+        return favoritePornCategory;
     }
 
-    public void setFavePornCategory(String favePornCategory) {
-        this.favePornCategory = favePornCategory;
+    public void setFavoritePornCategory(String favoritePornCategory) {
+        this.favoritePornCategory = favoritePornCategory;
     }
 
-    public String getFavePornVid() {
-        return favePornVid;
+    public String getFavoritePornVideo() {
+        return favoritePornVideo;
     }
 
-    public void setFavePornVid(String favePornVid) {
-        this.favePornVid = favePornVid;
+    public void setFavoritePornVideo(String favoritePornVideo) {
+        this.favoritePornVideo = favoritePornVideo;
     }
+
+    public String getSexuality() {
+        return sexuality;
+    }
+
+    public void setSexuality(String sexuality) {
+        this.sexuality = sexuality;
+    }
+
+    // ^^^^ extra categories here ^^^^
+
 }
-
