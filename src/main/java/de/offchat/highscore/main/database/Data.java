@@ -260,6 +260,7 @@ public class Data {
         setWeaponBraSize(username, stats.getWeaponBraSize());
         setFavoritePornCategory(username, stats.getFavoritePornCategory());
         setFavoritePornVideo(username, stats.getFavoritePornVideo());
+        setProfilePicture(username, stats.getProfilePicture());
 
         // ^^^^ extra categories here ^^^^
 

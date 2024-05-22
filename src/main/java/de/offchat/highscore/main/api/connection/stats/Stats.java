@@ -15,9 +15,18 @@ public class Stats {
     private String single;
     private String favoritePornCategory;
     private String favoritePornVideo;
+    private String profilePicture;
 
     public Stats() {
 
+    }
+
+    public String getProfilePicture(){
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture){
+        this.profilePicture = profilePicture;
     }
 
     public String getUsername() {

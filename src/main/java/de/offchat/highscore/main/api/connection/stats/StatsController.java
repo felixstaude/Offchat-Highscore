@@ -25,6 +25,7 @@ public class StatsController {
             return ResponseEntity.badRequest().build();
         }
         if(Main.getDebugMode()){
+
             logger.info("Stats Request send from: " + stats.getUsername());
             logger.info("Stats Request answer: " + new Data().getAllUserDataString(stats.getUsername()));
         }
