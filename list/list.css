@@ -92,6 +92,8 @@ table {
     border-collapse: collapse;
     height: fit-content;
     white-space: nowrap;
+    table-layout: fixed;
+    overflow-y: hidden;
 }
 
 .rowUserdata:nth-child(even), .rowUsername:nth-child(even) {
@@ -104,8 +106,18 @@ td, th {
     border: solid 1px #fff;
 }
 
-td {
-    height: 58px;
+.rowUserdata {
+    height: 51px;
+}
+
+.profilePictureListWrapper {
+    padding: 0;
+}
+
+.profilePictureList {
+    height: 50px;
+    width: 50px;
+    background-size: cover !important;
 }
 
 .favePornVid {

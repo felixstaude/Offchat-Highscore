@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         //console.log(await usersData);
 
-        let test1 = [{"username":"test1","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
+        let test1 = [{"username":"test1","profilePicture":"https://i.imgur.com/N8kAxO4.jpg","customName":"felix","solo":"123","soloSession":"123","duo":"123","duoSession":"123","bodycountMale":"123","bodycountFemale":"213","bodycountDiverse":"3123","weaponBraSize":"5","single":true,"favoritePornCategory":"6123132","favoritePornVideo":"https://youtube.com","sexuality":"bi"},{"username":"test2","profilePicture":"https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj","customName":null,"solo":null,"soloSession":null,"duo":null,"duoSession":null,"bodycountMale":null,"bodycountFemale":null,"bodycountDiverse":null,"weaponBraSize":null,"single":false,"favoritePornCategory":null,"favoritePornVideo":null,"sexuality":null}];
 
         return await usersData;
     }
@@ -44,13 +44,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             row.classList.add('rowUsername');
 
             const profileCell = document.createElement('td');
+            profileCell.classList.add('profilePictureListWrapper')
 
-            const img = document.createElement('img');
-            img.src = user['profilePicture'];
-            img.alt = 'Profilbild';
-            img.style.width = '50px'; // width + height + crop for the picture
-            img.style.height = '50px';
-            img.style.objectFit = 'cover';
+            const img = document.createElement('div');
+            console.log(user['profilePicture']);
+            img.style.background = `url(${user['profilePicture']})`;
+            img.classList.add('profilePictureList')
 
             profileCell.appendChild(img);
             row.appendChild(profileCell);
