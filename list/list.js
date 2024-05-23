@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             let point2 = e.pageX;
             let diff = point1 - point2;
             document.getElementById('tableWrapper').scroll(currentScroll + diff,0);
+            window.getSelection().removeAllRanges();
         }
     });
 
