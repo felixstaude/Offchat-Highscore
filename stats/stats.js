@@ -86,7 +86,7 @@ function fillForm(data) {
         document.getElementById('lSingle').classList.add('checked');
     } else if (data.single === false) {
         togetherC.checked = true;
-        document.getElementById('lSingle').classList.add('checked');
+        document.getElementById('lTogether').classList.add('checked');
     } else {
         console.log('fehler, konnte nicht checken')
     }
