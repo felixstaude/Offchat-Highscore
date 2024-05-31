@@ -11,7 +11,7 @@ function cookieWindow() {
         popupWrapper.classList.add('popupWrapper');
         popupWrapper.innerHTML = 
             `<div class="background content">
-                <p>Diese Website benutzt notwendige und zusätzliche Cookies. Die zusätzlichen Cookies werden von spotify.com gesetzt, falls du dich mit deinem Konto anmeldest. So kannst du während deines Aufenthalts die zusätzlichen Funktionen nutzen, die den Login bei Spotify voraussetzen. Um diese Seite nutzen zu können (bspw. für den Login, oder damit deine Cookie-Auswahl gespeichert werden kann) musst du notwendige Cookies akzeptieren. Keine Sorge, diese sind auch nur von uns.</p>
+                <p>Diese Website benutzt notwendige und zusätzliche Cookies. Die zusätzlichen Cookies werden von spotify.com gesetzt, falls du dich mit deinem Konto anmeldest. So kannst du während deines Aufenthalts die zusätzlichen Funktionen nutzen, die den Login bei Spotify voraussetzen. Um diese Seite nutzen zu können (bspw. für den Login, oder damit deine Cookie-Auswahl gespeichert werden kann) musst du notwendige Cookies akzeptieren. Diese sind von dieser Seite hier und den Seiten, über welche die Bilder gehostet werden, also Imgur, Discord, 7tv und evtl. weitere.</p>
                 <div>
                     <button onclick="acceptCookies('all')">Alle akzeptieren</button>
                     <button onclick="acceptCookies('necessary')">nur Notwendige akzepieren</button> 
@@ -25,13 +25,13 @@ function cookieWindow() {
 }
 
 function acceptCookies(x) {
-    let onlaodTime = new Date().getTime();
-    let expireTime = onlaodTime + 30000000;
+    let onloadTime = new Date().getTime();
+    let expireTime = new Date(onloadTime + 31536000000).toUTCString();
     document.cookie = `cookies=${x};expires=${expireTime};path=/`;
     window.location.reload();
 }
 
-function resetCookiePref() {
+function resetCookies() {
     document.cookie = `cookies=;path=/`;
     window.location.reload();
 }

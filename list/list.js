@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             profileCell.classList.add('profilePictureListWrapper')
 
             const img = document.createElement('div');
-            console.log(user['profilePicture']);
             img.style.background = `url(${user['profilePicture']})`;
             img.classList.add('profilePictureList')
 
@@ -110,7 +109,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                             break;
                         case 'favoritePornVideo':
                             if (user[key]) {
-                                let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${user[key]}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`;
+                                let videoLink = user[key].split(' ')[0]
+                                let linkToVideo = `<a class="phLink" id="${user.username}-Link" href="${videoLink}" target="_blank"><img src="phLinkArrow.webp"/> ${user[key]}</a>`;
                                 cell.innerHTML = linkToVideo;
                             }
                             break;
