@@ -13,7 +13,7 @@ public class CreateTestUser {
 
     private static final String DB_URL = "jdbc:mysql://88.99.161.170/offchat_highscore";
     private static final String DB_USER = "offchat";
-    private static final String DB_PASSWORD = "Ets2ls15mc++";
+    private static final String DB_PASSWORD = "password";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
