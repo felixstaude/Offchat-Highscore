@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class CreateTestUser {
 
     private static final String DB_URL = "jdbc:mysql://88.99.161.170/offchat_highscore";
-    private static final String DB_USER = "username";
+    private static final String DB_USER = "offchat";
     private static final String DB_PASSWORD = "password";
 
     public static void main(String[] args) {
@@ -35,6 +35,7 @@ public class CreateTestUser {
                 statement.setString(1, username);
                 statement.setString(2, passwordHash);
                 statement.setString(3, bytesToHex(salt));
+                statement.setString(4, "https://yt3.googleusercontent.com/YNyWdRIXEgVHHNJI2q0tyrxujhmVMMRew65ybn30XO7urB_NavrIq-ubjHcgCR_PhW-7Y2OH4w=s176-c-k-c0x00ffffff-no-rj");
 
                 int rowsAffected = statement.executeUpdate();
                 if (rowsAffected > 0) {

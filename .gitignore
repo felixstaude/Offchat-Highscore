@@ -6,3 +6,5 @@
 /out/
 /.idea/artifacts/offchat_highscore_jar.xml
 /.idea/artifacts/unnamed.xml
+/src/main/resources/application.properties
+/src/main/resources/config.properties
